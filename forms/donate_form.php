@@ -1,0 +1,1 @@
+<?php do_shortcode('donate_form'); ?>
