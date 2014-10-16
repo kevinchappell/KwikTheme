@@ -3,8 +3,8 @@
  * The default template for displaying content. Used for both single and index/archive/search.
  *
  * @package WordPress
- * @subpackage OpenPower
- * @since OpenPower 1.0
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 
 $resource_content = (get_the_excerpt() != "") ? '<p>'.get_the_excerpt().'</p>' : '<p>'.get_the_content('Read more').'</p>';

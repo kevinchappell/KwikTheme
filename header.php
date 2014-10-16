@@ -6,8 +6,8 @@
  * Displays all of the <head> section and everything up till <div id="main">
  *
  * @package WordPress
- * @subpackage OpenPower
- * @since OpenPower 1.0
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 
 $options = op_get_theme_options();

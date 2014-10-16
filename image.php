@@ -12,9 +12,9 @@
 
  * @package WordPress
 
- * @subpackage OpenPower
+ * @subpackage KwikTheme
 
- * @since OpenPower 1.0
+ * @since KwikTheme 1.0
 
  */
 

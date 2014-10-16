@@ -410,6 +410,18 @@
     display:inline-block;
     width:20%;
 }
+
+/*
+#tr_meta .meta_wrap{float:left; display:inline-block; width:45%; margin-right:5%}
+#tr_meta .meta_wrap.user_info{width:50%; margin-right:0;}
+#tr_meta .meta_wrap.user_info a{text-decoration:none;}
+*/
+#tr_meta label{display:inline-block;width:30%;}
+#tr_meta label img{max-width:100%;height:auto;}
+#tr_meta input[type="text"]{display:inline-block;width:68%;}
+
+
+
 .tooltip {
     position: relative;
 }
@@ -610,7 +622,11 @@ width: 100%;
     right:2px;
 }
 
-
+.remove_client_link{
+    float:right;
+    color:red;
+    cursor:pointer;
+}
 
 .home_box .box_link_wrap{position:absolute;bottom:0;left:0; background: url("images/link_sprite.png") no-repeat 3px 3px;width:0;height:24px;overflow:hidden;padding-left:24px;}
 .home_box .box_link_wrap:hover{width:100%;}

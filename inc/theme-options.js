@@ -174,7 +174,7 @@ jQuery(document).ready(function($) {
     function start_autocomplete() {
         $('#widgets-right #home_boxes .home_box_title').autocomplete({
             delay: 0,
-            source: $('#wp-admin-bar-site-name a').attr('href') + "wp-content/themes/openpower/utils/get_posts.php",
+            source: $('#wp-admin-bar-site-name a').attr('href') + "wp-content/themes/KwikTheme/utils/get_posts.php",
             select: function(event, ui) {
                 var element = $(this);
                 element.siblings('.home_box_value').val(ui.item.id);
@@ -192,7 +192,7 @@ function clients_ac(){
         delay: 0,
         source: function(request, response) {
             $.ajax({
-                url: $('#wp-admin-bar-site-name a').attr('href') + "wp-content/themes/openpower/utils/autocomplete.php",
+                url: $('#wp-admin-bar-site-name a').attr('href') + "wp-content/themes/KwikTheme/utils/autocomplete.php",
                 dataType: "json",
                 data: {
                     term: request.term,

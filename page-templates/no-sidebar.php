@@ -3,7 +3,7 @@
 /**
  * Template Name: No Sidebar
  *
- * Description: OpenPower loves the no-sidebar look as much as
+ * Description: KwikTheme loves the no-sidebar look as much as
  * you do. Use this page template to remove the sidebar from any page.
  *
  * Tip: to remove the sidebar from all posts and pages simply remove
@@ -11,8 +11,8 @@
  * disappear everywhere.
  *
  * @package WordPress
- * @subpackage OpenPower
- * @since OpenPower 1.0
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 
 get_header(); ?>

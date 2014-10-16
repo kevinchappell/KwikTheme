@@ -4,8 +4,8 @@
  * The template for displaying 404 pages (Not Found).
  *
  * @package WordPress
- * @subpackage OpenPower
- * @since OpenPower 1.0
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 
 get_header(); ?>

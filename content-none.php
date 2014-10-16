@@ -4,8 +4,8 @@
  * The template for displaying a "No posts found" message.
  *
  * @package WordPress
- * @subpackage OpenPower
- * @since OpenPower 1.0
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 
 ?>

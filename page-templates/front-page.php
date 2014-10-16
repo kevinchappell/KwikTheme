@@ -5,12 +5,12 @@
  *
  * Description: A page template that provides a key component of WordPress as a CMS
  * by meeting the need for a carefully crafted introductory page. The front page template
- * in OpenPower consists of a page content area for adding text, images, video --
+ * in KwikTheme consists of a page content area for adding text, images, video --
  * anything you'd like -- followed by front-page-only widgets in one or two columns.
  *
  * @package WordPress
- * @subpackage OpenPower
- * @since OpenPower 1.0
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 
 get_header(); ?>

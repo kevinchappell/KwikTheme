@@ -21,7 +21,7 @@ jQuery(document).ready(function ($) {
     function posts_autocomplete() {
         $('#as_meta #post_link_title').autocomplete({
             delay: 333,
-            source: $('#wp-admin-bar-site-name a').attr('href')+"wp-content/themes/openpower/utils/get_posts.php",
+            source: $('#wp-admin-bar-site-name a').attr('href')+"wp-content/themes/KwikTheme/utils/get_posts.php",
             select: function (event, ui) {
                 var element = $(this);
                 element.siblings('#post_link_id').val(ui.item.id);

@@ -64,7 +64,7 @@ $upload_size_msg = get_post_meta(6, 'upload_size_msg', true);
         <div class="nodisplay error" id="message_error_msg"><?php echo $message_error_msg; ?></div>
         <textarea name="y_message" cols="15" id="y_message" class="contact_textarea" placeholder="<?php _e('Enter your message&hellip;', 'kwik') ?>" rows="2"></textarea>
       </div>
-      <div class="input_wrap clear">
+      <div class="input_wrap clear" style="display:none">
         <label for="ask_cap">
           <?php _e( 'Security', 'op' ); ?>
           <span class="required">*</span>:</label>        

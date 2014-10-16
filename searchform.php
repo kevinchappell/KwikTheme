@@ -1,10 +1,10 @@
 <?php
 
 /**
- * The template for displaying search forms in OpenPower
+ * The template for displaying search forms in KwikTheme
  *
- * @subpackage OpenPower
- * @since OpenPower 1.0
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 ?>
 

@@ -1,17 +1,11 @@
 <?php
 
 /**
-
  * The template for displaying posts in the Aside post format
-
  *
-
  * @package WordPress
-
- * @subpackage OpenPower
-
- * @since OpenPower 1.0
-
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 
 ?>

@@ -4,8 +4,8 @@
  * The template used for displaying page content in page.php
  *
  * @package WordPress
- * @subpackage OpenPower
- * @since OpenPower 1.0
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 ?>
 

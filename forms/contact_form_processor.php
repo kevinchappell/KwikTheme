@@ -28,10 +28,9 @@ function send_email($post, $files){
 
 	
 
-	// $to = get_option('admin_email');
-	// $to = "anssi.takala@openpower.com";
 	$to = get_option('admin_email');
 	$from = $to;
+	$cc = 'membership@open-power.org,info@open-power.org';
 
 	
 	$the_date = date('r');
@@ -154,9 +153,9 @@ function stripHtml($value){
 function validate_form( $session, $post, $files, $options ){
 	$validation=array();
 	//verifies the captcha
-	if ( !($session['ask_cap'] == $post['ask_cap'] )) {
-		$validation[]=array("field"=>"ask_cap", "msg"=>"Captcha is incorrect! Hint:".$session['ask_cap']);
-	}
+	// if ( !($session['ask_cap'] == $post['ask_cap'] )) {
+	// 	$validation[]=array("field"=>"ask_cap", "msg"=>"Captcha is incorrect! Hint:".$session['ask_cap']);
+	// }
 	//validate user email
 	if ( $post['y_email'] == "" or !is_email($post['y_email']) or stripHtml($post['y_email']) ){
 		$validation[]=array("field"=>"y_email", "msg"=>"No valid email entered!");

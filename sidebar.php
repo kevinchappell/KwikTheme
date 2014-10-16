@@ -6,8 +6,8 @@
  * If no active widgets in sidebar, let's hide it completely.
  *
  * @package WordPress
- * @subpackage OpenPower
- * @since OpenPower 1.0
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 
 $options = op_get_theme_options();

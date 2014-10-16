@@ -1,7 +1,7 @@
-<?php 
+<?php
 /**
  * Widget Name: BOL Text Widget
- * Description: A replacement text widget for OpenPower
+ * Description: A replacement text widget for KwikTheme
  * Version: 0.1
  *
  */
@@ -15,7 +15,7 @@ function op_text_load_widgets() {
 
 
 if (!function_exists('op_unregister_default_wp_widgets')) {
-    function op_unregister_default_wp_widgets() { 
+    function op_unregister_default_wp_widgets() {
         unregister_widget('WP_Widget_Text');
     }
     add_action('widgets_init', 'op_unregister_default_wp_widgets', 1);
@@ -34,14 +34,14 @@ class BOL_Text_Widget extends WP_Widget {
 		extract($args);
 		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 		$text = apply_filters( 'widget_text', empty( $instance['text'] ) ? '' : $instance['text'], $instance );
-		
+
 /*		if($title == "Get In Touch"){
-		
-	$title = "<span>Get In</span> Touch";	
-		
+
+	$title = "<span>Get In</span> Touch";
+
 	} else {*/
 		// if (!empty($title)) echo $title;
-		
+
 	//}
 
 

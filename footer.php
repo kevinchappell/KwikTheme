@@ -7,8 +7,8 @@
  * #main and #page div elements.
  *
  * @package WordPress
- * @subpackage OpenPower
- * @since OpenPower 1.0
+ * @subpackage KwikTheme
+ * @since KwikTheme 1.0
  */
 
 ?>
@@ -20,8 +20,9 @@
 
 <footer id="footer" role="contentinfo">
   <div class="inner">
+  <?php if ( is_active_sidebar( 'footer_widgets' ) ) : dynamic_sidebar( 'footer_widgets' ); ?><?php endif; ?>
     <?php wp_nav_menu( array( 'menu' => 'Footer Menu', 'container' => false, 'menu_class' => 'menu clear')); ?>   
-    <div id="copyright" class="clear">&copy; Copyright by OpenPOWER Foundation. All rights reserved.</div> 
+    <div id="copyright" class="clear">&copy; Copyright by KwikTheme Foundation. All rights reserved.</div> 
   </div>
 </footer>
 <!-- #footer -->

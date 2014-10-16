@@ -4,7 +4,7 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-17906183-8', 'openpower.org');
+  ga('create', 'UA-17906183-8', 'KwikThemefoundation.org');
   ga('send', 'pageview');
 
 </script>
