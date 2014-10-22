@@ -149,8 +149,8 @@ function op_field_type_background($k) {
 	}
 
 	$kf_bg = '';
-	$kf_bg .= '<div>' . __('Background Color', 'kwik') . ':<br/>' . $inputs->color($name . '[bg_color]', $val['bg_color']) . '</div>';
-  $kf_bg .= $inputs->markup('div',$inputs->img($name . '[img]', $val['img'],__('Image', 'kwik')));
+  $kf_bg .= $inputs->markup('div', $inputs->color($name . '[bg_color]', $val['bg_color'], __('Background Color', 'kwik')));
+  $kf_bg .= $inputs->markup('div', $inputs->img($name . '[img]', $val['img'],__('Image', 'kwik')));
 	$kf_bg .= '<div>' . __('Position', 'kwik') . ':<br/>' . $inputs->select($name . '[position]', $val['position'], $inputs->positions()) . '</div>';
 	$kf_bg .= '<div>' . __('Repeat', 'kwik') . ':<br/>' . $inputs->select($name . '[repeat]', $val['repeat'], $inputs->repeat()) . '</div>';
 	$kf_bg .= '<div>' . __('Bg Size', 'kwik') . ':<br/>' . $inputs->select($name . '[bg_size]', $val['bg_size'], $inputs->bgSize()) . '</div>';
