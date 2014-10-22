@@ -146,8 +146,7 @@
     display: block;
 }
 #op_settings label {
-    display: inline-block;
-    width: 150px;
+    display: block;
 }
 .cpicker {
     position: relative;
@@ -358,14 +357,7 @@
     padding:5px;
 }
 .img_title {
-    border: 1px solid #CCCCCC;
-    display: inline-block;
-    height: 17px;
-    line-height: 15px;
-    margin: 0;
-    padding: 3px;
-    float: left;
-    position: relative;
+   display:none:;
 }
 .clear_img, .clear_color {
     background: url('../images/icons/clear.png') no-repeat 50% 50%/100% 100%;
@@ -395,7 +387,7 @@
     float: left;
     background: url("../images/cpicker.png") repeat scroll -80px 0 transparent;
     border: 1px solid #CCCCCC;
-    margin-right: -1px;    
+    margin-right: -1px;
 }
 .img_prev.transparent {
     display:block;
@@ -656,7 +648,7 @@ width: 100%;
     line-height:47px;
     text-align:center;
     cursor:pointer;
-    -webkit-border-radius: 3px;    
+    -webkit-border-radius: 3px;
     border-radius: 3px;
 }
 
@@ -671,11 +663,11 @@ width: 100%;
     filter: alpha(opacity=100);
     -moz-opacity: 1;
     -khtml-opacity: 1;
-    opacity: 1; 
+    opacity: 1;
 }
 
 .btn_nums{
-    width:26%; 
+    width:26%;
     float:left;
     margin-right:1%;
 }
@@ -714,17 +706,17 @@ width: 100%;
 .op_field_type_link_color .op_color{width:25%; float:left;display:inline-block;}
 
 .op_field_type_font .sub_option, .op_field_type_headers .sub_option{display:inline-block;float:left;}
-.op_field_type_font .color, 
+.op_field_type_font .color,
 .op_field_type_headers .color{width:21%;}
 .op_field_type_font .weight,
-.op_field_type_font .size, 
-.op_field_type_headers .size, 
-.op_field_type_headers .weight, 
+.op_field_type_font .size,
+.op_field_type_headers .size,
+.op_field_type_headers .weight,
 .op_field_type_font .line-height,
 .op_field_type_headers .line-height{width:15%;}
-.op_field_type_font .size input, 
+.op_field_type_font .size input,
 .op_field_type_headers .line-height input{width:45px;}
-.op_field_type_font .family, 
+.op_field_type_font .family,
 .op_field_type_headers .family{width:29%;}
 .op_field_type_headers .family select{width: 99%;}
 
@@ -732,7 +724,7 @@ width: 100%;
 .dashicon{
     font: 400 20px/1 dashicons;
 }
-h2 .dashicon{   
+h2 .dashicon{
     float: left;
     font: 400 40px/.7em dashicons;
     margin-right:10px;
@@ -764,3 +756,32 @@ h2 .dashicon{
 #op_headers th{display: none;}
 
 #op_headers table.form-table td{padding:0;}
+
+
+.op_field_type_background div:nth-child(1){
+width:20%;
+}
+.op_field_type_background div:nth-child(2){
+width: 12%;
+min-width: 70px;
+}
+.op_field_type_background div:nth-child(3){
+min-width: 128px;
+width: 21%;
+}
+.op_field_type_background div:nth-child(4){
+width: 16%;
+min-width: 100px;
+}
+.op_field_type_background div:nth-child(5){
+width: 14%;
+min-width: 80px;
+}
+.op_field_type_background div:nth-child(6){
+width: 12%;
+min-width: 76px;
+}
+
+.kf_setting div:last-child{
+    margin-right:0;
+}

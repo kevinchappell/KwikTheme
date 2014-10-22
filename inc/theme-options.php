@@ -32,7 +32,6 @@ function op_admin_enqueue_scripts($hook) {
 	}
 
 	if (in_array($hook, $hooks_array)) {
-		wp_enqueue_script('cpicker', get_template_directory_uri() . '/js/cpicker.js');
 		wp_enqueue_script('op-theme-options', get_template_directory_uri() . '/inc/theme-options.js', array('googlemaps', 'cpicker', 'jquery'), '2014-06-10', true);
 	}
 
@@ -71,12 +70,13 @@ function op_field_type_logo($k) {
 
 	$kf_bg = '';
 	$kf_bg .= '<div class="preview"></div>';
-	$kf_bg .= '<div>' . __('Background Color', 'kwik') . ':<br/>' . $inputs->colorInput($name . '[color]', $val['color']) . '</div>';
-	$kf_bg .= '<div>' . __('Image', 'kwik') . ':<br/>' . $inputs->imgInput($name . '[img]', $val['img']) . '</div>';
-	$kf_bg .= '<div>' . __('Position', 'kwik') . ':<br/>' . $inputs->selectInput($name . '[position]', $val['position'], $inputs->positions()) . '</div>';
-	$kf_bg .= '<div>' . __('Repeat', 'kwik') . ':<br/>' . $inputs->selectInput($name . '[repeat]', $val['repeat'], $inputs->repeat()) . '</div>';
-	$kf_bg .= '<div>' . __('Bg Size', 'kwik') . ':<br/>' . $inputs->selectInput($name . '[size]', $val['size'], $inputs->bgSize()) . '</div>';
-	$kf_bg .= '<div>' . __('Attachment', 'kwik') . ':<br/>' . $inputs->selectInput($name . '[attachment]', $val['attachment'], $inputs->bgAttachment()) . '</div>';
+  $kf_bg .= '<div>' . __('Background Color', 'kwik') . ':<br/>' . $inputs->color($name . '[color]', $val['color']) . '</div>';
+	$kf_bg .= $inputs->markup('div', $inputs->color($name . '[color]', $val['color'], __('Background Color', 'kwik')));
+	$kf_bg .= '<div>' . __('Image', 'kwik') . ':<br/>' . $inputs->img($name . '[img]', $val['img']) . '</div>';
+	$kf_bg .= '<div>' . __('Position', 'kwik') . ':<br/>' . $inputs->select($name . '[position]', $val['position'], $inputs->positions()) . '</div>';
+	$kf_bg .= '<div>' . __('Repeat', 'kwik') . ':<br/>' . $inputs->select($name . '[repeat]', $val['repeat'], $inputs->repeat()) . '</div>';
+	$kf_bg .= '<div>' . __('Bg Size', 'kwik') . ':<br/>' . $inputs->select($name . '[size]', $val['size'], $inputs->bgSize()) . '</div>';
+	$kf_bg .= '<div>' . __('Attachment', 'kwik') . ':<br/>' . $inputs->select($name . '[attachment]', $val['attachment'], $inputs->bgAttachment()) . '</div>';
 
 	echo $kf_bg;
 }
@@ -102,7 +102,7 @@ function op_field_type_headers($k) {
 		echo '<h2 class="button-primary">' . $post_type['label'] . '</h2>';
 		echo '<div class="sub_panel clear">';
 		echo '<h3 style="">' . __('Title', 'kwik') . '</h3>';
-		echo $inputs->textInput($name . "[" . $post_type['name'] . "][text]", $val[$post_type['name']]['text']);
+		echo $inputs->text($name . "[" . $post_type['name'] . "][text]", $val[$post_type['name']]['text']);
 		echo '<h3 style="">' . __('Font', 'kwik') . '</h3>';
 		op_field_type_font($header);
 		echo '<h3>' . __('Background', 'kwik') . '</h3>';
@@ -126,11 +126,11 @@ function op_field_type_font($k) {
 		$val = $options[$k]['value'];
 	}
 	$kf_f = '';
-	$kf_f .= '<div class="color sub_option">' . __('Color', 'kwik') . ':<br/>' . $inputs->colorInput($name . '[color]', $val['color']) . '</div>';
-	$kf_f .= '<div class="weight sub_option">' . __('Weight', 'kwik') . ':<br/>' . $inputs->selectInput($name . '[weight]', $val['weight'], $inputs->fontWeights()) . '</div>';
+	$kf_f .= '<div class="color sub_option">' . __('Color', 'kwik') . ':<br/>' . $inputs->color($name . '[color]', $val['color']) . '</div>';
+	$kf_f .= '<div class="weight sub_option">' . __('Weight', 'kwik') . ':<br/>' . $inputs->select($name . '[weight]', $val['weight'], $inputs->fontWeights()) . '</div>';
 	$kf_f .= '<div class="size sub_option">' . __('Size', 'kwik') . ':<br/>' . $inputs->spinner($name . '[size]', $val['size']) . '</div>';
 	$kf_f .= '<div class="line-height sub_option">' . __('Height', 'kwik') . ':<br/>' . $inputs->spinner($name . '[line-height]', $val['line-height']) . '</div>';
-	$kf_f .= '<div class="family sub_option">' . __('Font-Family', 'kwik') . ':<br/>' . $inputs->fontFamilyInput($name . '[font-family]', $val['font-family']) . '</div>';
+	$kf_f .= '<div class="family sub_option">' . __('Font-Family', 'kwik') . ':<br/>' . $inputs->fontFamily($name . '[font-family]', $val['font-family']) . '</div>';
 
 	echo $kf_f;
 }
@@ -149,14 +149,13 @@ function op_field_type_background($k) {
 	}
 
 	$kf_bg = '';
-	$kf_bg .= '<div>' . __('Background Color', 'kwik') . ':<br/>' . $inputs->colorInput($name . '[bg_color]', $val['bg_color']) . '</div>';
-	$kf_bg .= '<div>' . __('Image', 'kwik') . ':<br/>' . $inputs->imgInput($name . '[img]', $val['img']) . '</div>';
-	$kf_bg .= '<div>' . __('Position', 'kwik') . ':<br/>' . $inputs->selectInput($name . '[position]', $val['position'], $inputs->positions()) . '</div>';
-	$kf_bg .= '<div>' . __('Repeat', 'kwik') . ':<br/>' . $inputs->selectInput($name . '[repeat]', $val['repeat'], $inputs->repeat()) . '</div>';
-	$kf_bg .= '<div>' . __('Bg Size', 'kwik') . ':<br/>' . $inputs->selectInput($name . '[bg_size]', $val['bg_size'], $inputs->bgSize()) . '</div>';
-	$kf_bg .= '<div>' . __('Attachment', 'kwik') . ':<br/>' . $inputs->selectInput($name . '[attachment]', $val['attachment'], $inputs->bgAttachment()) . '</div>';
-	$kf_bg .= '<div class="preview">';
-	$kf_bg .= '</div>';
+	$kf_bg .= '<div>' . __('Background Color', 'kwik') . ':<br/>' . $inputs->color($name . '[bg_color]', $val['bg_color']) . '</div>';
+  $kf_bg .= $inputs->markup('div',$inputs->img($name . '[img]', $val['img'],__('Image', 'kwik')));
+	$kf_bg .= '<div>' . __('Position', 'kwik') . ':<br/>' . $inputs->select($name . '[position]', $val['position'], $inputs->positions()) . '</div>';
+	$kf_bg .= '<div>' . __('Repeat', 'kwik') . ':<br/>' . $inputs->select($name . '[repeat]', $val['repeat'], $inputs->repeat()) . '</div>';
+	$kf_bg .= '<div>' . __('Bg Size', 'kwik') . ':<br/>' . $inputs->select($name . '[bg_size]', $val['bg_size'], $inputs->bgSize()) . '</div>';
+	$kf_bg .= '<div>' . __('Attachment', 'kwik') . ':<br/>' . $inputs->select($name . '[attachment]', $val['attachment'], $inputs->bgAttachment()) . '</div>';
+	$kf_bg .= '<div class="preview"></div>';
 
 	echo $kf_bg;
 }
@@ -168,10 +167,10 @@ function op_field_type_link_color($k) {
 	$name = 'theme_options[' . $k . '][value]';
 
 	$kf_color = '';
-	$kf_color .= '<div class="op_color">' . __('Default', 'kwik') . ':<br/>' . $inputs->colorInput($name . '[default]', $val['default']) . '</div>';
-	$kf_color .= '<div class="op_color">' . __('Visited', 'kwik') . ':<br/>' . $inputs->colorInput($name . '[visited]', $val['visited']) . '</div>';
-	$kf_color .= '<div class="op_color">' . __('Hover', 'kwik') . ':<br/>' . $inputs->colorInput($name . '[hover]', $val['hover']) . '</div>';
-	$kf_color .= '<div class="op_color">' . __('Active', 'kwik') . ':<br/>' . $inputs->colorInput($name . '[active]', $val['active']) . '</div>';
+	$kf_color .= '<div class="op_color">' . __('Default', 'kwik') . ':<br/>' . $inputs->color($name . '[default]', $val['default']) . '</div>';
+	$kf_color .= '<div class="op_color">' . __('Visited', 'kwik') . ':<br/>' . $inputs->color($name . '[visited]', $val['visited']) . '</div>';
+	$kf_color .= '<div class="op_color">' . __('Hover', 'kwik') . ':<br/>' . $inputs->color($name . '[hover]', $val['hover']) . '</div>';
+	$kf_color .= '<div class="op_color">' . __('Active', 'kwik') . ':<br/>' . $inputs->color($name . '[active]', $val['active']) . '</div>';
 
 	echo $kf_color;
 }
@@ -611,7 +610,8 @@ function op_theme_options_render_page() {
 	echo '<form action="options.php" method="post">';
 	settings_fields('theme_options');
 	op_settings_sections(__FILE__);
-	echo '<p class="submit clear"><input name="Submit" type="submit" class="button-primary" value="' . __('Save Changes', 'kwik') . '" /></p>';
+	submit_button();
+	// echo '<p class="submit clear"><input name="Submit" type="submit" class="button-primary" value="' . __('Save Changes', 'kwik') . '" /></p>';
 	echo '</form>';
 	echo '</div>';
 }

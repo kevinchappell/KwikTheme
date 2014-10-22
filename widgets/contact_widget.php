@@ -1,6 +1,6 @@
-<?php 
+<?php
 /**
- * Widget Name: Kusakoski Contact Widget
+ * Widget Name: Kwik Contact Widget
  * Description: A tiny contact form block
  * Version: 0.2
  *
@@ -24,32 +24,32 @@ class KF_Contact_Widget extends WP_Widget {
 
 	function widget( $args, $instance ) {
 		extract($args);
-		
+
 		echo $before_widget;
-		
+
 		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 		$success = apply_filters( 'widget_success', empty( $instance['success_message'] ) ? '' : $instance['success_message'], $instance );
 		$error = apply_filters( 'widget_error', empty( $instance['error_message'] ) ? '' : $instance['error_message'], $instance );
-		
+
 		if(!empty($title)) echo $before_title . $title . $after_title;
 
-				
+
 		$form = '';
-		$form .= '<form id="op_contact_widget" name="op_contact_widget" method="post" enctype="multipart/form-data" action="'.get_bloginfo('template_directory').'/forms/widget_form_processor.php" >';		
+		$form .= '<form id="op_contact_widget" name="op_contact_widget" method="post" enctype="multipart/form-data" action="'.get_bloginfo('template_directory').'/forms/widget_form_processor.php" >';
 		$form .= '<input type="text" class="text_field" name="user_name" placeholder="'.__('Name','op').'" id="user_name" />';
 		$form .= '<input type="text" class="text_field" name="user_phone" placeholder="'.__('Phone','op').'" id="user_phone" />';
 		$form .= '<input type="text" class="text_field" name="user_email" placeholder="'.__('Email','op').'" id="user_email" />';
 		$form .= '<textarea placeholder="'.__('Message','op').'" name="user_message"></textarea>';
-		$form .= '<input type="hidden" name="url_main" value="'. curPageURL() .'" />';
+		$form .= '<input type="hidden" name="url_main" value="'. currentPageURL() .'" />';
         $form .= '<input type="hidden" name="user_ip" value="'. getRealIp() .'" />';
 		$form .= '<div class="inner"><span class="arrow"></span><input type="submit" name="user_submit" id="user_submit" value="'.__('Submit','op').'"></div>';
 		$form .= '</form>';
 		$form .= '<div id="op_contact_error" class="form_message error_message">'.__($error,'op').'</div>';
 		$form .= '<div id="op_contact_success" class="form_message success_message">'.__($success,'op').'</div>';
 		$form .= '<div id="op_contact_warning" class="form_message warning_message"></div>';
-		
+
 		echo $form;
-		
+
 		echo $after_widget;
 	}
 
@@ -76,17 +76,17 @@ class KF_Contact_Widget extends WP_Widget {
 ?>
 		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
-        
+
         <p><label for="<?php echo $this->get_field_id('to_email'); ?>"><?php _e('To Email:'); ?></label>
         <input class="widefat" id="<?php echo $this->get_field_id('to_email'); ?>" name="<?php echo $this->get_field_name('to_email'); ?>" type="text" value="<?php echo esc_attr($to_email); ?>" /></p>
-        
+
         <p><label for="<?php echo $this->get_field_id('cc_email'); ?>"><?php _e('CC Email:'); ?></label>
         <input class="widefat" id="<?php echo $this->get_field_id('cc_email'); ?>" name="<?php echo $this->get_field_name('cc_email'); ?>" type="text" value="<?php echo esc_attr($cc_email); ?>" /></p>
-        
+
 		<textarea class="widefat" rows="4" cols="20" id="<?php echo $this->get_field_id('conf_message'); ?>" name="<?php echo $this->get_field_name('conf_message'); ?>"><?php echo $conf_message; ?></textarea>
         <textarea class="widefat" rows="4" cols="20" id="<?php echo $this->get_field_id('error_message'); ?>" name="<?php echo $this->get_field_name('error_message'); ?>"><?php echo $error_message; ?></textarea>
         <textarea class="widefat" rows="4" cols="20" id="<?php echo $this->get_field_id('success_message'); ?>" name="<?php echo $this->get_field_name('success_message'); ?>"><?php echo $success_message; ?></textarea>
-		
+
 <?php
 	}
 }

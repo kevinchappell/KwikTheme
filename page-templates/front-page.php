@@ -16,12 +16,7 @@
 get_header(); ?>
 <div id="primary" class="site-content">
 	<div id="content" role="main">
-		<div id="home_top" class="clear">
-			<?php include(TEMPLATEPATH.'/home_slider.php'); ?>
-		</div>
-		<?php get_sidebar( 'front' ); ?>
-		<?php client_logos('platinum'); ?>
-		<?php client_logos('gold'); ?>
+		<?php get_sidebar( 'horz' ); ?>
 	</div><!-- #content -->
 </div><!-- #primary -->
 <?php get_footer(); ?>

@@ -76,6 +76,8 @@ foreach (glob(TEMPLATEPATH . "/widgets/*.php") as $widget_filename) {
 	include $widget_filename;
 }
 
+include TEMPLATEPATH . "/inc/kwik-framework/kwik-framework.php";
+
 /**
  * Enqueues scripts and styles for front-end.
  *
@@ -101,14 +103,6 @@ function op_scripts_styles() {
 
 	wp_enqueue_style('op-style', get_stylesheet_uri());
 	wp_enqueue_style('kf-custom', get_template_directory_uri() . '/css/kf_custom.php', array('op-style'), '11032014');
-
-	// if(is_page(array(8, 188))){
-	// 	wp_enqueue_script( 'modernizr', 'http://demand-for-crt-glass-processing.com/js/libs/modernizr-1.7.min.js', array('jquery'));
-	// 	wp_enqueue_script( 'whitepaper_script', get_template_directory_uri().'/js/whitepaper.js', array('modernizr', 'jquery'));
-	// }
-
-	if (is_post_type_archive("resources")) {wp_enqueue_script('jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle2.min.js', array('jquery'));
-	}
 
 	/*
 	 * Loads the Internet Explorer specific stylesheet.
@@ -288,8 +282,8 @@ function op_widgets_init() {
 	));
 
 	register_sidebar(array(
-		'name' => __('First Front Page Widget Area', 'op'),
-		'id' => 'sidebar-2',
+		'name' => __('Horizontal Widget Area 1', 'op'),
+		'id' => 'sidebar-horz-1',
 		'description' => __('Appears when using the optional Front Page template with a page set as Static Front Page', 'op'),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
@@ -297,8 +291,8 @@ function op_widgets_init() {
 		'after_title' => '</span></h3>',
 	));
 	register_sidebar(array(
-		'name' => __('Second Front Page Widget Area', 'op'),
-		'id' => 'sidebar-3',
+		'name' => __('Horizontal Widget Area 2', 'op'),
+		'id' => 'sidebar-horz-2',
 		'description' => __('Appears when using the optional Front Page template with a page set as Static Front Page', 'op'),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
@@ -490,7 +484,7 @@ function op_body_class($classes) {
 			$classes[] = 'has-post-thumbnail';
 		}
 
-		if (is_active_sidebar('sidebar-2') && is_active_sidebar('sidebar-3')) {
+		if (is_active_sidebar('sidebar-horz-1') && is_active_sidebar('sidebar-horz-2')) {
 			$classes[] = 'two-sidebars';
 		}
 	}
@@ -956,7 +950,7 @@ function social_link() {
 	if (!empty($options['bitly'][0])) {
 		bitly();
 	} else {
-		curPageURL();
+		currentPageURL();
 	}
 }
 
@@ -970,7 +964,7 @@ function bitly() {
 	} else {
 
 		$bitly = new op_bitly($options['bitly'][0], $options['bitly'][1]);
-		$bitly_short_url = $bitly->shortenURL(curPageURL());
+		$bitly_short_url = $bitly->shortenURL(currentPageURL());
 		if (is_single() && !$bitly_meta) {add_post_meta($post->ID, 'bitly_meta', urlencode($bitly_short_url), true);
 		}
 
@@ -1015,7 +1009,7 @@ function curl_get_result($url) {
 	return $data;
 }
 
-function curPageURL() {
+function currentPageURL() {
 	$pageURL = 'http';
 	if (isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) == "on") {$pageURL .= "s";}
 	$pageURL .= "://";
@@ -1027,7 +1021,7 @@ function curPageURL() {
 	return $pageURL;
 }
 
-function count_sidebar_widgets($sidebar_id, $echo = true) {
+function widget_count($sidebar_id, $echo = true) {
 	$the_sidebars = wp_get_sidebars_widgets();
 	if (!isset($the_sidebars[$sidebar_id])) {
 		return __('Invalid sidebar ID');
@@ -1041,13 +1035,7 @@ function count_sidebar_widgets($sidebar_id, $echo = true) {
 	}
 }
 
-function number_to_class($num = 1, $echo = true) {
-	$class = '';
-	if ($num == 1) {return;} else if ($num == 2) {$class = 'halves';} else if ($num == 3) {$class = 'thirds';} else if ($num == 4) {$class = 'fourths';} else if ($num == 5) {$class = 'fifths';}
 
-	if (!$echo) {return $class;} else {echo $class;}
-
-}
 
 function archive_feature_image($post_id, $echo = true) {
 

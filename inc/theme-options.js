@@ -13,7 +13,7 @@ function getObjectLoc(object, type) {
 roundNumber = function(rnum, rlength) {
     newnumber = Math.round(rnum * Math.pow(10, rlength)) / Math.pow(10, rlength);
     return newnumber;
-}
+};
 
 function noGeoLocation() {
 
@@ -40,67 +40,12 @@ jQuery(document).ready(function($) {
         return false;
     });*/
 
-    var _custom_media = true,
-        _orig_send_attachment = wp.media.editor.send.attachment;
-
-    $('.upload_img').on('click', function() {
-        var send_attachment_bkp = wp.media.editor.send.attachment;
-        var button = $(this);
-        var id = button.attr('id');
-        _custom_media = true;
-        wp.media.editor.send.attachment = function(props, attachment) {
-            if (_custom_media) {
-                //$("#"+id).val(attachment.id);
-                button.siblings('.img_title').html(attachment.title + '<span class="clear_img tooltip" title="Remove Image"></span>');
-                button.siblings('.img_id').val(attachment.id);
-                button.siblings('.img_prev').attr('src', attachment.url);
-            } else {
-                return _orig_send_attachment.apply(this, [props, attachment]);
-            };
-        }
-
-        wp.media.editor.open(button);
-        return false;
-    });
-
-    $('.img_prev').on('click', function() {
-        var send_attachment_bkp = wp.media.editor.send.attachment;
-        var button = $(this);
-        var id = button.attr('id');
-        _custom_media = true;
-        wp.media.editor.send.attachment = function(props, attachment) {
-            if (_custom_media) {
-                //$("#"+id).val(attachment.id);
-                button.siblings('.img_title').html(attachment.title + '<span class="clear_img tooltip" title="Remove Image"></span>');
-                button.siblings('.img_id').val(attachment.id);
-                button.attr('src', attachment.url);
-            } else {
-                return _orig_send_attachment.apply(this, [props, attachment]);
-            };
-        }
-
-        wp.media.editor.open(button);
-        return false;
-    });
-
-    $('.add_media').on('click', function() {
-        _custom_media = false;
-    });
-
-    $('.clear_img').live("click", function() {
-        var img_ttl = $(this).parent('.img_title');
-        img_ttl.empty();
-        img_ttl.siblings('.img_id').val('');
-        img_ttl.siblings('.img_prev').attr('src', '');
-    });
-
 
     $('span.add_btn').on('click', function() {
         var add_btn_li = $(this).parent("li"),
             parent_ul = add_btn_li.parent("ul.sortable"),
             btn_ul_length = $('li', parent_ul).length,
             orig_li = $('li:eq(' + (btn_ul_length - 2) + ')', parent_ul);
-        var parent_id = parent_ul.attr("id");
         var new_btn_li = orig_li.clone();
         new_btn_li.insertAfter(orig_li);
         new_btn_li.find("input, textarea").val("");
@@ -108,8 +53,7 @@ jQuery(document).ready(function($) {
         clients_ac();
     });
 
-    $('span.remove_btn').on("click", function() {        
-        var remove_btn_li = $(this).parent("li");
+    $('span.remove_btn').on("click", function() {
         reIndex_btn_ul();
         $(this).parent("li").remove();
     });
@@ -302,7 +246,7 @@ $( "#op_settings h2.button-primary" ).click(function() {
             if (navigator.geolocation) {
 
                 navigator.geolocation.getCurrentPosition(
-                    //  successCallback   
+                    //  successCallback
 
                     function(position) {
                         var indLat = position.coords.latitude,
@@ -337,7 +281,7 @@ $( "#op_settings h2.button-primary" ).click(function() {
 
 
                     },
-                    //  errorCallback   
+                    //  errorCallback
 
                     function(error) {
                         // error.code can be:

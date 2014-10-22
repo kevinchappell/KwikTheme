@@ -547,32 +547,3 @@ function membership_table( $atts ) {
 }
 add_shortcode( 'membership_table', 'membership_table' );
 
-
-
-function client_logos($level, $limit = NULL, $echo = true){
-
-		$term = get_term_by( 'slug', $level, 'client_levels');
-
-		$cl = '<h3 style="font-size:12px; color:#757575">'.$term->name.' Members</h3>';
-		$cl .= '<div id="member_companies" class="clear">';
-			$client_query = new WP_Query('post_status=publish&post_type=clients&client_levels='.$level.'&orderby=menu_order&order=ASC');
-
-            $i = 1;
-			$total = $client_query->post_count;
-			if ($client_query->have_posts()):
-            while ($client_query->have_posts()) : $client_query->the_post();
-            global $more;
-            $more = 0;
-
-			$client_id = get_the_ID();
-			$cl .= '<div class="client client-'.$client_id.'">';
-      $logo = has_post_thumbnail() ? get_the_post_thumbnail($client_id, 'client_logo') : get_the_title($client_id);
-			$cl .= '<a href="'.get_the_permalink($client_id).'">'.$logo.'</a>';
-			$cl .= '</div>';
-			$i++;  endwhile; endif; wp_reset_postdata();
-		$cl .= '</div>';
-
-		if($echo) echo $cl;
-		else return $cl;
-
-}

@@ -257,6 +257,7 @@ class Home_Boxes extends WP_Widget {
 	 * How to display the widget on the screen.
 	 */
 	function widget($args, $instance) {
+    $utils = new KwikUtils();
 		echo home_boxes_js();
 		extract($args);
 
@@ -285,7 +286,7 @@ class Home_Boxes extends WP_Widget {
 		$k_news_scroll_html .= '<div id="news_scroll_left"></div>';
 		$k_news_scroll_html .= '<div id="news_scroll_right"></div>';
 		//}
-		$k_news_scroll_html .= '<div id="news_scroll" class="' . number_to_class($number, false) . ' clear">';
+		$k_news_scroll_html .= '<div id="news_scroll" class="' . $utils->number_to_class($number, false) . ' clear">';
 		$k_news_scroll_html .= '<div class="viewport"><div class="overview">';
 
 		$categories = get_categories();

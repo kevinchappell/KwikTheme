@@ -228,19 +228,6 @@ label ~ span.required {
 
 }
 
-/* =Front page template styling
-
--------------------------------------------------------------- */
-
-.template-front-page .widget-area .widget_text img {
-
-	float: right;
-
-	margin: 8px 0 8px 24px;
-
-	margin: 0.571428571rem 0 0.571428571rem 1.714285714rem;
-
-}
 
 /* =Widget styling
 
