@@ -20,7 +20,6 @@ function op_admin_enqueue_scripts($hook) {
 		"toplevel_page_theme_options",
 		"post-new.php",
 		"post.php",
-		"home_slide_page_slide-settings",
 	);
 
 	wp_enqueue_script('media-upload');
@@ -52,7 +51,7 @@ function theme_options_init_fn() {
 	foreach ($tabs as $key => $value) {
 		add_settings_section($key, $value['section_title'], THEME_PREFIX . 'sections_callback', __FILE__);
 		foreach ($options as $k => $v) {
-			add_settings_field($k, $v['title'], 'op_field_type_' . $v['type'], __FILE__, $v['section'], $k);
+			add_settings_field($k, $v['title'], 'kf_field_type' . $v['type'], __FILE__, $v['section'], $k);
 		}
 	}
 }
@@ -62,7 +61,7 @@ function op_sections_callback($section) {
 	echo "<p>" . $tabs[$section['id']]['section_desc'] . "</p>";
 }
 
-function op_field_type_logo($k) {
+function kf_field_typelogo($k) {
 	$inputs = new KwikInputs();
 	$options = op_get_theme_options();
 	$val = $options[$k]['value'];
@@ -81,7 +80,7 @@ function op_field_type_logo($k) {
 	echo $kf_bg;
 }
 
-function op_field_type_headers($k) {
+function kf_field_typeheaders($k) {
 	$utils = new KwikUtils();
 	$inputs = new KwikInputs();
 	$options = op_get_theme_options();
@@ -104,16 +103,16 @@ function op_field_type_headers($k) {
 		echo '<h3 style="">' . __('Title', 'kwik') . '</h3>';
 		echo $inputs->text($name . "[" . $post_type['name'] . "][text]", $val[$post_type['name']]['text']);
 		echo '<h3 style="">' . __('Font', 'kwik') . '</h3>';
-		op_field_type_font($header);
+		kf_field_typefont($header);
 		echo '<h3>' . __('Background', 'kwik') . '</h3>';
-		op_field_type_background($header);
+		kf_field_typebackground($header);
 		echo '</div>';
 		$header = '';
 
 	}
 }
 
-function op_field_type_font($k) {
+function kf_field_typefont($k) {
 	$inputs = new KwikInputs();
 	$options = op_get_theme_options();
 
@@ -135,7 +134,7 @@ function op_field_type_font($k) {
 	echo $kf_f;
 }
 
-function op_field_type_background($k) {
+function kf_field_typebackground($k) {
 	$inputs = new KwikInputs();
 	$options = op_get_theme_options();
 
@@ -160,7 +159,7 @@ function op_field_type_background($k) {
 	echo $kf_bg;
 }
 
-function op_field_type_link_color($k) {
+function kf_field_typelink_color($k) {
 	$inputs = new KwikInputs();
 	$options = op_get_theme_options();
 	$val = $options[$k]['value'];
@@ -196,30 +195,9 @@ function op_color_scheme() {
 
 // General Settings text
 function op_header_text() {
-	echo '<p>Set the main section headers for the site here. Page headers are set on pages themselves.</p>';
+	echo '<p>Set the main section headers for the site here. Page headers are set from page edit screens</p>';
 }
 
-// INPUT - Name: theme_options[op_thought_leadership]
-function op_work_section() {
-	$options = get_option('theme_options');
-	$thumb = wp_get_attachment_image_src($options['work_section_img'], 'thumbnail');
-	$thumb = $thumb['0'];
-	$op_thought_leadership = '<input type="hidden" name="theme_options[work_section_img]" class="img_id" value="' . $options['work_section_img'] . '" />';
-	$op_thought_leadership .= '<img src="' . $thumb . '" class="img_prev" width="23" height="23" title="' . get_the_title($options['work_section_img']) . '"/><span id="site_bg_img_ttl" class="img_title">' . get_the_title($options['work_section_img']) . (!empty($options['work_section_img']) ? '<span title="' . __('Remove Image', 'op') . '" class="clear_img tooltip"></span>' : '') . '</span>';
-	$op_thought_leadership .= '<input type="button" class="upload_img" id="upload_img" value="+ IMG" />';
-	echo $op_thought_leadership;
-}
-
-// INPUT - Name: theme_options[op_thought_leadership]
-function op_thought_leadership() {
-	$options = get_option('theme_options');
-	$thumb = wp_get_attachment_image_src($options['thought_leadership_img'], 'thumbnail');
-	$thumb = $thumb['0'];
-	$op_thought_leadership = '<input type="hidden" name="theme_options[thought_leadership_img]" class="img_id" value="' . $options['thought_leadership_img'] . '" />';
-	$op_thought_leadership .= '<img src="' . $thumb . '" class="img_prev" width="23" height="23" title="' . get_the_title($options['thought_leadership_img']) . '"/><span id="site_bg_img_ttl" class="img_title">' . get_the_title($options['thought_leadership_img']) . (!empty($options['thought_leadership_img']) ? '<span title="' . __('Remove Image', 'op') . '" class="clear_img tooltip"></span>' : '') . '</span>';
-	$op_thought_leadership .= '<input type="button" class="upload_img" id="upload_img" value="+ IMG" />';
-	echo $op_thought_leadership;
-}
 
 // INPUT - Name: theme_options[social_networks]
 function op_social_networks() {
@@ -248,6 +226,7 @@ function op_bitly() {
 function op_map() {
 	$options = op_get_theme_options();
 	$op_map = $options['op_map'];
+  $output = '';
 
 	echo '<div id="op_map_canvas" style="width:50%; float:left; height:205px;display:inline-block;"></div>
 	<div id="op_map_settings">
@@ -568,7 +547,8 @@ function op_settings_sections($page) {
 		}
 		echo !empty($section['title']) ? "<h3>{$section['title']}</h3>\n" : "";
 		call_user_func($section['callback'], $section);
-		if (!isset($wp_settings_fields) || !isset($wp_settings_fields[$page]) || !isset($wp_settings_fields[$page][$section['id']])) {continue;
+		if (!isset($wp_settings_fields) || !isset($wp_settings_fields[$page]) || !isset($wp_settings_fields[$page][
+      $section['id']])) {continue;
 		}
 
 		echo '<table class="form-table">';

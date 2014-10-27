@@ -332,11 +332,11 @@
 .open_help:hover {
     text-decoration: underline;
 }
-.site_bg div, .op_field_type_headers div {
+.site_bg div, .kf_field_typeheaders div {
     float: left;
     margin-right: 5px;
 }
-#op_settings .op_options_panel .op_field_type_headers h3{
+#op_settings .op_options_panel .kf_field_typeheaders h3{
     display:block;
     margin-bottom: 0;
     text-align:left;
@@ -344,7 +344,7 @@
 }
 
 
- .op_field_type_headers h3,  .op_field_type_headers h2{
+ .kf_field_typeheaders h3,  .kf_field_typeheaders h2{
     text-align:center;clear:both;
 }
 
@@ -703,22 +703,22 @@ width: 100%;
     font-weight:bold;
 }
 
-.op_field_type_link_color .op_color{width:25%; float:left;display:inline-block;}
+.kf_field_typelink_color .op_color{width:25%; float:left;display:inline-block;}
 
-.op_field_type_font .sub_option, .op_field_type_headers .sub_option{display:inline-block;float:left;}
-.op_field_type_font .color,
-.op_field_type_headers .color{width:21%;}
-.op_field_type_font .weight,
-.op_field_type_font .size,
-.op_field_type_headers .size,
-.op_field_type_headers .weight,
-.op_field_type_font .line-height,
-.op_field_type_headers .line-height{width:15%;}
-.op_field_type_font .size input,
-.op_field_type_headers .line-height input{width:45px;}
-.op_field_type_font .family,
-.op_field_type_headers .family{width:29%;}
-.op_field_type_headers .family select{width: 99%;}
+.kf_field_typefont .sub_option, .kf_field_typeheaders .sub_option{display:inline-block;float:left;}
+.kf_field_typefont .color,
+.kf_field_typeheaders .color{width:21%;}
+.kf_field_typefont .weight,
+.kf_field_typefont .size,
+.kf_field_typeheaders .size,
+.kf_field_typeheaders .weight,
+.kf_field_typefont .line-height,
+.kf_field_typeheaders .line-height{width:15%;}
+.kf_field_typefont .size input,
+.kf_field_typeheaders .line-height input{width:45px;}
+.kf_field_typefont .family,
+.kf_field_typeheaders .family{width:29%;}
+.kf_field_typeheaders .family select{width: 99%;}
 
 
 .dashicon{
@@ -741,7 +741,7 @@ h2 .dashicon{
     background: url('../images/icons/move.png') no-repeat 100% 60%;
 }
 
-.op_field_type_headers div.sub_panel{
+.kf_field_typeheaders div.sub_panel{
     display:none;
     float: none;
     padding: 0 10px 20px;
@@ -758,26 +758,26 @@ h2 .dashicon{
 #op_headers table.form-table td{padding:0;}
 
 
-.op_field_type_background div:nth-child(1){
+.kf_field_typebackground div:nth-child(1){
 width:20%;
 }
-.op_field_type_background div:nth-child(2){
+.kf_field_typebackground div:nth-child(2){
 width: 12%;
 min-width: 70px;
 }
-.op_field_type_background div:nth-child(3){
+.kf_field_typebackground div:nth-child(3){
 min-width: 128px;
 width: 21%;
 }
-.op_field_type_background div:nth-child(4){
+.kf_field_typebackground div:nth-child(4){
 width: 16%;
 min-width: 100px;
 }
-.op_field_type_background div:nth-child(5){
+.kf_field_typebackground div:nth-child(5){
 width: 14%;
 min-width: 80px;
 }
-.op_field_type_background div:nth-child(6){
+.kf_field_typebackground div:nth-child(6){
 width: 12%;
 min-width: 76px;
 }
