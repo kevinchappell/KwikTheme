@@ -76,8 +76,6 @@ foreach (glob(TEMPLATEPATH . "/widgets/*.php") as $widget_filename) {
 	include $widget_filename;
 }
 
-include TEMPLATEPATH . "/inc/kwik-framework/kwik-framework.php";
-
 /**
  * Enqueues scripts and styles for front-end.
  *

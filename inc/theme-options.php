@@ -69,13 +69,13 @@ function kf_field_typelogo($k) {
 
 	$kf_bg = '';
 	$kf_bg .= '<div class="preview"></div>';
-  $kf_bg .= '<div>' . __('Background Color', 'kwik') . ':<br/>' . $inputs->color($name . '[color]', $val['color']) . '</div>';
+  $kf_bg .= __('Background Color', 'kwik') . ':<br/>' . $inputs->color($name . '[color]', $val['color'], __('Background Color', 'kwik'));
 	$kf_bg .= $inputs->markup('div', $inputs->color($name . '[color]', $val['color'], __('Background Color', 'kwik')));
 	$kf_bg .= '<div>' . __('Image', 'kwik') . ':<br/>' . $inputs->img($name . '[img]', $val['img']) . '</div>';
-	$kf_bg .= '<div>' . __('Position', 'kwik') . ':<br/>' . $inputs->select($name . '[position]', $val['position'], $inputs->positions()) . '</div>';
-	$kf_bg .= '<div>' . __('Repeat', 'kwik') . ':<br/>' . $inputs->select($name . '[repeat]', $val['repeat'], $inputs->repeat()) . '</div>';
-	$kf_bg .= '<div>' . __('Bg Size', 'kwik') . ':<br/>' . $inputs->select($name . '[size]', $val['size'], $inputs->bgSize()) . '</div>';
-	$kf_bg .= '<div>' . __('Attachment', 'kwik') . ':<br/>' . $inputs->select($name . '[attachment]', $val['attachment'], $inputs->bgAttachment()) . '</div>';
+	$kf_bg .= $inputs->select($name . '[position]', $val['position'], __('Position', 'kwik'), NULL, $inputs->positions());
+	$kf_bg .= '<div>' . __('Repeat', 'kwik') . ':<br/>' . $inputs->select($name . '[repeat]', $val['repeat'], NULL, NULL, $inputs->repeat()) . '</div>';
+	$kf_bg .= '<div>' . __('Bg Size', 'kwik') . ':<br/>' . $inputs->select($name . '[size]', $val['size'], NULL, NULL, $inputs->bgSize()) . '</div>';
+	$kf_bg .= '<div>' . __('Attachment', 'kwik') . ':<br/>' . $inputs->select($name . '[attachment]', $val['attachment'], NULL, $inputs->bgAttachment()) . '</div>';
 
 	echo $kf_bg;
 }
@@ -126,7 +126,7 @@ function kf_field_typefont($k) {
 	}
 	$kf_f = '';
 	$kf_f .= '<div class="color sub_option">' . __('Color', 'kwik') . ':<br/>' . $inputs->color($name . '[color]', $val['color']) . '</div>';
-	$kf_f .= '<div class="weight sub_option">' . __('Weight', 'kwik') . ':<br/>' . $inputs->select($name . '[weight]', $val['weight'], $inputs->fontWeights()) . '</div>';
+  $kf_f .= $inputs->select($name . '[weight]', $val['weight'],  __('Weight', 'kwik'), NULL, $inputs->fontWeights());
 	$kf_f .= '<div class="size sub_option">' . __('Size', 'kwik') . ':<br/>' . $inputs->spinner($name . '[size]', $val['size']) . '</div>';
 	$kf_f .= '<div class="line-height sub_option">' . __('Height', 'kwik') . ':<br/>' . $inputs->spinner($name . '[line-height]', $val['line-height']) . '</div>';
 	$kf_f .= '<div class="family sub_option">' . __('Font-Family', 'kwik') . ':<br/>' . $inputs->fontFamily($name . '[font-family]', $val['font-family']) . '</div>';
@@ -148,13 +148,12 @@ function kf_field_typebackground($k) {
 	}
 
 	$kf_bg = '';
-  $kf_bg .= $inputs->markup('div', $inputs->color($name . '[bg_color]', $val['bg_color'], __('Background Color', 'kwik')));
-  $kf_bg .= $inputs->markup('div', $inputs->img($name . '[img]', $val['img'],__('Image', 'kwik')));
-	$kf_bg .= '<div>' . __('Position', 'kwik') . ':<br/>' . $inputs->select($name . '[position]', $val['position'], $inputs->positions()) . '</div>';
-	$kf_bg .= '<div>' . __('Repeat', 'kwik') . ':<br/>' . $inputs->select($name . '[repeat]', $val['repeat'], $inputs->repeat()) . '</div>';
-	$kf_bg .= '<div>' . __('Bg Size', 'kwik') . ':<br/>' . $inputs->select($name . '[bg_size]', $val['bg_size'], $inputs->bgSize()) . '</div>';
-	$kf_bg .= '<div>' . __('Attachment', 'kwik') . ':<br/>' . $inputs->select($name . '[attachment]', $val['attachment'], $inputs->bgAttachment()) . '</div>';
-	$kf_bg .= '<div class="preview"></div>';
+  $kf_bg .= $inputs->color($name . '[bg_color]', $val['bg_color'], __('Background Color', 'kwik'));
+  $kf_bg .= $inputs->img($name . '[img]', $val['img'],__('Image', 'kwik'));
+	$kf_bg .= $inputs->select($name . '[position]', $val['position'], __('Position', 'kwik'), NULL, $inputs->positions());
+	$kf_bg .= $inputs->select($name . '[repeat]', $val['repeat'], __('Repeat', 'kwik'), NULL, $inputs->repeat());
+	$kf_bg .= $inputs->select($name . '[bg_size]', $val['bg_size'], __('Bg Size', 'kwik'), NULL, $inputs->bgSize());
+	$kf_bg .= $inputs->select($name . '[attachment]', $val['attachment'], __('Attachment', 'kwik'), NULL, $inputs->bgAttachment());
 
 	echo $kf_bg;
 }
@@ -736,7 +735,7 @@ function op_get_default_theme_options() {
 				'position' => '0 0',
 				'repeat' => 'repeat',
 				'bg_size' => '',
-				'attachment' => '',
+				'attachment' => ''
 			)
 		),
 

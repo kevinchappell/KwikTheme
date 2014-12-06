@@ -11,8 +11,8 @@
  */
 
 $utils = new KwikUtils();
-
-if ( ! is_active_sidebar( 'sidebar-horz-1' ) && ! is_active_sidebar( 'sidebar-horz-2' ) )	return;
+if ( ! is_active_sidebar( 'sidebar-horz-1' ) && ! is_active_sidebar( 'sidebar-horz-2' ) ) return;
+echo 'alkjalkjslkAJSLKJASLkjASJLKAsjSA';
 // If we get this far, we have widgets. Let do this.
 ?>
 	<?php if ( is_active_sidebar( 'sidebar-horz-1' ) ) : ?>

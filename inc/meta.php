@@ -263,7 +263,8 @@ function op_save_post_meta($post_id, $post) {
 	}
 
 	// Is the user allowed to edit the post or page?
-	if (!current_user_can('edit_post', $post->ID)) {return $post->ID;
+	if (!current_user_can('edit_post', $post->ID)) {
+    return $post->ID;
 	}
 
 	$page_meta = array(

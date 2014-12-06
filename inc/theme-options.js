@@ -59,20 +59,20 @@ jQuery(document).ready(function($) {
     });
 
 
-    $('.sortable').sortable({
-        cancel: '.btn_ul_title, input, textarea, .add_btn',
-        stop: reIndex_btn_ul
-    });
+    // $('.sortable').sortable({
+    //     cancel: '.btn_ul_title, input, textarea, .add_btn, select',
+    //     stop: reIndex_btn_ul
+    // });
 
 
-    function reIndex_btn_ul() {
-        $("li:not(.ignore)", "#bod.sortable").each(function(i) {
-            $("input, textarea", this).attr("name",
-                function(){
-                    return $(this).attr("name").replace(/\d+/g, i);
-                });
-        });
-    }
+    // function reIndex_btn_ul() {
+    //     $("li:not(.ignore)", "#bod.sortable").each(function(i) {
+    //         $("input, textarea", this).attr("name",
+    //             function(){
+    //                 return $(this).attr("name").replace(/\d+/g, i);
+    //             });
+    //     });
+    // }
 
 
     $('#add_box').live("click", function() {
