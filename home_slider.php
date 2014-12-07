@@ -1,4 +1,4 @@
-    <?php $options = op_get_slider_options(); ?>
+    <?php $options = kt_get_slider_options(); ?>
 
 
     <div id="featured_slide_wrap">
@@ -22,10 +22,10 @@
             $more = 0;
 			
 			$home_slide_id = get_the_ID();			
-			$subtitle = get_post_meta( $post->ID, 'op_subtitle', true );
-			$slide_link = get_post_meta($post->ID, 'op_home_slide_link', true);
-			$link_target = get_post_meta($post->ID, 'op_home_slide_link_target', true);
-			$learn_more = get_post_meta($post->ID, 'op_learn_more', true);
+			$subtitle = get_post_meta( $post->ID, 'kt_subtitle', true );
+			$slide_link = get_post_meta($post->ID, 'kt_home_slide_link', true);
+			$link_target = get_post_meta($post->ID, 'kt_home_slide_link_target', true);
+			$learn_more = get_post_meta($post->ID, 'kt_learn_more', true);
 			
 			?>
 

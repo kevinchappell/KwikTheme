@@ -43,7 +43,7 @@ function news_scroll_ajax() {
 
 	switch ($_REQUEST['fn']) {
 		case 'more_news_scroll':
-			$output = op_more_news_scroll($_REQUEST['offset']);
+			$output = kt_more_news_scroll($_REQUEST['offset']);
 			break;
 	}
 
@@ -56,7 +56,7 @@ function news_scroll_ajax() {
 	die;
 }
 
-function op_more_news_scroll($offset) {
+function kt_more_news_scroll($offset) {
 
 	$widget_options = get_option('widget_most_viewed');
 	$fallback = $widget_options['fallback'];
@@ -106,7 +106,7 @@ function op_more_news_scroll($offset) {
 			$data['date'] = '';
 			$data['learn_more'] = '<a class="learn_more_btn" target="' . (isset($target) ? $target : '') . '" href="' . get_permalink($post->ID) . '">' . $post->post_title . '</a>';
 
-			$data['posted_on'] = get_op_posted_on($post->ID);
+			$data['posted_on'] = get_kt_posted_on($post->ID);
 
 			$data['title'] = $short_title;
 			$data['excerpt'] = hb_neat_trim(get_the_excerpt(), 120);
@@ -341,7 +341,7 @@ class Home_Boxes extends WP_Widget {
 			$k_news_scroll_html .= '<header class="entry-header">';
 			$k_news_scroll_html .= '<h3 class="entry-title"><a href="' . get_permalink($home_boxes->post->ID) . '" target="' . (isset($target) ? $target : '') . '" title="' . sprintf(esc_attr__('Permalink to %s', 'op'), the_title_attribute('echo=0')) . '" rel="bookmark">' . neat_trim(get_the_title($home_boxes->post->ID), 65) . '</a></h3>
 			&mdash;<br />';
-			$k_news_scroll_html .= '<div class="entry-meta">' . get_op_posted_on($home_boxes->post->ID) . '</div>';
+			$k_news_scroll_html .= '<div class="entry-meta">' . get_kt_posted_on($home_boxes->post->ID) . '</div>';
 			$k_news_scroll_html .= '</header>';
 
 			$k_news_scroll_html .= '<div class="entry-summary">' . get_the_excerpt();

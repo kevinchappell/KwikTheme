@@ -174,7 +174,7 @@ if($cat == 'technical_resources_category' || $techmain == 'technical_resources')
 
           <?php endwhile; ?>
 
-          <?php op_content_nav( 'nav-below' ); ?>
+          <?php kt_content_nav( 'nav-below' ); ?>
 
           <?php else : ?>
 

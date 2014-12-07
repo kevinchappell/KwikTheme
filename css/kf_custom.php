@@ -4,7 +4,8 @@ header("Content-type: text/css; charset: UTF-8");
 define('WP_USE_THEMES', false);
 include ($_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
 
-$options = op_get_theme_options();
+$options = KwikThemeOptions::kt_get_options();
+
 /*	$link_color = $options['link_color'];
 $site_bg = $options['site_bg'];
 

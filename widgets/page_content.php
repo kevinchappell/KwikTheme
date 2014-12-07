@@ -6,9 +6,9 @@
  *
  */
 
-add_action( 'widgets_init', 'op_load_page_content_widget' );
+add_action( 'widgets_init', 'kt_load_page_content_widget' );
 
-function op_load_page_content_widget() {
+function kt_load_page_content_widget() {
 	register_widget( 'page_content' );
 }
 

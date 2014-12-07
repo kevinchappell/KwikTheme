@@ -20,7 +20,7 @@ get_header(); ?>
 
 			</header>
 
-			<?php op_content_nav( 'nav-above' ); ?>
+			<?php kt_content_nav( 'nav-above' ); ?>
 
 			<?php /* Start the Loop */ ?>
 
@@ -30,7 +30,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php op_content_nav( 'nav-below' ); ?>
+			<?php kt_content_nav( 'nav-below' ); ?>
 
 		<?php else : ?>
 

@@ -6,9 +6,9 @@
  *
  */
 
-add_action( 'widgets_init', 'op_newsletter_load_widgets' );
+add_action( 'widgets_init', 'kt_newsletter_load_widgets' );
 
-function op_newsletter_load_widgets() {
+function kt_newsletter_load_widgets() {
 	register_widget( 'BOL_Newsletter_Widget' );
 }
 
@@ -65,7 +65,7 @@ class BOL_Newsletter_Widget extends WP_Widget {
 					}
 
 					</script>';
-		$form .= '<form target="_blank" onsubmit="return validateForm()" method="POST" action="http://funding.beatsol.org/pages/signup" name="newsletter" id="op_newsletter_widget">';
+		$form .= '<form target="_blank" onsubmit="return validateForm()" method="POST" action="http://funding.beatsol.org/pages/signup" name="newsletter" id="kt_newsletter_widget">';
 		$form .= '<small>'.$text.'</small><br/><br/>';
 		$form .= '<input type="hidden" value="00DC0000000QlKn" name="oid"><input type="hidden" value="http://www.launcht.com/newsthanks.php" name="retURL"><input type="hidden" value="Web - Newsletter Request" name="lead_source">';
 		$form .= '<input type="text" class="text_field" name="email" placeholder="'.__('Email','op').'" id="email" />';

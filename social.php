@@ -1,5 +1,5 @@
  <?php 
- $options = op_get_theme_options(); 
+ $options = KwikThemeOptions::kt_get_options(); 
 
  ?>
        <ul id="social_links">

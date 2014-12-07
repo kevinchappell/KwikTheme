@@ -345,10 +345,10 @@ jQuery(document).ready(function($) {
 
 
 
-  $("#op_contact_widget").submit(function(e) {
+  $("#kt_contact_widget").submit(function(e) {
     //console.log(e);
 
-    var formData = new FormData($('#op_contact_widget')[0]);
+    var formData = new FormData($('#kt_contact_widget')[0]);
     var action_url = $(this).attr('action');
 
     e.preventDefault();
@@ -370,13 +370,13 @@ jQuery(document).ready(function($) {
       success: function(data) {
         console.log(data);
         if (!data.status) {
-          $("#op_contact_success").hide();
-          $("#op_contact_error").html(data.errors[0].msg).show(500);
+          $("#kt_contact_success").hide();
+          $("#kt_contact_error").html(data.errors[0].msg).show(500);
           $('#upload_progress').hide(250);
         } else {
-          $("#op_contact_error").hide();
-          $("#op_contact_success").slideDown(500).delay(3500).slideUp(500);
-          $('#op_contact_widget').get(0).reset();
+          $("#kt_contact_error").hide();
+          $("#kt_contact_success").slideDown(500).delay(3500).slideUp(500);
+          $('#kt_contact_widget').get(0).reset();
         }
       },
       error: function(data) {
@@ -448,32 +448,32 @@ jQuery(document).ready(function($) {
 
 
 
-  /*$("#op_newsletter_widget #email").keydown(function(){
+  /*$("#kt_newsletter_widget #email").keydown(function(){
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    if($("#op_newsletter_widget #email").val().match(re)){
+    if($("#kt_newsletter_widget #email").val().match(re)){
 
-      $("#op_newsletter_widget #first_name, #op_newsletter_widget #last_name, #op_newsletter_widget .submit_wrap").slideDown(500);
+      $("#kt_newsletter_widget #first_name, #kt_newsletter_widget #last_name, #kt_newsletter_widget .submit_wrap").slideDown(500);
 
     }
   });*/
 
 
 
-  $("#op_newsletter_widget #email").focus(function() {
+  $("#kt_newsletter_widget #email").focus(function() {
 
-    $("#op_newsletter_widget #first_name, #op_newsletter_widget #last_name, #op_newsletter_widget .submit_wrap").slideDown(500);
+    $("#kt_newsletter_widget #first_name, #kt_newsletter_widget #last_name, #kt_newsletter_widget .submit_wrap").slideDown(500);
 
   });
 
   /*
-  $("#op_newsletter_widget #last_name, #op_newsletter_widget #first_name").change(function(){
+  $("#kt_newsletter_widget #last_name, #kt_newsletter_widget #first_name").change(function(){
     if($(this).val() != '') $(this).next().slideDown(500);
   });
-  $("#op_newsletter_widget #last_name, #op_newsletter_widget #first_name").focusin(function(){
+  $("#kt_newsletter_widget #last_name, #kt_newsletter_widget #first_name").focusin(function(){
     if($(this).val() != '') $(this).next().slideDown(500);
   });
-  $("#op_newsletter_widget #last_name, #op_newsletter_widget #first_name").keydown(function(){
+  $("#kt_newsletter_widget #last_name, #kt_newsletter_widget #first_name").keydown(function(){
     if($(this).val() != '') $(this).next().slideDown(500);
   });
 

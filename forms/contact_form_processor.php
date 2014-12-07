@@ -15,7 +15,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php';
  */
 function send_email($post, $files){
 	
-	$options = op_get_theme_options();
+	$options = KwikThemeOptions::kt_get_options();
 
 	if (empty($post)){
 		return false;

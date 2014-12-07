@@ -10,7 +10,7 @@
  * @since KwikTheme 1.0
  */
 
-$options = op_get_theme_options();
+$options = KwikThemeOptions::kt_get_options();
 
 ?>
 <!DOCTYPE html>
@@ -60,7 +60,7 @@ $options = op_get_theme_options();
 <body <?php body_class(); ?>>
   <?php include_once("analyticstracking.php") ?>
 <div id="page" class="hfeed site">
-<div id="top_bar"><div class="inner"><?php wp_nav_menu( array( 'menu' => 'Top Menu', 'container' => false, 'menu_class' => 'menu clear', 'fallback_cb' => false)); ?></div></div>
+<div id="tkt_bar"><div class="inner"><?php wp_nav_menu( array( 'menu' => 'Top Menu', 'container' => false, 'menu_class' => 'menu clear', 'fallback_cb' => false)); ?></div></div>
 <header id="masthead" role="banner">
   <div class="inner site-header">
   <hgroup class="logo_wrap">
@@ -82,7 +82,7 @@ $options = op_get_theme_options();
     </a>
     <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
   </nav>
-  <!-- #site-navigation --> 
+  <!-- #site-navigation -->
   </div>
 </header>
 <!-- #masthead -->
@@ -92,7 +92,7 @@ $options = op_get_theme_options();
 
 <?php echo OPtopHeader($wp_query);?>
 
-<?php 
+<?php
 				if(function_exists('bcn_display') && !is_page(2))
 
 				{
@@ -108,4 +108,4 @@ $options = op_get_theme_options();
 				}
 
 
-echo op_child_links();
+echo kt_child_links();

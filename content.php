@@ -21,7 +21,7 @@
 		<header class="entry-header">
 			<?php if ( is_single() ) : ?>
 			<h1 class="entry-title"><?php the_title(); ?><?php edit_post_link( __( 'Edit', 'op' )); ?></h1>
-            <?php //op_author_date(); ?>
+            <?php //kt_author_date(); ?>
 			<?php else : ?>
 			<h1 class="entry-title">
 				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'op' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a><?php edit_post_link( __( 'Edit', 'op' ), '<span class="edit-link">', '</span>' ); ?>
@@ -53,7 +53,7 @@
 
                 <div style="float:left; width:48%;">
 
-					<?php op_entry_meta(); ?>
+					<?php kt_entry_meta(); ?>
 
                     <?php if ( is_singular() && get_the_author_meta( 'description' ) && is_multi_author() ) : // If a user has filled out their description and this is a multi-author blog, show a bio on their entries. ?>
 
@@ -61,7 +61,7 @@
 
                             <div class="author-avatar">
 
-                                <?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'op_author_bio_avatar_size', 68 ) ); ?>
+                                <?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'kt_author_bio_avatar_size', 68 ) ); ?>
 
                             </div><!-- .author-avatar -->
 

@@ -21,6 +21,12 @@
  * @subpackage KwikTheme
  * @since KwikTheme 1.0
  */
+
+
+define('KT_BASENAME', basename(dirname( __FILE__ )));
+define('KT_SETTINGS', preg_replace('/-/', '_', KT_BASENAME).'_settings');
+define("THEME_PREFIX", "kt_");
+
 /**
  * Sets up the content width value based on the theme's design and stylesheet.
  */
@@ -42,7 +48,7 @@ if (!isset($content_width)) {
  *
  * @since KwikTheme 1.0
  */
-function op_setup() {
+function kt_setup() {
 	/*
 	 * Makes KwikTheme available for translation.
 	 *
@@ -67,7 +73,7 @@ function op_setup() {
 
 	set_post_thumbnail_size(356, 242);// Unlimited height, soft crop
 }
-add_action('after_setup_theme', 'op_setup');
+add_action('after_setup_theme', 'kt_setup');
 
 foreach (glob(TEMPLATEPATH . "/inc/*.php") as $inc_filename) {
 	include $inc_filename;
@@ -81,7 +87,7 @@ foreach (glob(TEMPLATEPATH . "/widgets/*.php") as $widget_filename) {
  *
  * @since KwikTheme 1.0
  */
-function op_scripts_styles() {
+function kt_scripts_styles() {
 	global $wp_styles;
 	/*
 	 * Adds JavaScript to pages with the comment form to support
@@ -115,9 +121,9 @@ wp_enqueue_script('site-ie' );
 }
  */
 }
-add_action('wp_enqueue_scripts', 'op_scripts_styles');
+add_action('wp_enqueue_scripts', 'kt_scripts_styles');
 
-function op_admin_fonts($hook_suffix) {
+function kt_admin_fonts($hook_suffix) {
 	if ('off' !== _x('on', 'Open Sans font: on or off', 'op')) {
 		$subsets = 'latin,latin-ext';
 		/* translators: To add an additional Open Sans character subset specific to your language, translate
@@ -135,7 +141,7 @@ function op_admin_fonts($hook_suffix) {
 
 	}
 }
-add_action('admin_enqueue_scripts', 'op_admin_fonts', 10, 1);
+add_action('admin_enqueue_scripts', 'kt_admin_fonts', 10, 1);
 
 /**
  * Creates a nicely formatted and more specific title element text
@@ -147,7 +153,7 @@ add_action('admin_enqueue_scripts', 'op_admin_fonts', 10, 1);
  * @param string $sep Optional separator.
  * @return string Filtered title.
  */
-function op_wp_title($title, $sep) {
+function kt_wp_title($title, $sep) {
 	global $paged, $page;
 	if (is_feed()) {
 		return $title;
@@ -168,7 +174,7 @@ function op_wp_title($title, $sep) {
 
 	return $title;
 }
-add_filter('wp_title', 'op_wp_title', 10, 2);
+add_filter('wp_title', 'kt_wp_title', 10, 2);
 
 function get_SEO_tags() {
 	global $post;
@@ -216,7 +222,7 @@ function get_meta_description() {
 
 }
 
-function op_excerpt_length($length) {
+function kt_excerpt_length($length) {
 
 	if (is_tag() || is_archive() || is_home()) {
 		return 24;
@@ -230,7 +236,7 @@ function op_excerpt_length($length) {
 
 	}
 }
-add_filter('excerpt_length', 'op_excerpt_length');
+add_filter('excerpt_length', 'kt_excerpt_length');
 
 // Replaces the excerpt "more" text by a link
 function new_excerpt_more($more) {
@@ -244,20 +250,20 @@ add_filter('excerpt_more', 'new_excerpt_more');
  *
  * @since KwikTheme 1.0
  */
-function op_page_menu_args($args) {
+function kt_page_menu_args($args) {
 	if (!isset($args['show_home'])) {
 		$args['show_home'] = true;
 	}
 
 	return $args;
 }
-add_filter('wp_page_menu_args', 'op_page_menu_args');
+add_filter('wp_page_menu_args', 'kt_page_menu_args');
 /**
  * Registers our main widget area and the front page widget areas.
  *
  * @since KwikTheme 1.0
  */
-function op_widgets_init() {
+function kt_widgets_init() {
 
 	register_sidebar(array(
 		'name' => __('Main Sidebar', 'op'),
@@ -309,14 +315,14 @@ function op_widgets_init() {
 	));
 
 }
-add_action('widgets_init', 'op_widgets_init');
-if (!function_exists('op_content_nav')):
+add_action('widgets_init', 'kt_widgets_init');
+if (!function_exists('kt_content_nav')):
 	/**
 	 * Displays navigation to next/previous pages when applicable.
 	 *
 	 * @since KwikTheme 1.0
 	 */
-	function op_content_nav($html_id) {
+	function kt_content_nav($html_id) {
 		global $wp_query;
 		$html_id = esc_attr($html_id);
 		if ($wp_query->max_num_pages > 1):?>
@@ -328,18 +334,18 @@ if (!function_exists('op_content_nav')):
 	<?php endif;
 }
 endif;
-if (!function_exists('op_comment')):
+if (!function_exists('kt_comment')):
 	/**
 	 * Template for comments and pingbacks.
 	 *
 	 * To override this walker in a child theme without modifying the comments template
-	 * simply create your own op_comment(), and that function will be used instead.
+	 * simply create your own kt_comment(), and that function will be used instead.
 	 *
 	 * Used as a callback by wp_list_comments() for displaying the comments.
 	 *
 	 * @since KwikTheme 1.0
 	 */
-	function op_comment($comment, $args, $depth) {
+	function kt_comment($comment, $args, $depth) {
 		$GLOBALS['comment'] = $comment;
 		switch ($comment->comment_type):
 		case 'pingback':
@@ -389,15 +395,15 @@ if (!function_exists('op_comment')):
 	}
 	endif;
 
-	if (!function_exists('op_entry_meta')):
+	if (!function_exists('kt_entry_meta')):
 		/**
 	 * Prints HTML with meta information for current post: categories, tags, permalink, author, and date.
 	 *
-	 * Create your own op_entry_meta() to override in a child theme.
+	 * Create your own kt_entry_meta() to override in a child theme.
 	 *
 	 * @since KwikTheme 1.0
 	 */
-		function op_entry_meta() {
+		function kt_entry_meta() {
 			// Translators: used between list items, there is a space after the comma.
 			$categories_list = get_the_category_list(__(', ', 'op'));
 			// Translators: used between list items, there is a space after the comma.
@@ -422,13 +428,13 @@ if (!function_exists('op_comment')):
 
 endif;
 
-if (!function_exists('op_author_date')):
+if (!function_exists('kt_author_date')):
 	/**
 	 * Prints HTML with meta information for current post author and date.
 	 *
 	 * @since KwikTheme 1.0
 	 */
-	function op_author_date() {
+	function kt_author_date() {
 
 		if (function_exists('coauthors_posts_links')) {
 			$author = coauthors_posts_links(null, null, __('By: ', 'op'), null, false);
@@ -467,9 +473,9 @@ endif;
  * @param array Existing class values.
  * @return array Filtered class values.
  */
-function op_body_class($classes) {
+function kt_body_class($classes) {
 
-	if (op_child_links()) {$classes[] = 'has_children';
+	if (kt_child_links()) {$classes[] = 'has_children';
 	}
 
 	if (!is_active_sidebar('sidebar-1') || is_page_template('page-templates/full-width.php')) {
@@ -498,7 +504,7 @@ function op_body_class($classes) {
 
 	return $classes;
 }
-add_filter('body_class', 'op_body_class');
+add_filter('body_class', 'kt_body_class');
 
 /**
  * Adjusts content_width value for full-width and single image attachment
@@ -506,13 +512,13 @@ add_filter('body_class', 'op_body_class');
  *
  * @since KwikTheme 1.0
  */
-function op_content_width() {
+function kt_content_width() {
 	if (is_page_template('page-templates/full-width.php') || is_attachment() || !is_active_sidebar('sidebar-1')) {
 		global $content_width;
 		$content_width = 960;
 	}
 }
-add_action('template_redirect', 'op_content_width');
+add_action('template_redirect', 'kt_content_width');
 
 function __update_post_meta($post_id, $field_name, $value = '') {
 	if (empty($value) OR !$value) {
@@ -525,7 +531,7 @@ function __update_post_meta($post_id, $field_name, $value = '') {
 }
 
 // Auto-set the featured image
-function op_autoset_featured() {
+function kt_autoset_featured() {
 	global $post;
 	$already_has_thumb = has_post_thumbnail($post->ID);
 	if (!$already_has_thumb) {
@@ -537,135 +543,14 @@ function op_autoset_featured() {
 		}
 	}
 }//end function
-//add_action('the_post', 'op_autoset_featured');
-add_action('publish_post', 'op_autoset_featured');
-/*add_action('draft_to_publish', 'op_autoset_featured');
-add_action('new_to_publish', 'op_autoset_featured');
-add_action('pending_to_publish', 'op_autoset_featured');
-add_action('future_to_publish', 'op_autoset_featured');*/
+//add_action('the_post', 'kt_autoset_featured');
+add_action('publish_post', 'kt_autoset_featured');
+/*add_action('draft_to_publish', 'kt_autoset_featured');
+add_action('new_to_publish', 'kt_autoset_featured');
+add_action('pending_to_publish', 'kt_autoset_featured');
+add_action('future_to_publish', 'kt_autoset_featured');*/
 
-/*
-Relative Time Function
-based on code from http://stackoverflow.com/questions/11/how-do-i-calculate-relative-time/501415#501415
-For use in the "Parse Twitter Feeds" code below
- */
-define("SECOND", 1);
-define("MINUTE", 60 * SECOND);
-define("HOUR", 60 * MINUTE);
-define("DAY", 24 * HOUR);
-define("MONTH", 30 * DAY);
-function relativeTime($time) {
-	$delta = time() - $time;
-	if ($delta < 2 * MINUTE) {return "1 min ago";
-	}
 
-	if ($delta < 45 * MINUTE) {return floor($delta / MINUTE) . " min ago";
-	}
-
-	if ($delta < 90 * MINUTE) {return "1 hour ago";
-	}
-
-	if ($delta < 24 * HOUR) {return floor($delta / HOUR) . " hours ago";
-	}
-
-	if ($delta < 48 * HOUR) {return "yesterday";
-	}
-
-	if ($delta < 30 * DAY) {return floor($delta / DAY) . " days ago";
-	}
-
-	if ($delta < 12 * MONTH) {
-		$months = floor($delta / DAY / 30);
-		return $months <= 1 ? "1 month ago" : $months . " months ago";
-	} else {
-		$years = floor($delta / DAY / 365);
-		return $years <= 1 ? "1 year ago" : $years . " years ago";
-	}
-}
-/*
-Parse Twitter Feeds
-based on code from http://spookyismy.name/old-entries/2009/1/25/latest-twitter-update-with-phprss-part-three.html
-and cache code from http://snipplr.com/view/8156/twitter-cache/
-and other cache code from http://wiki.kientran.com/doku.php?id=projects:twitterbadge
- */
-function parse_cache_feed($usernames, $limit = 1) {
-
-	$username_for_feed = str_replace(" ", "+OR+from%3A", $usernames);
-	$feed = "https://api.twitter.com/1/statuses/user_timeline.xml?screen_name=" . $username_for_feed . "&include_rts=false&count=" . $limit;
-	//$feed = "http://search.twitter.com/search.atom?q=from%3A" . $username_for_feed . "&rpp=" . $limit;
-	$usernames_for_file = str_replace(" ", "-", $usernames);
-	$cache_file = dirname(__FILE__) . '/cache/' . $usernames_for_file . '-twitter-cache';
-
-	if (file_exists($cache_file)) {$last = filemtime($cache_file);
-	}
-
-	$now = time();
-	$interval = 900;// 15 minutes
-
-	$output = '';
-
-	// check the cache file
-	if (!$last || (($now - $last) > $interval)) {
-		// cache file doesn't exist, or is old, so refresh it
-		$cache_rss = curl_get_result($feed);
-
-		if (!$cache_rss) {
-			// we didn't get anything back from twitter
-			$output .= "<!-- ERROR: Twitter feed was blank! Using cache file. -->";
-		} else {
-			// we got good results from twitter
-			$output .= "<!-- SUCCESS: Twitter feed used to update cache file -->";
-			$cache_static = fopen($cache_file, 'wb');
-			fwrite($cache_static, serialize($cache_rss));
-			fclose($cache_static);
-		}
-		// read from the cache file
-		$rss = @unserialize(file_get_contents($cache_file));
-	} else {
-		// cache file is fresh enough, so read from it
-		$output .= "<!-- SUCCESS: Cache file was recent enough to read from -->";
-		$rss = @unserialize(file_get_contents($cache_file));
-	}
-
-	// clean up and output the twitter feed
-	$encoded_html_chars = array("&amp;", "&lt;", "&gt;", "&#8211;", "&#8220;", "&#8221;", "&#8232;");
-	$decoded_html_chars = array("&", "<", ">", "–", "“", "”", " ");
-	$feed = str_replace($encoded_html_chars, $decoded_html_chars, $rss);
-	$clean = explode("<status>", $feed);
-	$clean = str_replace("&quot;", "'", $clean);
-	$clean = str_replace("&apos;", "'", $clean);
-	$amount = count($clean) - 1;
-	if ($amount) {// are there any tweets?
-		for ($i = 1; $i <= $amount; $i++) {
-			$entry_close = explode("</status>", $clean[$i]);
-			$clean_content_1 = explode("<text>", $entry_close[0]);
-			$clean_content = explode("</text>", $clean_content_1[1]);
-			$clean_name_2 = explode("<name>", $entry_close[0]);
-			$clean_name_1 = explode("(", $clean_name_2[1]);
-			$clean_name = explode(")</name>", $clean_name_1[0]);
-			$clean_user = explode(" (", $clean_name_2[1]);
-			$clean_lower_user = strtolower($clean_user[0]);
-			$clean_time_1 = explode("<created_at>", $entry_close[0]);
-			$clean_time = explode("</created_at>", $clean_time_1[1]);
-			$unix_time = strtotime($clean_time[0]);
-			$pretty_time = relativeTime($unix_time);
-
-			$output .= '<blockquote>' . twitterify($clean_content[0]) . '&nbsp;<small>&nbsp;&mdash;' . $pretty_time . '</small></blockquote>';
-		}
-	} else {// if there aren't any tweets
-		$output .= '<blockquote>' . __('Hang tight, we will be tweeting soon.', 'op') . '</blockquote>';
-	}
-
-	return $output;
-}
-
-function twitterify($ret) {
-	$ret = preg_replace("#(^|[\n ])([\w]+?://[\w]+[^ \"\n\r\t< ]*)#", "\\1<a target=\"_blank\" href=\"\\2\" >\\2</a>", $ret);
-	$ret = preg_replace("#(^|[\n ])((www|ftp)\.[^ \"\t\n\r< ]*)#", "\\1<a target=\"_blank\" href=\"http://\\2\" >\\2</a>", $ret);
-	$ret = preg_replace("/@(\w+)/", "<a target=\"_blank\" href=\"http://www.twitter.com/\\1\" >@\\1</a>", $ret);
-	$ret = preg_replace("/#(\w+)/", "<a target=\"_blank\" href=\"http://search.twitter.com/search?q=\\1\" >#\\1</a>", $ret);
-	return $ret;
-}
 
 //Function which returns content in place of shortcode
 function addservicebox($atts, $content = null) {
@@ -906,7 +791,7 @@ function get_taxonomy_parents($id, $taxonomy, $link = false, $separator = '/', $
  * @package bitly
  */
 
-class op_bitly {
+class kt_bitly {
 	private $_username = null;
 	private $_apikey = null;
 	private $_format = null;
@@ -944,7 +829,7 @@ class op_bitly {
 }
 
 function social_link() {
-	$options = op_get_theme_options();
+	$options = KwikThemeOptions::kt_get_options();
 	if (!empty($options['bitly'][0])) {
 		bitly();
 	} else {
@@ -954,14 +839,14 @@ function social_link() {
 
 function bitly() {
 	global $post;
-	$options = op_get_theme_options();
+	$options = KwikThemeOptions::kt_get_options();
 	$bitly_meta = get_post_meta($post->ID, 'bitly_meta', true);
 
 	if (is_single() && $bitly_meta) {
 		return urldecode($bitly_meta);
 	} else {
 
-		$bitly = new op_bitly($options['bitly'][0], $options['bitly'][1]);
+		$bitly = new kt_bitly($options['bitly'][0], $options['bitly'][1]);
 		$bitly_short_url = $bitly->shortenURL(currentPageURL());
 		if (is_single() && !$bitly_meta) {add_post_meta($post->ID, 'bitly_meta', urlencode($bitly_short_url), true);
 		}
@@ -978,9 +863,9 @@ function save_bitly_urls($post_id, $post) {
 	if (!current_user_can('edit_post', $post->ID)) {return $post->ID;
 	}
 
-	$options = op_get_theme_options();
+	$options = KwikThemeOptions::kt_get_options();
 	if (!empty($options['bitly'][0]) && !empty($options['bitly'][1])) {
-		$bitly = new op_bitly($options['bitly'][0], $options['bitly'][1]);
+		$bitly = new kt_bitly($options['bitly'][0], $options['bitly'][1]);
 		$bitly_short_url = $bitly->shortenURL(get_permalink($post_id));
 
 		if ($post->post_type == 'revision') {return;
@@ -1069,7 +954,7 @@ function archive_feature_image($post_id, $echo = true) {
 
 }
 
-function op_paginate($is_child = true) {
+function kt_paginate($is_child = true) {
 	global $wp_query;
 	$pagination = '';
 	$int = 9999999;
@@ -1101,17 +986,6 @@ function neat_trim($str, $n, $delim = '&hellip;', $neat = true) {
 
 }
 
-if (!function_exists('get_op_posted_on')):
-	function get_op_posted_on($post_id) {
-		$posted_on = sprintf(__('<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a>', 'op'),
-			esc_url(get_permalink($post_id)),
-			esc_attr(get_the_time()),
-			esc_attr(get_the_date('c')),
-			esc_html(get_the_date())
-		);
-		return $posted_on;
-	}
-endif;
 
 function getDomain($url) {
 	$pieces = parse_url($url);
@@ -1177,7 +1051,7 @@ function do_by_the_numbers($post_id) {
 
 }
 
-function op_child_links() {
+function kt_child_links() {
 
 	if (is_page() || is_home() || is_single()) {
 		global $post;
@@ -1244,36 +1118,32 @@ function op_child_links() {
 
 }
 
-function tech_resource_menu() {
-	global $post;
-	$link = '';
 
-	if ($post->ID === 532 || $post->post_parent == '532') {
-		$links .= '<ul id="resource_links" class="follow_menu">';
-		$args = array(
-			'sort_order' => 'ASC',
-			'sort_column' => 'post_ID',
-			'child_of' => 532,
-			'post_type' => 'page',
-			'post_status' => 'publish',
-		);
-		$technical_resources = get_pages($args);
+if (!function_exists('get_kt_posted_on')):
+  function get_kt_posted_on($post_id) {
+    $posted_on = sprintf(__('<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a>', 'op'),
+      esc_url(get_permalink($post_id)),
+      esc_attr(get_the_time()),
+      esc_attr(get_the_date('c')),
+      esc_html(get_the_date())
+    );
+    return $posted_on;
+  }
+endif;
 
-		foreach ($technical_resources as &$resource) {
-			$current = ($resource->ID === $post->ID) ? 'current_page_item' : '';
-			$links .= '<li class="' . $current . '"><a href="' . get_permalink($resource->ID) . '">' . $resource->post_title . '</a></li>';
-		}
-
-		$links .= '</ul>';
-
-	}
-	return $links;
-
+if ( ! function_exists( 'kt_posted_on' ) ) :
+function kt_posted_on() {
+  if ( is_sticky() && is_home() && ! is_paged() ) {
+    echo '<span class="featured-post">' . __( 'Sticky', 'twentyfourteen' ) . '</span>';
+  }
+  echo get_kt_posted_on(the_id());
 }
+endif;
 
 // page and section headers
 function OPtopHeader($wp_query) {
-	$options = op_get_theme_options();
+	// $options = KwikThemeOptions::kt_get_options();
+  $options = KwikThemeOptions::kt_get_options();
 	if (!is_404()) {
 		if (is_page() && !is_front_page()) {
 			$page_id = $wp_query->queried_object->ID;

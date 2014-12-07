@@ -58,7 +58,7 @@ get_header(); ?>
 
 			?>
 
-			<?php op_content_nav( 'nav-above' ); ?>
+			<?php kt_content_nav( 'nav-above' ); ?>
 
 			<?php
 
@@ -70,7 +70,7 @@ get_header(); ?>
 
 				<div class="author-avatar">
 
-					<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'op_author_bio_avatar_size', 60 ) ); ?>
+					<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'kt_author_bio_avatar_size', 60 ) ); ?>
 
 				</div><!-- .author-avatar -->
 
@@ -94,7 +94,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php op_content_nav( 'nav-below' ); ?>
+			<?php kt_content_nav( 'nav-below' ); ?>
 
 		<?php else : ?>
 

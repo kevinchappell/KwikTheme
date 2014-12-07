@@ -1,50 +1,50 @@
 <?php
 
 // Add the Page meta box
-function op_add_page_metabox() {
+function kt_add_page_metabox() {
 
 	$screens = array('page');
 	foreach ($screens as $screen) {
-		add_meta_box('op_page_meta', 'Page Meta Data', 'op_page_meta', 'page', 'normal', 'default');
+		add_meta_box('kt_page_meta', 'Page Meta Data', 'kt_page_meta', 'page', 'normal', 'default');
 	}
 
 }
-add_action('add_meta_boxes', 'op_add_page_metabox');
+add_action('add_meta_boxes', 'kt_add_page_metabox');
 
 // TODO: to be completed
 // Add the Page meta box
-function op_add_TR_metabox() {
+function kt_add_TR_metabox() {
 
 	$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
 	$template_file = get_post_meta($post_id, '_wp_page_template', TRUE);
 
 	// check for a template type
 	if ($template_file == 'page-templates/technical_resources.php') {
-		// add_meta_box('op_bod_meta', 'Board Members', 'op_bod_meta', 'page', 'normal', 'default');
+		// add_meta_box('kt_bod_meta', 'Board Members', 'kt_bod_meta', 'page', 'normal', 'default');
 	}
 
 }
-// add_action( 'add_meta_boxes', 'op_add_TR_metabox' );
+// add_action( 'add_meta_boxes', 'kt_add_TR_metabox' );
 
-function op_add_post_metabox() {
+function kt_add_post_metabox() {
 
 	$screens = array('post');
 	foreach ($screens as $screen) {
-		add_meta_box('op_post_meta', 'Post Meta', 'op_post_meta', 'post', 'side', 'default');
+		add_meta_box('kt_post_meta', 'Post Meta', 'kt_post_meta', 'post', 'side', 'default');
 	}
 }
-add_action('add_meta_boxes', 'op_add_post_metabox');
+add_action('add_meta_boxes', 'kt_add_post_metabox');
 
-function op_add_bod_metabox() {
+function kt_add_bod_metabox() {
 	$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
 	$template_file = get_post_meta($post_id, '_wp_page_template', TRUE);
 
 	// check for a template type
 	if ($template_file == 'page-templates/board-of-directors.php') {
-		add_meta_box('op_bod_meta', 'Board Members', 'op_bod_meta', 'page', 'normal', 'default');
+		add_meta_box('kt_bod_meta', 'Board Members', 'kt_bod_meta', 'page', 'normal', 'default');
 	}
 }
-add_action('add_meta_boxes', 'op_add_bod_metabox');
+add_action('add_meta_boxes', 'kt_add_bod_metabox');
 
 // The edit page Meta box
 function by_the_numbers() {
@@ -118,7 +118,7 @@ function by_the_numbers() {
 }
 
 // The edit page Meta box
-function op_page_meta() {
+function kt_page_meta() {
 	global $post;
 
 	$show_background = get_post_meta($post->ID, 'show_background', true);
@@ -130,7 +130,7 @@ function op_page_meta() {
 
 	$page_meta = '';
 	// Noncename for security check on data origin
-	$page_meta .= '<input type="hidden" name="op_meta_noncename" id="op_meta_noncename" value="' . wp_create_nonce(plugin_basename(__FILE__)) . '" />';
+	$page_meta .= '<input type="hidden" name="kt_meta_noncename" id="kt_meta_noncename" value="' . wp_create_nonce(plugin_basename(__FILE__)) . '" />';
 	$page_meta .= '<div class="page_meta meta_wrap">';
 	$page_meta .= '<ul>';
 	$page_meta .= '<li><strong>' . __('Page Header', 'op') . ':</strong></li>';
@@ -143,7 +143,7 @@ function op_page_meta() {
 }
 
 //
-function op_post_meta() {
+function kt_post_meta() {
 	global $post;
 
 	$source = get_post_meta($post->ID, '_source', true);
@@ -151,19 +151,19 @@ function op_post_meta() {
 
 	$post_meta = '';
 	// Noncename for security check on data origin
-	$post_meta .= '<input type="hidden" name="op_post_meta_noncename" id="op_post_meta_noncename" value="' . wp_create_nonce(plugin_basename(__FILE__)) . '" />';
+	$post_meta .= '<input type="hidden" name="kt_post_meta_noncename" id="kt_post_meta_noncename" value="' . wp_create_nonce(plugin_basename(__FILE__)) . '" />';
 	$post_meta .= '<div class="post_meta meta_wrap">';
 	$post_meta .= '<label><strong>' . __('Source', 'op') . ':</strong></label>';
-	$post_meta .= '<input type="text" name="post_source" class="op_text" value="' . $source . '" />';
+	$post_meta .= '<input type="text" name="post_source" class="kt_text" value="' . $source . '" />';
 	$post_meta .= '<label><strong>' . __('Link', 'op') . ':</strong></label>';
-	$post_meta .= '<input type="text" name="post_source_link" class="op_text" value="' . $source_link . '" />';
+	$post_meta .= '<input type="text" name="post_source_link" class="kt_text" value="' . $source_link . '" />';
 	$post_meta .= '</div>';
 
 	echo $post_meta;
 }
 
 // board of directors meta
-function op_bod_meta() {
+function kt_bod_meta() {
 	global $post;
 
 	$bod = get_post_meta($post->ID, '_board_members', false);
@@ -173,7 +173,7 @@ function op_bod_meta() {
 
 	$bod_meta = '';
 	// Noncename for security check on data origin
-	$bod_meta .= '<input type="hidden" name="op_bod_meta_noncename" id="op_bod_meta_noncename" value="' . wp_create_nonce(plugin_basename(__FILE__)) . '" />';
+	$bod_meta .= '<input type="hidden" name="kt_bod_meta_noncename" id="kt_bod_meta_noncename" value="' . wp_create_nonce(plugin_basename(__FILE__)) . '" />';
 	$bod_meta .= '<div class="post_meta meta_wrap">';
 	$bod_meta .= '<ul id="bod" class="sortable">';
 	$i = 0;
@@ -187,8 +187,8 @@ function op_bod_meta() {
 			$bod_meta .= '<span class="remove_btn">Remove</span>';
 			$bod_meta .= '<img src="' . $img_src . '" class="img_prev" width="150">';
 			$bod_meta .= '<input type="hidden" name="bod[' . $i . '][img]" class="img_id" value="' . $b['img'] . '">';
-			$bod_meta .= '<input type="text" name="bod[' . $i . '][name]" placeholder="' . __('Director Name, Position', 'kwik') . '" class="op_text" value="' . $b['name'] . '" /><br/>';
-			$bod_meta .= '<input type="text" placeholder="' . __('Company', 'kwik') . '" class="op_text kwik_ac-clients ignore" name="bod[' . $i . '][company_name]" value="' . $b['company_name'] . '" /><input type="hidden" class="kwik_ac_val" name="bod[' . $i . '][company]" value="' . $b['company'] . '"><br/>';
+			$bod_meta .= '<input type="text" name="bod[' . $i . '][name]" placeholder="' . __('Director Name, Position', 'kwik') . '" class="kt_text" value="' . $b['name'] . '" /><br/>';
+			$bod_meta .= '<input type="text" placeholder="' . __('Company', 'kwik') . '" class="kt_text kwik_ac-clients ignore" name="bod[' . $i . '][company_name]" value="' . $b['company_name'] . '" /><input type="hidden" class="kwik_ac_val" name="bod[' . $i . '][company]" value="' . $b['company'] . '"><br/>';
 			$bod_meta .= '<textarea name="bod[' . $i . '][bio]" class="bod_bio" placeholder="' . __('Director Name, Position', 'kwik') . '">' . $b['bio'] . '</textarea>';
 			$bod_meta .= '</li>';
 			$i++;
@@ -198,8 +198,8 @@ function op_bod_meta() {
 		$bod_meta .= '<span class="remove_btn">Remove</span>';
 		$bod_meta .= '<img src="' . $no_avatar . '" class="img_prev" width="150">';
 		$bod_meta .= '<input type="hidden" name="bod[0][img]" class="img_id" value="">';
-		$bod_meta .= '<input type="text" name="bod[0][name]" placeholder="' . __('Director Name, Position', 'kwik') . '" class="op_text" value="" /><br/>';
-		$bod_meta .= '<input type="text" placeholder="' . __('Company', 'kwik') . '" class="op_text kwik_ac-clients ignore" name="bod[0][company_name]" value="" /><input type="hidden" class="kwik_acval" name="bod[0][company]" value=""><br/>';
+		$bod_meta .= '<input type="text" name="bod[0][name]" placeholder="' . __('Director Name, Position', 'kwik') . '" class="kt_text" value="" /><br/>';
+		$bod_meta .= '<input type="text" placeholder="' . __('Company', 'kwik') . '" class="kt_text kwik_ac-clients ignore" name="bod[0][company_name]" value="" /><input type="hidden" class="kwik_acval" name="bod[0][company]" value=""><br/>';
 		$bod_meta .= '<textarea name="bod[0][bio]" class="bod_bio" placeholder="' . __('Director Name, Position', 'kwik') . '"></textarea>';
 		$bod_meta .= '</li>';
 	}
@@ -211,7 +211,7 @@ function op_bod_meta() {
 }
 
 // Save the Metabox Data
-function op_save_page_meta($post_id, $post) {
+function kt_save_page_meta($post_id, $post) {
 
 	if ($post->post_status == 'auto-draft') {return;
 	}
@@ -220,7 +220,7 @@ function op_save_page_meta($post_id, $post) {
 	}
 
 	// make sure there is no conflict with other post save function and verify the noncename
-	if (!wp_verify_nonce($_POST['op_meta_noncename'], plugin_basename(__FILE__))) {
+	if (!wp_verify_nonce($_POST['kt_meta_noncename'], plugin_basename(__FILE__))) {
 		return $post->ID;
 	}
 
@@ -246,10 +246,10 @@ function op_save_page_meta($post_id, $post) {
 	}
 
 }
-add_action('save_post', 'op_save_page_meta', 1, 2);
+add_action('save_post', 'kt_save_page_meta', 1, 2);
 
 // Save the Metabox Data
-function op_save_post_meta($post_id, $post) {
+function kt_save_post_meta($post_id, $post) {
 
 	if ($post->post_status == 'auto-draft') {return;
 	}
@@ -258,7 +258,7 @@ function op_save_post_meta($post_id, $post) {
 	}
 
 	// make sure there is no conflict with other post save function and verify the noncename
-	if (!wp_verify_nonce($_POST['op_post_meta_noncename'], plugin_basename(__FILE__))) {
+	if (!wp_verify_nonce($_POST['kt_post_meta_noncename'], plugin_basename(__FILE__))) {
 		return $post->ID;
 	}
 
@@ -281,7 +281,7 @@ function op_save_post_meta($post_id, $post) {
 	}
 
 }
-add_action('save_post', 'op_save_post_meta', 1, 2);
+add_action('save_post', 'kt_save_post_meta', 1, 2);
 
 // TAXONOMY META FIELDS
 

@@ -28,7 +28,7 @@
 
 			</header>
 
-			<?php echo get_avatar( get_the_author_meta( 'ID' ), apply_filters( 'op_status_avatar', '48' ) ); ?>
+			<?php echo get_avatar( get_the_author_meta( 'ID' ), apply_filters( 'kt_status_avatar', '48' ) ); ?>
 
 		</div><!-- .entry-header -->
 

@@ -67,7 +67,7 @@ get_header(); ?>
           <!-- #post-0 -->
           <?php endif; // end have_posts() check ?>
     </div><!-- #articles_wrap --> 
-    <?php op_paginate(); ?>
+    <?php kt_paginate(); ?>
   </div>
   <!-- #content --> 
 </div>

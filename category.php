@@ -46,7 +46,7 @@ get_header(); ?>
 
 			endwhile;
 
-			op_content_nav( 'nav-below' );
+			kt_content_nav( 'nav-below' );
 
 			?>
 

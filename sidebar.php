@@ -10,7 +10,7 @@
  * @since KwikTheme 1.0
  */
 
-$options = op_get_theme_options();
+$options = KwikThemeOptions::kt_get_options();
 ?>
 
 		<div id="secondary" class="widget-area" role="complementary">

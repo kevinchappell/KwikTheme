@@ -6,9 +6,9 @@
  *
  */
 
-add_action( 'widgets_init', 'op_contact_load_widgets' );
+add_action( 'widgets_init', 'kt_contact_load_widgets' );
 
-function op_contact_load_widgets() {
+function kt_contact_load_widgets() {
 	register_widget( 'KF_Contact_Widget' );
 }
 
@@ -35,7 +35,7 @@ class KF_Contact_Widget extends WP_Widget {
 
 
 		$form = '';
-		$form .= '<form id="op_contact_widget" name="op_contact_widget" method="post" enctype="multipart/form-data" action="'.get_bloginfo('template_directory').'/forms/widget_form_processor.php" >';
+		$form .= '<form id="kt_contact_widget" name="kt_contact_widget" method="post" enctype="multipart/form-data" action="'.get_bloginfo('template_directory').'/forms/widget_form_processor.php" >';
 		$form .= '<input type="text" class="text_field" name="user_name" placeholder="'.__('Name','op').'" id="user_name" />';
 		$form .= '<input type="text" class="text_field" name="user_phone" placeholder="'.__('Phone','op').'" id="user_phone" />';
 		$form .= '<input type="text" class="text_field" name="user_email" placeholder="'.__('Email','op').'" id="user_email" />';
@@ -44,9 +44,9 @@ class KF_Contact_Widget extends WP_Widget {
         $form .= '<input type="hidden" name="user_ip" value="'. getRealIp() .'" />';
 		$form .= '<div class="inner"><span class="arrow"></span><input type="submit" name="user_submit" id="user_submit" value="'.__('Submit','op').'"></div>';
 		$form .= '</form>';
-		$form .= '<div id="op_contact_error" class="form_message error_message">'.__($error,'op').'</div>';
-		$form .= '<div id="op_contact_success" class="form_message success_message">'.__($success,'op').'</div>';
-		$form .= '<div id="op_contact_warning" class="form_message warning_message"></div>';
+		$form .= '<div id="kt_contact_error" class="form_message error_message">'.__($error,'op').'</div>';
+		$form .= '<div id="kt_contact_success" class="form_message success_message">'.__($success,'op').'</div>';
+		$form .= '<div id="kt_contact_warning" class="form_message warning_message"></div>';
 
 		echo $form;
 

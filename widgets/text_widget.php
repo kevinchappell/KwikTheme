@@ -6,19 +6,19 @@
  *
  */
 
-add_action( 'widgets_init', 'op_text_load_widgets' );
+add_action( 'widgets_init', 'kt_text_load_widgets' );
 
-function op_text_load_widgets() {
+function kt_text_load_widgets() {
 	register_widget( 'BOL_Text_Widget' );
 }
 
 
 
-if (!function_exists('op_unregister_default_wp_widgets')) {
-    function op_unregister_default_wp_widgets() {
+if (!function_exists('kt_unregister_default_wp_widgets')) {
+    function kt_unregister_default_wp_widgets() {
         unregister_widget('WP_Widget_Text');
     }
-    add_action('widgets_init', 'op_unregister_default_wp_widgets', 1);
+    add_action('widgets_init', 'kt_unregister_default_wp_widgets', 1);
 }
 
 

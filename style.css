@@ -456,11 +456,11 @@ a:hover {
 #masthead {
   /*background: #0b64a8 url("images/header_bg.jpg") repeat-x 0 0;*/
 }
-#top_bar {
+#tkt_bar {
   background: #f4f4f4;
   border-bottom: 1px solid #e0e0e0;
 }
-#top_bar .inner {
+#tkt_bar .inner {
   padding: 5px 15px 23px;
 }
 #header_right {
@@ -502,7 +502,7 @@ a:hover {
 .site-header h1 a.site_logo {
   width: 32px;
   height: 37px;
-  background: url("images/op_logo_anim.gif") no-repeat scroll 0 0 transparent;
+  background: url("images/kt_logo_anim.gif") no-repeat scroll 0 0 transparent;
   background-size: 100%;
   position: absolute;
   left: 20px;
@@ -670,19 +670,19 @@ blockquote.pq.alignright {
   color: #C50016;
   font-weight: normal;
 }
-#op_contact_widget .text_field, #op_contact_widget textarea, #op_newsletter_widget .text_field, #op_newsletter_widget textarea {
+#kt_contact_widget .text_field, #kt_contact_widget textarea, #kt_newsletter_widget .text_field, #kt_newsletter_widget textarea {
   display: block;
   margin-bottom: 10px;
   width: 95%;
 }
-#op_contact_widget #user_submit, #op_newsletter_widget #user_submit {
+#kt_contact_widget #user_submit, #kt_newsletter_widget #user_submit {
   font: normal 18px"Karla", Arial, Helvetica, sans-serif;
   display: block;
   width: 100%;
   text-transform: none;
   margin-top: 15px;
 }
-#op_contact_widget .arrow, #op_newsletter_widget .arrow {
+#kt_contact_widget .arrow, #kt_newsletter_widget .arrow {
   border-bottom: 10px solid #CB0018;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
@@ -693,7 +693,7 @@ blockquote.pq.alignright {
   top: -9px;
   width: 0;
 }
-#op_newsletter_widget #last_name, #op_newsletter_widget #first_name, #op_newsletter_widget .submit_wrap {
+#kt_newsletter_widget #last_name, #kt_newsletter_widget #first_name, #kt_newsletter_widget .submit_wrap {
   display: none;
 }
 .form_message {
@@ -1960,38 +1960,38 @@ ul.checklist li:nth-child(2n+2) {
 ul.checklist li:nth-child(3n+3) {
   list-style-image: url(images/check-red.png);
 }
-table.op_table.benefits_table th {
+table.kt_table.benefits_table th {
   text-align: center;
   line-height: 18px;
 }
-table.op_table th.first {
+table.kt_table th.first {
   text-align: left;
   vertical-align: bottom;
 }
-table.op_table tr:first-child td:nth-child(2n), table.op_table tr:first-child td:nth-child(3n), table.op_table tr:first-child td:nth-child(4n), table.op_table tr:first-child td:nth-child(5n) {
+table.kt_table tr:first-child td:nth-child(2n), table.kt_table tr:first-child td:nth-child(3n), table.kt_table tr:first-child td:nth-child(4n), table.kt_table tr:first-child td:nth-child(5n) {
   padding-top: 30px;
   background-position: 50% 10%;
 }
-table.op_table tr td:nth-child(2n), table.op_table tr td:nth-child(3n), table.op_table tr td:nth-child(4n), table.op_table tr td:nth-child(5n) {
+table.kt_table tr td:nth-child(2n), table.kt_table tr td:nth-child(3n), table.kt_table tr td:nth-child(4n), table.kt_table tr td:nth-child(5n) {
   width: 12%;
   font-size: 10px;
   text-align: center;
   vertical-align: middle;
   color: #636363;
 }
-table.op_table tr td:nth-child(2n) {
+table.kt_table tr td:nth-child(2n) {
   background: url(images/check-blue.png) no-repeat 50% 50%;
 }
-table.op_table tr td:nth-child(3n) {
+table.kt_table tr td:nth-child(3n) {
   background: url(images/check-green.png) no-repeat 50% 50%;
 }
-table.op_table tr td:nth-child(4n) {
+table.kt_table tr td:nth-child(4n) {
   background: url(images/check-red.png) no-repeat 50% 50%;
 }
-table.op_table tr td:nth-child(5n) {
+table.kt_table tr td:nth-child(5n) {
   background: url(images/check-orange.png) no-repeat 50% 50%;
 }
-table.op_table tr td.no {
+table.kt_table tr td.no {
   background: none;
 }
 .check-blue .yes {
@@ -2493,7 +2493,7 @@ span.customSelect.changed {
   float: left;
   margin-right: 20px;
 }
-#grid_filter .op_cats {
+#grid_filter .kt_cats {
   position: relative;
   width: 100px;
   display: inline-block;
@@ -2502,7 +2502,7 @@ span.customSelect.changed {
   border-radius: 3px;
   font-family: inherit;
 }
-#grid_filter .op_cats:after {
+#grid_filter .kt_cats:after {
   position: absolute;
   top: 0;
   right: 0;
@@ -2512,7 +2512,7 @@ span.customSelect.changed {
   background: #ff0000;
   display: block;
 }
-#grid_filter .op_cats li {
+#grid_filter .kt_cats li {
   position: absolute;
   background: #fff;
   height: 16px;
@@ -2579,28 +2579,28 @@ span.customSelect.changed {
   height: auto;
   width: 100%;
 }
-table.mem_table, table.op_table, table.op_table_plain {
+table.mem_table, table.kt_table, table.kt_table_plain {
   width: 100%;
   border: 1px solid #cecece;
   line-height: 13px;
   border-spacing: 10px 0px;
   margin-bottom: 0;
 }
-table.mem_table tr, table.op_table tr, table.op_table_plain tr {
+table.mem_table tr, table.kt_table tr, table.kt_table_plain tr {
   border-top: 1px solid #cecece
 }
 table.mem_table td.mem_level_name {
   color: #000;
   font-weight: bold;
 }
-table.mem_table td, table.op_table td, table.op_table_plain td {
+table.mem_table td, table.kt_table td, table.kt_table_plain td {
   padding: 10px 5px;
   text-align: center;
   color: #000;
   vertical-align: top;
   line-height: 1.4em;
 }
-table.op_table td, table.op_table_plain td {
+table.kt_table td, table.kt_table_plain td {
   padding: 10px;
   text-align: left;
 }
@@ -2613,7 +2613,7 @@ table.mem_table thead th {
   line-height: 13px;
   font-weight: normal;
 }
-table.op_table thead th {
+table.kt_table thead th {
   text-align: left;
   padding: 5px;
 }

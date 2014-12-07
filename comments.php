@@ -5,7 +5,7 @@
  *
  * The area of the page that contains both current comments
  * and the comment form. The actual display of comments is
- * handled by a callback to op_comment() which is
+ * handled by a callback to kt_comment() which is
  * located in the functions.php file.
  *
  * @package WordPress
@@ -49,7 +49,7 @@ if ( post_password_required() )
 
 		<ol class="commentlist">
 
-			<?php wp_list_comments( array( 'callback' => 'op_comment', 'style' => 'ol' ) ); ?>
+			<?php wp_list_comments( array( 'callback' => 'kt_comment', 'style' => 'ol' ) ); ?>
 
 		</ol><!-- .commentlist -->
 
