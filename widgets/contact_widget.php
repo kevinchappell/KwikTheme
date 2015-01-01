@@ -36,16 +36,16 @@ class KF_Contact_Widget extends WP_Widget {
 
 		$form = '';
 		$form .= '<form id="kt_contact_widget" name="kt_contact_widget" method="post" enctype="multipart/form-data" action="'.get_bloginfo('template_directory').'/forms/widget_form_processor.php" >';
-		$form .= '<input type="text" class="text_field" name="user_name" placeholder="'.__('Name','op').'" id="user_name" />';
-		$form .= '<input type="text" class="text_field" name="user_phone" placeholder="'.__('Phone','op').'" id="user_phone" />';
-		$form .= '<input type="text" class="text_field" name="user_email" placeholder="'.__('Email','op').'" id="user_email" />';
-		$form .= '<textarea placeholder="'.__('Message','op').'" name="user_message"></textarea>';
+		$form .= '<input type="text" class="text_field" name="user_name" placeholder="'.__('Name','kwik').'" id="user_name" />';
+		$form .= '<input type="text" class="text_field" name="user_phone" placeholder="'.__('Phone','kwik').'" id="user_phone" />';
+		$form .= '<input type="text" class="text_field" name="user_email" placeholder="'.__('Email','kwik').'" id="user_email" />';
+		$form .= '<textarea placeholder="'.__('Message','kwik').'" name="user_message"></textarea>';
 		$form .= '<input type="hidden" name="url_main" value="'. currentPageURL() .'" />';
         $form .= '<input type="hidden" name="user_ip" value="'. getRealIp() .'" />';
-		$form .= '<div class="inner"><span class="arrow"></span><input type="submit" name="user_submit" id="user_submit" value="'.__('Submit','op').'"></div>';
+		$form .= '<div class="inner"><span class="arrow"></span><input type="submit" name="user_submit" id="user_submit" value="'.__('Submit','kwik').'"></div>';
 		$form .= '</form>';
-		$form .= '<div id="kt_contact_error" class="form_message error_message">'.__($error,'op').'</div>';
-		$form .= '<div id="kt_contact_success" class="form_message success_message">'.__($success,'op').'</div>';
+		$form .= '<div id="kt_contact_error" class="form_message error_message">'.__($error,'kwik').'</div>';
+		$form .= '<div id="kt_contact_success" class="form_message success_message">'.__($success,'kwik').'</div>';
 		$form .= '<div id="kt_contact_warning" class="form_message warning_message"></div>';
 
 		echo $form;

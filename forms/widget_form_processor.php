@@ -33,7 +33,7 @@ function send_email($post, $files){
 	//BODY OF THE MESSAGE
 	$message = '<html><body>';
 	$message .= '<table cellpadding="10" border="0">';
-	$message .= '<tr><td valign="bottom" colspan="2"><h2>'.__('New Message from ','op').$post['user_name'].'<h2></td></tr>';
+	$message .= '<tr><td valign="bottom" colspan="2"><h2>'.__('New Message from ','kwik').$post['user_name'].'<h2></td></tr>';
 	if($post['user_phone'] != '')	$message .= '<tr><td width="33%">Phone:</td><td>'.$post['user_phone'].'</td></tr>';
 	$message .= '<tr><td width="33%">Email:</td><td>'.$post['user_email'].'</td></tr>';
 	$message .= '<tr><td width="33%">Message:</td><td>'.$post['user_message'].'</td></tr>';

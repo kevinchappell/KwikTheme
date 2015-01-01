@@ -19,37 +19,37 @@ Styles for older IE versions (previous to IE9).
 
 #social_links li.fb a{
   background: url("../images/icons/ie_social_sprite.gif") no-repeat scroll 0 0 transparent;
-  display:block;  
+  display:block;
 }
 #social_links li.twit a{
   background: url("../images/icons/ie_social_sprite.gif") no-repeat scroll -38px 0 transparent;
-  display:block;  
+  display:block;
 }
 #social_links li.linkedin a{
   background: url("../images/icons/ie_social_sprite.gif") no-repeat scroll -76px 0 transparent;
-  display:block;  
+  display:block;
 }
 #social_links li.youtube a{
   background: url("../images/icons/ie_social_sprite.gif") no-repeat scroll -114px 0 transparent;
-  display:block;  
+  display:block;
 }
 
 
 #social_links li.fb a:hover{
   background: url("../images/icons/ie_social_sprite.gif") no-repeat scroll 0 -42px transparent;
-  display:block;  
+  display:block;
 }
 #social_links li.twit a:hover{
   background: url("../images/icons/ie_social_sprite.gif") no-repeat scroll -38px -42px transparent;
-  display:block;  
+  display:block;
 }
 #social_links li.linkedin a:hover{
   background: url("../images/icons/ie_social_sprite.gif") no-repeat scroll -76px -42px transparent;
-  display:block;  
+  display:block;
 }
 #social_links li.youtube a:hover{
   background: url("../images/icons/ie_social_sprite.gif") no-repeat scroll -114px -42px transparent;
-  display:block;  
+  display:block;
 }
 
 .front-widgets #text-2, .front-widgets #text-3{margin-right:0;}
@@ -92,7 +92,7 @@ Styles for older IE versions (previous to IE9).
 	text-align:center;
 	padding: 50px 0;
 	letter-spacing:-2px;
-	
+
 }
 #donate_today a span{
 	font-size:1.2em;
@@ -111,7 +111,7 @@ Styles for older IE versions (previous to IE9).
 	float: left;
 	width: 739px;
 }
-body.template-front-page .site-content, body.single-attachment .site-content, body.full-width .site-content {
+body.front-page .site-content, body.single-attachment .site-content, body.full-width .site-content {
 	width: 100%;
 }
 #secondary {
@@ -126,7 +126,7 @@ body.template-front-page .site-content, body.single-attachment .site-content, bo
 }
 .site-header h2 {
 	/*	display:none;*/
-	
+
 	clear: none;
 	float: left;
 	font-family: "Oswald", Arial, Helvetica, sans-serif;
@@ -139,9 +139,9 @@ body.template-front-page .site-content, body.single-attachment .site-content, bo
 .site-header h2 span {
 	color: #c50016;/*
 display:inline-block;width:5px; height:5px;-webkit-border-radius: 3px; background:#c50016;
-    
+
     border-radius: 3px;*/
-	
+
 }
 .site-header h1 {
 	font-size: 26px;
@@ -275,13 +275,7 @@ display:inline-block;width:5px; height:5px;-webkit-border-radius: 3px; backgroun
 #respond form textarea.blog-textarea {
 	width: 79.666666667%;
 }
- .template-front-page article {
-	overflow: hidden;
-}
-.template-front-page.has-post-thumbnail article {
-	float: left;
-	width: 47.916666667%;
-}
+
 .entry-page-image {
 	float: right;
 	margin-bottom: 0;
@@ -304,11 +298,11 @@ ul.sub-menu li a{margin:0;}
 	width:40.5%;
 	}
 #donate_form fieldset.right_fieldset {
-	
+
 	position:absolute;
 	left:auto;
 	right:0;
-	
+
 }
 #header_right {
 	position: relative;

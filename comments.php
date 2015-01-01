@@ -39,7 +39,7 @@ if ( post_password_required() )
 
 			<?php
 
-				printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'op' ),
+				printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'kwik' ),
 
 					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
 
@@ -57,11 +57,11 @@ if ( post_password_required() )
 
 		<nav id="comment-nav-below" class="navigation" role="navigation">
 
-			<h1 class="assistive-text section-heading"><?php _e( 'Comment navigation', 'op' ); ?></h1>
+			<h1 class="assistive-text section-heading"><?php _e( 'Comment navigation', 'kwik' ); ?></h1>
 
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'op' ) ); ?></div>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'kwik' ) ); ?></div>
 
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'op' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'kwik' ) ); ?></div>
 
 		</nav>
 
@@ -77,7 +77,7 @@ if ( post_password_required() )
 
 		if ( ! comments_open() && get_comments_number() ) : ?>
 
-		<p class="nocomments"><?php _e( 'Comments are closed.' , 'op' ); ?></p>
+		<p class="nocomments"><?php _e( 'Comments are closed.' , 'kwik' ); ?></p>
 
 		<?php endif; ?>
 

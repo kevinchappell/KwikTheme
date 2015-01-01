@@ -14,13 +14,13 @@
 
 		<header class="entry-header">
 
-			<h1 class="entry-title"><?php _e( 'Nothing Found', 'op' ); ?></h1>
+			<h1 class="entry-title"><?php _e( 'Nothing Found', 'kwik' ); ?></h1>
 
 		</header>
 
 		<div class="entry-content">
 
-			<p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'op' ); ?></p>
+			<p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'kwik' ); ?></p>
 
 			<?php get_search_form(); ?>
 

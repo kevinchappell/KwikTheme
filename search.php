@@ -38,13 +38,13 @@ get_header(); ?>
 
 				<header class="entry-header">
 
-					<h1 class="entry-title"><?php _e( 'Nothing Found', 'op' ); ?></h1>
+					<h1 class="entry-title"><?php _e( 'Nothing Found', 'kwik' ); ?></h1>
 
 				</header>
 
 				<div class="entry-content">
 
-					<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'op' ); ?></p>
+					<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'kwik' ); ?></p>
 
 					<?php get_search_form(); ?>
 

@@ -14,17 +14,17 @@
 
 		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
 			<div class="featured-post">
-				<?php _e( 'Featured post', 'op' ); ?>
+				<?php _e( 'Featured post', 'kwik' ); ?>
 			</div>
 		<?php endif; ?>
 
 		<header class="entry-header">
 			<?php if ( is_single() ) : ?>
-			<h1 class="entry-title"><?php the_title(); ?><?php edit_post_link( __( 'Edit', 'op' )); ?></h1>
+			<h1 class="entry-title"><?php the_title(); ?><?php edit_post_link( __( 'Edit', 'kwik' )); ?></h1>
             <?php //kt_author_date(); ?>
 			<?php else : ?>
 			<h1 class="entry-title">
-				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'op' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a><?php edit_post_link( __( 'Edit', 'op' ), '<span class="edit-link">', '</span>' ); ?>
+				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'kwik' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a><?php edit_post_link( __( 'Edit', 'kwik' ), '<span class="edit-link">', '</span>' ); ?>
 			</h1>
 			        <?php $source = get_post_meta($post->ID, '_source', true);
         $source_link = get_post_meta($post->ID, '_source_link', true); 
@@ -41,8 +41,8 @@
 
 		<?php else : ?>
 		<div class="entry-content">
-			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'op' ) ); ?>
-			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'op' ), 'after' => '</div>' ) ); ?>
+			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'kwik' ) ); ?>
+			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'kwik' ), 'after' => '</div>' ) ); ?>
 		</div><!-- .entry-content -->
 
 		<?php endif; ?>
@@ -67,7 +67,7 @@
 
                             <div class="author-description">
 
-                                <h2><?php printf( __( 'About %s', 'op' ), get_the_author() ); ?></h2>
+                                <h2><?php printf( __( 'About %s', 'kwik' ), get_the_author() ); ?></h2>
 
                                 <p><?php the_author_meta( 'description' ); ?></p>
 
@@ -75,7 +75,7 @@
 
                                     <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
 
-                                        <?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'op' ), get_the_author() ); ?>
+                                        <?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'kwik' ), get_the_author() ); ?>
 
                                     </a>
 

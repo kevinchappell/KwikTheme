@@ -39,12 +39,12 @@ get_header(); ?>
 			?>
             <header class="entry-header">
               <h1 class="entry-title">
-                <?php _e( 'No posts to display', 'op' ); ?>
+                <?php _e( 'No posts to display', 'kwik' ); ?>
               </h1>
             </header>
 
             <div class="entry-content">
-              <p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'op' ), admin_url( 'post-new.php' ) ); ?></p>
+              <p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'kwik' ), admin_url( 'post-new.php' ) ); ?></p>
             </div>
             <!-- .entry-content -->
             <?php else :
@@ -52,12 +52,12 @@ get_header(); ?>
 			?>
             <header class="entry-header">
               <h1 class="entry-title">
-                <?php _e( 'Nothing Found', 'op' ); ?>
+                <?php _e( 'Nothing Found', 'kwik' ); ?>
               </h1>
             </header>
             <div class="entry-content">
               <p>
-                <?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'op' ); ?>
+                <?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'kwik' ); ?>
               </p>
               <?php get_search_form(); ?>
             </div>

@@ -60,25 +60,25 @@ $options = KwikThemeOptions::kt_get_options();
 <body <?php body_class(); ?>>
   <?php include_once("analyticstracking.php") ?>
 <div id="page" class="hfeed site">
-<div id="tkt_bar"><div class="inner"><?php wp_nav_menu( array( 'menu' => 'Top Menu', 'container' => false, 'menu_class' => 'menu clear', 'fallback_cb' => false)); ?></div></div>
+<div id="tkt_bar">
+  <div class="inner clear">
+    <?php dynamic_sidebar( 'sidebar-top-bar' ); ?>
+  </div>
+</div>
 <header id="masthead" role="banner">
   <div class="inner site-header">
-  <hgroup class="logo_wrap">
-    <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" class="site_logo"></a><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-      <?php bloginfo( 'name' ); ?>
-      </a></h1>
+    <h1 class="site-title logo_wrap">
+      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+        <?php bloginfo( 'name' ); ?>
+      </a>
+    </h1>
     <h2 class="site-description"><?php echo str_replace(".", "<span>.</span>", get_bloginfo( 'description' )); ?></h2>
-  </hgroup>
-  <div id="header_right">
-    <?php get_search_form(); ?>
-    <?php //include(TEMPLATEPATH.'/social.php'); ?>
-  </div>
   <nav id="site-navigation" class="main-navigation" role="navigation">
     <h3 class="menu-toggle">
-      <?php _e( 'Menu', 'op' ); ?>
+      <?php _e( 'Menu', 'kwik' ); ?>
     </h3>
-    <a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'op' ); ?>">
-    <?php _e( 'Skip to content', 'op' ); ?>
+    <a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'kwik' ); ?>">
+    <?php _e( 'Skip to content', 'kwik' ); ?>
     </a>
     <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
   </nav>
@@ -93,19 +93,13 @@ $options = KwikThemeOptions::kt_get_options();
 <?php echo OPtopHeader($wp_query);?>
 
 <?php
-				if(function_exists('bcn_display') && !is_page(2))
 
-				{
-
-					echo '<div class="breadcrumbs">';
-
-					// if (function_exists('brand_breadcrumbs')) echo brand_breadcrumbs(false);
-
-					bcn_display();
-
-					echo '</div>';
-
-				}
+if(function_exists('bcn_display') && !is_page(2)){
+	echo '<div class="breadcrumbs">';
+	// if (function_exists('brand_breadcrumbs')) echo brand_breadcrumbs(false);
+	bcn_display();
+	echo '</div>';
+}
 
 
 echo kt_child_links();

@@ -1,0 +1,65 @@
+body{
+  background:#000;
+}
+#site-navigation {
+  clear: both;
+  padding: 15px 15px 0;
+  display: inline-block;
+  font-size: 1.5em;
+}
+.main-navigation li {
+
+}
+.main-navigation a {
+  color: #fff;
+}
+.main-navigation a:hover {
+  color: #21759b;
+}
+.main-navigation ul.nav-menu.toggled-on, .menu-toggle {
+  display: none;
+}
+.main-navigation ul.nav-menu.toggled-on li.search {
+  display: none;
+}
+.main-navigation ul.nav-menu.toggled-on li {
+  margin: 10px;
+}
+.main-navigation ul.nav-menu.toggled-on {
+  margin-top: 15px;
+  z-index: 1;
+}
+.main-navigation ul.nav-menu.toggled-on:before {
+  width: 20px;
+  height: 20px;
+  background: #efefef;
+  content: '';
+  -moz-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+  -webkit-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+  -o-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+  -ms-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+  transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+  position: absolute;
+  top: 32px;
+  right: 10px;
+  z-index: 0;
+  -webkit-box-shadow: 1px 1.5px 5px 0px rgba(0, 0, 0, 50);
+  box-shadow: 1px 1.5px 5px 0px rgba(0, 0, 0, 50);
+}
+#menu-top-menu {
+  float: right;
+}
+#menu-top-menu a {
+  color: #6ca2c6;
+  font-size: 13px;
+  padding: 0 10px;
+}
+#menu-top-menu a:hover {
+  color: #11b2d6;
+}
+#menu-top-menu li {
+  float: left;
+  display: inline-block;
+  margin: 0;
+  border-right: 1px solid #ddd;
+}

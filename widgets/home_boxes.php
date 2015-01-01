@@ -24,21 +24,6 @@ function home_boxes_load_widgets() {
 	register_widget('Home_Boxes');
 }
 
-function hb_neat_trim($str, $n, $delim = '&hellip;', $neat = true) {
-	$len = strlen($str);
-	if ($len > $n) {
-		if ($neat) {
-			preg_match('/(.{' . $n . '}.*?)\b/', $str, $matches);
-			return rtrim($matches[1]) . $delim;
-		} else {
-			return substr($str, 0, $n) . $delim;
-
-		}
-	} else {
-		return $str;
-	}
-}
-
 function news_scroll_ajax() {
 
 	switch ($_REQUEST['fn']) {
@@ -102,7 +87,7 @@ function kt_more_news_scroll($offset) {
 
 			$data['title_link'] = '<h3 class="entry-title"><a rel="bookmark" title="Permalink to ' . $post->post_title . '" target="' . (isset($target) ? $target : '') . '" href="' . get_permalink() . '">' . $short_title . '</a></h3>';
 
-			$data['image'] = '<div class="entry_thumb"><span class="btm_arrow"></span><a href="' . get_permalink($post->ID) . '" title="' . sprintf(esc_attr__('Read: %s', 'op'), the_title_attribute('echo=0')) . '" target="' . (isset($target) ? $target : '') . '" rel="bookmark"> ' . get_the_post_thumbnail($post->ID, 'thumbnail') . '</a>';
+			$data['image'] = '<div class="entry_thumb"><span class="btm_arrow"></span><a href="' . get_permalink($post->ID) . '" title="' . sprintf(esc_attr__('Read: %s', 'kwik'), the_title_attribute('echo=0')) . '" target="' . (isset($target) ? $target : '') . '" rel="bookmark"> ' . get_the_post_thumbnail($post->ID, 'thumbnail') . '</a>';
 			$data['date'] = '';
 			$data['learn_more'] = '<a class="learn_more_btn" target="' . (isset($target) ? $target : '') . '" href="' . get_permalink($post->ID) . '">' . $post->post_title . '</a>';
 
@@ -244,13 +229,13 @@ class Home_Boxes extends WP_Widget {
 	 */
 	function Home_Boxes() {
 		/* Widget settings. */
-		$widget_ops = array('classname' => 'home_boxes', 'description' => esc_html__('Site Feed Boxes', 'op'));
+		$widget_ops = array('classname' => 'home_boxes', 'description' => esc_html__('Site Feed Boxes', 'kwik'));
 
 		/* Widget control settings. */
 		$control_ops = array('width' => 325, 'height' => 1050);
 
 		/* Create the widget. */
-		$this->WP_Widget('home_boxes-widget', esc_html__('Home Boxes', 'op'), $widget_ops, $control_ops);
+		$this->WP_Widget('home_boxes-widget', esc_html__('Home Boxes', 'kwik'), $widget_ops, $control_ops);
 	}
 
 	/**
@@ -331,7 +316,7 @@ class Home_Boxes extends WP_Widget {
 			$k_news_scroll_html .= '">';
 			$category = get_the_category($home_boxes->post->ID);
 
-			$k_news_scroll_html .= '<div class="entry_thumb"><span class="btm_arrow"></span><a href="' . get_permalink($home_boxes->post->ID) . '" target="' . (isset($target) ? $target : '') . '" title="' . sprintf(esc_attr__('Read: %s', 'op'), the_title_attribute('echo=0')) . '" rel="bookmark"> ' . get_the_post_thumbnail($home_boxes->post->ID, 'thumbnail') . '</a>';
+			$k_news_scroll_html .= '<div class="entry_thumb"><span class="btm_arrow"></span><a href="' . get_permalink($home_boxes->post->ID) . '" target="' . (isset($target) ? $target : '') . '" title="' . sprintf(esc_attr__('Read: %s', 'kwik'), the_title_attribute('echo=0')) . '" rel="bookmark"> ' . get_the_post_thumbnail($home_boxes->post->ID, 'thumbnail') . '</a>';
 
 			$cat_info = '<span class="category" itemprop="category">';
 			$cat_info .= $category[0]->cat_name;
@@ -339,7 +324,7 @@ class Home_Boxes extends WP_Widget {
 			$k_news_scroll_html .= $cat_info;
 			$k_news_scroll_html .= '</div>';
 			$k_news_scroll_html .= '<header class="entry-header">';
-			$k_news_scroll_html .= '<h3 class="entry-title"><a href="' . get_permalink($home_boxes->post->ID) . '" target="' . (isset($target) ? $target : '') . '" title="' . sprintf(esc_attr__('Permalink to %s', 'op'), the_title_attribute('echo=0')) . '" rel="bookmark">' . neat_trim(get_the_title($home_boxes->post->ID), 65) . '</a></h3>
+			$k_news_scroll_html .= '<h3 class="entry-title"><a href="' . get_permalink($home_boxes->post->ID) . '" target="' . (isset($target) ? $target : '') . '" title="' . sprintf(esc_attr__('Permalink to %s', 'kwik'), the_title_attribute('echo=0')) . '" rel="bookmark">' . neat_trim(get_the_title($home_boxes->post->ID), 65) . '</a></h3>
 			&mdash;<br />';
 			$k_news_scroll_html .= '<div class="entry-meta">' . get_kt_posted_on($home_boxes->post->ID) . '</div>';
 			$k_news_scroll_html .= '</header>';
@@ -411,7 +396,7 @@ class Home_Boxes extends WP_Widget {
 
 		/* Set up some default widget settings. */
 		$defaults = array(
-			'title' => esc_html__('Home Boxes', 'op'),
+			'title' => esc_html__('Home Boxes', 'kwik'),
 			'number' => 4,
 			'fallback' => array('post'),
 			'home_box_content' => ''

@@ -14,10 +14,10 @@ get_header(); ?>
 		<div id="content" role="main">
 			<article id="post-0" class="post error404 no-results not-found">
 				<header class="entry-header">
-					<h1 class="entry-title"><?php _e( 'Sorry, the resource you are looking for is not found.', 'op' ); ?></h1>
+					<h1 class="entry-title"><?php _e( 'Sorry, the resource you are looking for is not found.', 'kwik' ); ?></h1>
 				</header>
 				<div class="entry-content">
-					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'op' ); ?></p>
+					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'kwik' ); ?></p>
 				</div><!-- .entry-content -->
 			</article><!-- #post-0 -->
 		</div><!-- #content -->

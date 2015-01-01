@@ -24,7 +24,7 @@ $upload_size_msg = get_post_meta(6, 'upload_size_msg', true);
       <div class="clear">
       <div class="input_wrap name_wrap" style="float:left">
         <label for="y_name">
-          <?php _e( 'Name', 'op' ); ?>
+          <?php _e( 'Name', 'kwik' ); ?>
           <span class="required">*</span>:</label>
         <div class="nodisplay error" id="name_error_msg"><?php echo $name_error_msg; ?></div>
         <span class="text_input"><input name="y_fname" id="y_fname" type="text" placeholder="<?php _e('Your Name', 'kwik') ?>" class="required contact_text fname" value="" /></span>
@@ -32,26 +32,26 @@ $upload_size_msg = get_post_meta(6, 'upload_size_msg', true);
       </div>
       <div class="input_wrap name_wrap" style="float:left;margin-left: 15px;">
         <label for="y_email">
-          <?php _e( 'Email', 'op' ); ?>
+          <?php _e( 'Email', 'kwik' ); ?>
           <span class="required">*</span>:</label>
         <div class="nodisplay error" id="email_addy_error_msg"><?php echo $email_addy_error_msg; ?></div>
         <span class="text_input"><input name="y_email" id="y_email" type="text" placeholder="<?php _e('youremail@domain.com', 'kwik') ?>" class="required email contact_text" value="" /></span>
       </div>
       <div class="input_wrap nodisplay">
         <label for="y_phone">
-          <?php _e( 'Phone', 'op' ); ?>
+          <?php _e( 'Phone', 'kwik' ); ?>
           :</label>
         <span class="text_input"><input name="y_phone" id="y_phone" type="text" placeholder="(555) - 555 - 1234" class="contact_text y_phone" value="" /></span>
       </div>
       <div class="input_wrap nodisplay">
         <label for="y_subject">
-          <?php _e( 'Subject', 'op' ); ?>
+          <?php _e( 'Subject', 'kwik' ); ?>
           :</label>
         <input name="y_subject" id="y_subject" type="text" placeholder="Subject" class="contact_text y_subject" value="" />
       </div>
       <div class="input_wrap nodisplay">
         <label for="y_file">
-          <?php _e( 'Attach File:', 'op' ); ?>
+          <?php _e( 'Attach File:', 'kwik' ); ?>
         </label>
         <input name="y_file" id="y_file" type="file" class="contact_text" size="49" value="" />
         <progress value="0" max="100" id="upload_progress" style="display:none;margin-left:20px;"></progress>
@@ -59,20 +59,20 @@ $upload_size_msg = get_post_meta(6, 'upload_size_msg', true);
       </div>
       <div class="textarea_wrap input_wrap">
         <label for="y_message">
-          <?php _e( 'Message', 'op' ); ?>
+          <?php _e( 'Message', 'kwik' ); ?>
           <span class="required">*</span>:</label>
         <div class="nodisplay error" id="message_error_msg"><?php echo $message_error_msg; ?></div>
         <textarea name="y_message" cols="15" id="y_message" class="contact_textarea" placeholder="<?php _e('Enter your message&hellip;', 'kwik') ?>" rows="2"></textarea>
       </div>
       <div class="input_wrap clear" style="display:none">
         <label for="ask_cap">
-          <?php _e( 'Security', 'op' ); ?>
+          <?php _e( 'Security', 'kwik' ); ?>
           <span class="required">*</span>:</label>        
         <div class="nodisplay error" id="captcha_error_msg"><?php echo $captcha_error_msg; ?></div>
         <span class="text_input"><input name="ask_cap" id="ask_cap" placeholder="<?php _e('Enter security code', 'kwik') ?>" type="text" value="" /></span>   <img id="y_cap_img" alt="enter the captcha code please" src="<?php bloginfo('template_directory'); ?>/forms/captcha.php"/>
       </div>
 
-      <input name="Send" type="submit" value="<?php _e( 'Submit', 'op' ); ?>" id="y_send" class="" />
+      <input name="Send" type="submit" value="<?php _e( 'Submit', 'kwik' ); ?>" id="y_send" class="" />
     </div>
   </form>
   <div class="nodisplay" id="server_success_msg"><?php echo $server_success_msg; ?></div>

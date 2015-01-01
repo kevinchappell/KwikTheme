@@ -2,21 +2,6 @@
 /**
  * KwikTheme functions and definitions.
  *
- * Sets up the theme and provides some helper functions, which are used
- * in the theme as custom template tags. Others are attached to action and
- * filter hooks in WordPress to change core functionality.
- *
- * When using a child theme (see http://codex.wordpress.org/Theme_Development and
- * http://codex.wordpress.org/Child_Themes), you can override certain functions
- * (those wrapped in a function_exists() call) by defining them first in your child theme's
- * functions.php file. The child theme's functions.php file is included before the parent
- * theme's file, so the child theme functions would be used.
- *
- * Functions that are not pluggable (not wrapped in function_exists()) are instead attached
- * to a filter or action hook.
- *
- * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
- *
  * @package WordPress
  * @subpackage KwikTheme
  * @since KwikTheme 1.0
@@ -36,7 +21,7 @@ if (!isset($content_width)) {
 }
 
 /**
- * Sets up theme defaults and registers the various WordPress features that
+ * Setup theme defaults and register the various WordPress features that
  * KwikTheme supports.
  *
  * @uses load_theme_textdomain() For translation/localization support.
@@ -54,18 +39,19 @@ function kt_setup() {
 	 *
 	 * Translations can be added to the /languages/ directory.
 	 * If you're building a theme based on KwikTheme, use a find and replace
-	 * to change 'op' to the name of your theme in all the template files.
+	 * to change 'kwik' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain('op', get_template_directory() . '/languages');
+	load_theme_textdomain('kwik', get_template_directory() . '/languages');
+
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
 	// Adds RSS feed links to <head> for posts and comments.
 	add_theme_support('automatic-feed-links');
 	// This theme supports a variety of post formats.
 	add_theme_support('post-formats', array('aside', 'image', 'link', 'quote', 'status'));
-	register_nav_menu('primary', __('Primary Menu', 'op'));
-	register_nav_menu('top', __('Top Menu Menu', 'op'));
-	register_nav_menu('secondary', __('Footer Menu', 'op'));
+	register_nav_menu('primary', __('Primary Menu', 'kwik'));
+	register_nav_menu('top', __('Top Menu Menu', 'kwik'));
+	register_nav_menu('secondary', __('Footer Menu', 'kwik'));
 	// This theme uses a custom image size for featured images, displayed on "standard" posts.
 	add_theme_support('post-thumbnails');
 
@@ -104,15 +90,15 @@ function kt_scripts_styles() {
 	wp_enqueue_script('site', get_template_directory_uri() . '/js/site.js', array('jquery', 'colorbox'));
 
 	wp_enqueue_script('jquery-cycle', 'http://malsup.github.io/min/jquery.cycle2.min.js', array('jquery'));
-
-	wp_enqueue_style('op-style', get_stylesheet_uri());
+  wp_enqueue_style('kt-style', get_stylesheet_uri());
+  wp_enqueue_style('kt-icons', get_template_directory_uri() . '/style/icons.css');
 	wp_enqueue_style('kf-custom', get_template_directory_uri() . '/css/kf_custom.php', array('op-style'), '11032014');
 
 	/*
 	 * Loads the Internet Explorer specific stylesheet.
 	 */
-	// wp_enqueue_style( 'op-ie', get_template_directory_uri() . '/css/ie.css', array( 'op-style' ), '20121010' );
-	// $wp_styles->add_data( 'op-ie', 'conditional', 'lte IE 9' );
+	// wp_enqueue_style( 'kt-ie', get_template_directory_uri() . '/css/ie.css', array( 'kt-style' ), '20121010' );
+	// $wp_styles->add_data( 'kt-ie', 'conditional', 'lte IE 9' );
 	/*
 global $is_IE;
 if($is_IE){
@@ -124,11 +110,11 @@ wp_enqueue_script('site-ie' );
 add_action('wp_enqueue_scripts', 'kt_scripts_styles');
 
 function kt_admin_fonts($hook_suffix) {
-	if ('off' !== _x('on', 'Open Sans font: on or off', 'op')) {
+	if ('off' !== _x('on', 'Open Sans font: on or off', 'kwik')) {
 		$subsets = 'latin,latin-ext';
 		/* translators: To add an additional Open Sans character subset specific to your language, translate
 		this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your own language. */
-		$subset = _x('no-subset', 'Open Sans font: add new subset (greek, cyrillic, vietnamese)', 'op');
+		$subset = _x('no-subset', 'Open Sans font: add new subset (greek, cyrillic, vietnamese)', 'kwik');
 		if ('cyrillic' == $subset) {
 			$subsets .= ',cyrillic,cyrillic-ext';
 		} elseif ('greek' == $subset) {
@@ -169,7 +155,7 @@ function kt_wp_title($title, $sep) {
 
 	// Add a page number if necessary.
 	if ($paged >= 2 || $page >= 2) {
-		$title = "$title $sep " . sprintf(__('Page %s', 'op'), max($paged, $page));
+		$title = "$title $sep " . sprintf(__('Page %s', 'kwik'), max($paged, $page));
 	}
 
 	return $title;
@@ -258,64 +244,9 @@ function kt_page_menu_args($args) {
 	return $args;
 }
 add_filter('wp_page_menu_args', 'kt_page_menu_args');
-/**
- * Registers our main widget area and the front page widget areas.
- *
- * @since KwikTheme 1.0
- */
-function kt_widgets_init() {
 
-	register_sidebar(array(
-		'name' => __('Main Sidebar', 'op'),
-		'id' => 'sidebar-1',
-		'description' => __('Appears on posts and pages except the optional Front Page template, which has its own widgets', 'op'),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	));
 
-	register_sidebar(array(
-		'name' => __('Newsroom Sidebar', 'op'),
-		'id' => 'sidebar-newsroom',
-		'description' => __('Appears in Newsroom', 'op'),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	));
 
-	register_sidebar(array(
-		'name' => __('Horizontal Widget Area 1', 'op'),
-		'id' => 'sidebar-horz-1',
-		'description' => __('Appears when using the optional Front Page template with a page set as Static Front Page', 'op'),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title"><span>',
-		'after_title' => '</span></h3>',
-	));
-	register_sidebar(array(
-		'name' => __('Horizontal Widget Area 2', 'op'),
-		'id' => 'sidebar-horz-2',
-		'description' => __('Appears when using the optional Front Page template with a page set as Static Front Page', 'op'),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title"><span>',
-		'after_title' => '</span></h3>',
-	));
-
-	register_sidebar(array(
-		'name' => __('Footer Widgets', 'op'),
-		'id' => 'footer_widgets',
-		'description' => __('Appears in the footer', 'op'),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	));
-
-}
-add_action('widgets_init', 'kt_widgets_init');
 if (!function_exists('kt_content_nav')):
 	/**
 	 * Displays navigation to next/previous pages when applicable.
@@ -327,9 +258,9 @@ if (!function_exists('kt_content_nav')):
 		$html_id = esc_attr($html_id);
 		if ($wp_query->max_num_pages > 1):?>
 					<nav id="<?php echo $html_id;?>" class="navigation" role="navigation">
-						<h3 class="assistive-text"><?php _e('Post navigation', 'op');?></h3>
-						<div class="nav-previous alignleft"><?php next_posts_link(__('<span class="meta-nav">&larr;</span> Older posts', 'op'));?></div>
-						<div class="nav-next alignright"><?php previous_posts_link(__('Newer posts <span class="meta-nav">&rarr;</span>', 'op'));?></div>
+						<h3 class="assistive-text"><?php _e('Post navigation', 'kwik');?></h3>
+						<div class="nav-previous alignleft"><?php next_posts_link(__('<span class="meta-nav">&larr;</span> Older posts', 'kwik'));?></div>
+						<div class="nav-next alignright"><?php previous_posts_link(__('Newer posts <span class="meta-nav">&rarr;</span>', 'kwik'));?></div>
 					</nav><!-- #<?php echo $html_id;?>.navigation -->
 	<?php endif;
 }
@@ -353,7 +284,7 @@ if (!function_exists('kt_comment')):
 			// Display trackbacks differently than normal comments.
 			?>
 							<li <?php comment_class();?> id="comment-<?php comment_ID();?>">
-					<p>			<?php _e('Pingback:', 'op');?> <?php comment_author_link();?> <?php edit_comment_link(__('(Edit)', 'op'), '<span class="edit-link">', '</span>');?></p>
+					<p>			<?php _e('Pingback:', 'kwik');?> <?php comment_author_link();?> <?php edit_comment_link(__('(Edit)', 'kwik'), '<span class="edit-link">', '</span>');?></p>
 		<?php
 		break;
 		default:
@@ -368,25 +299,25 @@ if (!function_exists('kt_comment')):
 			printf('<cite class="fn">%1$s %2$s</cite>',
 				get_comment_author_link(),
 				// If current post author is also comment author, make it known visually.
-				($comment->user_id === $post->post_author) ? '<span> ' . __('Post author', 'op') . '</span>' : ''
+				($comment->user_id === $post->post_author) ? '<span> ' . __('Post author', 'kwik') . '</span>' : ''
 			);
 			printf('<a href="%1$s"><time datetime="%2$s">%3$s</time></a>',
 				esc_url(get_comment_link($comment->comment_ID)),
 				get_comment_time('c'),
 				/* translators: 1: date, 2: time */
-				sprintf(__('%1$s at %2$s', 'op'), get_comment_date(), get_comment_time())
+				sprintf(__('%1$s at %2$s', 'kwik'), get_comment_date(), get_comment_time())
 			);
 			?>
 		</header><!-- .comment-meta -->
 		<?php if ('0' == $comment->comment_approved):?>
-										<p class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.', 'op');?></p>
+										<p class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.', 'kwik');?></p>
 		<?php endif;?>
 	<section class="comment-content comment">
 	<?php comment_text();?>
-							<?php edit_comment_link(__('Edit', 'op'), '<p class="edit-link">', '</p>');?>
+							<?php edit_comment_link(__('Edit', 'kwik'), '<p class="edit-link">', '</p>');?>
 	</section><!-- .comment-content -->
 			<div class="reply">
-	<?php comment_reply_link(array_merge($args, array('reply_text' => __('Reply', 'op'), 'after' => ' <span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'])));?>
+	<?php comment_reply_link(array_merge($args, array('reply_text' => __('Reply', 'kwik'), 'after' => ' <span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'])));?>
 	</div><!-- .reply -->
 		</article><!-- #comment-## -->
 	<?php
@@ -405,15 +336,15 @@ if (!function_exists('kt_comment')):
 	 */
 		function kt_entry_meta() {
 			// Translators: used between list items, there is a space after the comma.
-			$categories_list = get_the_category_list(__(', ', 'op'));
+			$categories_list = get_the_category_list(__(', ', 'kwik'));
 			// Translators: used between list items, there is a space after the comma.
-			$tag_list = get_the_tag_list('', __(', ', 'op'));
+			$tag_list = get_the_tag_list('', __(', ', 'kwik'));
 
 			// Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
-			if ($tag_list) {$utility_text = __('<strong>Tags:</strong> %2$s', 'op');
+			if ($tag_list) {$utility_text = __('<strong>Tags:</strong> %2$s', 'kwik');
 		}
 
-		if ($categories_list) {$utility_text .= __('<br/><strong>Category(s):</strong> %1$s', 'op');
+		if ($categories_list) {$utility_text .= __('<br/><strong>Category(s):</strong> %1$s', 'kwik');
 		}
 
 		if (!is_home()) {
@@ -437,11 +368,11 @@ if (!function_exists('kt_author_date')):
 	function kt_author_date() {
 
 		if (function_exists('coauthors_posts_links')) {
-			$author = coauthors_posts_links(null, null, __('By: ', 'op'), null, false);
+			$author = coauthors_posts_links(null, null, __('By: ', 'kwik'), null, false);
 		} else {
 		$author = sprintf('<span class="author vcard">By: <a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
 			esc_url(get_author_posts_url(get_the_author_meta('ID'))),
-			esc_attr(sprintf(__('View all posts by %s', 'op'), get_the_author())),
+			esc_attr(sprintf(__('View all posts by %s', 'kwik'), get_the_author())),
 			get_the_author()
 		);
 	}
@@ -475,21 +406,21 @@ endif;
  */
 function kt_body_class($classes) {
 
-	if (kt_child_links()) {$classes[] = 'has_children';
-	}
+	if (kt_child_links()) {
+    $classes[] = 'has_children';
+  }
+
+  if (is_front_page()) {
+    $classes[] = 'front-page';
+  }
 
 	if (!is_active_sidebar('sidebar-1') || is_page_template('page-templates/full-width.php')) {
 		$classes[] = 'full-width';
 	}
 
-	if (is_page_template('page-templates/front-page.php')) {
-		$classes[] = 'template-front-page';
+	if (is_page()) {
 		if (has_post_thumbnail()) {
 			$classes[] = 'has-post-thumbnail';
-		}
-
-		if (is_active_sidebar('sidebar-horz-1') && is_active_sidebar('sidebar-horz-2')) {
-			$classes[] = 'two-sidebars';
 		}
 	}
 
@@ -623,130 +554,7 @@ function invert_color($start_color) {
 
 }
 
-function get_rid_of_editor_styles() {
-	global $editor_styles;
-	if (is_array($editor_styles)) {
-		foreach ($editor_styles as $e) {
-			$e = 'editor-style.css' == $e ? '' : $e;
-		}
-	}
-}
 
-add_action('init', 'get_rid_of_editor_styles');
-
-function add_my_own_editor_styles() {
-	add_editor_style('css/editor-style.css');
-}
-add_action('after_setup_theme', 'add_my_own_editor_styles');
-
-//Add button to the button array.
-function register_button($buttons) {
-	//Use PHP 'array_push' function to add the columnThird button to the $buttons array
-	array_push($buttons, "addservicebox");
-	array_push($buttons, "addpullquote");
-	//Return buttons array to TinyMCE
-	return $buttons;
-}
-
-//Add custom plugin to TinyMCE - returns associative array which contains link to JS file. The JS file will contain your plugin when created in the following step.
-function add_custom($plugin_array) {
-	$plugin_array['addservicebox'] = get_bloginfo('template_url') . '/js/editor_plugin.js';
-	$plugin_array['addpullquote'] = get_bloginfo('template_url') . '/js/editor_plugin_pullquote.js';
-	return $plugin_array;
-}
-
-add_action('wp_ajax_add_service_box_function_callback', 'add_service_box_function_callback');
-function add_service_box_function_callback() {?>
-<!DOCTYPE html>
-<head>
-    <title>Create a Service Box</title>
-<script type="text/javascript" src="<?php bloginfo('url')?>/wp-includes/js/tinymce/tiny_mce_popup.js?ver=358-20121205"></script>
-<script type="text/javascript" src="<?php bloginfo('template_directory')?>/js/service_box_dialog.js"></script>
-</head>
-<body>
-<form onsubmit="ServiceBox.update();return false;" action="#">
-	<table border="0" cellpadding="4" cellspacing="0" role="presentation">
-		<tr>
-			<td colspan="2" class="title" id="app_title">Add Service Box</td>
-		</tr>
-		<tr>
-			<td class="nowrap"><label for="anchorName">Title:</label></td>
-			<td><input name="anchorName" type="text" class="mceFocus" id="anchorName" value="" style="width: 200px" aria-required="true" /></td>
-		</tr>
-		<tr>
-			<td class="nowrap"><label for="anchorName">Content:</label></td>
-			<td><textarea name="service_box_content" class="mceFocus" cols="37" id="service_box_content"></textarea></td>
-		</tr>
-	</table>
-
-	<div class="mceActionPanel">
-		<input type="submit" id="insert" name="insert" value="{#update}" />
-		<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
-	</div>
-</form>
-</html>
-<?php
-die;
-};
-
-add_action('wp_ajax_add_pull_quote_function_callback', 'add_pull_quote_function_callback');
-function add_pull_quote_function_callback() {?>
-<!DOCTYPE html>
-<head>
-    <title>Create a Pull-Quote</title>
-<script type="text/javascript" src="<?php bloginfo('url')?>/wp-includes/js/tinymce/tiny_mce_popup.js?ver=358-20121205"></script>
-<script type="text/javascript" src="<?php bloginfo('template_directory')?>/js/pull_quote_dialog.js"></script>
-</head>
-<body>
-<form onsubmit="PullQuote.update();return false;" action="#">
-	<table border="0" cellpadding="4" cellspacing="0" role="presentation">
-		<tr>
-			<td colspan="2" class="title" id="app_title">Add a Pull Quote</td>
-		</tr>
-		<tr>
-			<td class="nowrap"><label for="pq_title">Title:</label></td>
-			<td><input name="pq_title" type="text" class="mceFocus" id="pq_title" value="" style="width: 200px" aria-required="true" /></td>
-		</tr>
-		<tr>
-			<td class="nowrap"><label for="pull_quote_content">Content:</label></td>
-			<td><textarea name="pull_quote_content" class="mceFocus" cols="37" id="pull_quote_content"></textarea></td>
-		</tr>
-		<tr>
-			<td class="nowrap"><label for="pull_quote_align">Alignment:</label></td>
-			<td>
-            <select name="pull_quote_align" class="mceFocus" id="pull_quote_align">
-                <option value="block">None</option>
-                <option value="alignleft">Left</option>
-                <option value="aligncenter">Center</option>
-                <option value="alignright">Right</option>
-            </select>
-            </td>
-		</tr>
-		<tr>
-			<td class="nowrap"><label for="pull_quote_width">Width:</label></td>
-			<td>
-            <select name="pull_quote_width" class="mceFocus" id="pull_quote_width">
-                <option value="width_10">10%</option>
-                <option value="width_20">20%</option>
-                <option value="width_30">30%</option>
-                <option value="width_40">40%</option>
-                <option value="width_60">60%</option>
-                <option value="width_90">90%</option>
-                <option value="">Block display</option>
-            </select>
-            </td>
-		</tr>
-	</table>
-
-	<div class="mceActionPanel">
-		<input type="submit" id="insert" name="insert" value="{#update}" />
-		<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
-	</div>
-</form>
-</html>
-<?php
-die;
-};
 
 function get_taxonomy_parents($id, $taxonomy, $link = false, $separator = '/', $nicename = false, $visited = array()) {
 	$chain = '';
@@ -779,105 +587,6 @@ function get_taxonomy_parents($id, $taxonomy, $link = false, $separator = '/', $
 	return $chain;
 }
 
-/**
- * Released under GPL
- * This is a simple class that gives you options to use bitly's API method
- * /v3/expand and /v3/shorten
- * @access public
- * @author Jaspreet Chahal
- * @copyright Jaspreet Chahal
- * @version 0.1a
- * @link http://jaspreetchahal.org
- * @package bitly
- */
-
-class kt_bitly {
-	private $_username = null;
-	private $_apikey = null;
-	private $_format = null;
-	// format can be json,xml,txt
-	// read more here http://dev.bitly.com/formats.html
-	private $_apiurl = null;
-	public function __construct($username, $apikey, $secure = false, $format = 'txt') {
-		$this->_username = $username;
-		$this->_apikey = $apikey;
-		$this->_format = $format;
-		if ($secure) {
-			$this->_apiurl = 'https://api-ssl.bitly.com';
-		} else {
-			$this->_apiurl = 'http://api.bitly.com';
-		}
-	}
-
-	/*
-	Read more: http://dev.bitly.com/links.html#v3_shorten
-	 */
-	public function shortenURL($urltoshorten) {
-		// check here if the URL is valid or not
-		$bitlyconnector = $this->_apiurl . '/v3/shorten?login=' . $this->_username . '&apiKey=' . $this->_apikey . '&uri=' . urlencode($urltoshorten) . '&format=' . $this->_format;
-		return curl_get_result($bitlyconnector);
-	}
-
-	/*
-	Read more: http://dev.bitly.com/links.html#v3_expand
-	 */
-	function longURL($urltolongify) {
-		$bitlyconnector = $this->_apiurl . '/v3/expand?login=' . $this->_username . '&apiKey=' . $this->_apikey . '&shortUrl=' . urlencode($urltolongify) . '&format=' . $this->_format;
-		return curl_get_result($bitlyconnector);
-	}
-
-}
-
-function social_link() {
-	$options = KwikThemeOptions::kt_get_options();
-	if (!empty($options['bitly'][0])) {
-		bitly();
-	} else {
-		currentPageURL();
-	}
-}
-
-function bitly() {
-	global $post;
-	$options = KwikThemeOptions::kt_get_options();
-	$bitly_meta = get_post_meta($post->ID, 'bitly_meta', true);
-
-	if (is_single() && $bitly_meta) {
-		return urldecode($bitly_meta);
-	} else {
-
-		$bitly = new kt_bitly($options['bitly'][0], $options['bitly'][1]);
-		$bitly_short_url = $bitly->shortenURL(currentPageURL());
-		if (is_single() && !$bitly_meta) {add_post_meta($post->ID, 'bitly_meta', urlencode($bitly_short_url), true);
-		}
-
-		return $bitly_short_url;
-	}
-
-}
-
-// Save Bitly meta data
-function save_bitly_urls($post_id, $post) {
-
-	// Is the user allowed to edit the post or page?
-	if (!current_user_can('edit_post', $post->ID)) {return $post->ID;
-	}
-
-	$options = KwikThemeOptions::kt_get_options();
-	if (!empty($options['bitly'][0]) && !empty($options['bitly'][1])) {
-		$bitly = new kt_bitly($options['bitly'][0], $options['bitly'][1]);
-		$bitly_short_url = $bitly->shortenURL(get_permalink($post_id));
-
-		if ($post->post_type == 'revision') {return;
-		}
-
-		__update_post_meta($post->ID, 'bitly_meta', urlencode($bitly_short_url));
-	} else {
-		return;
-	}
-
-}
-//add_action('save_post', 'save_bitly_urls', 1, 2);
 
 /* returns a result form url */
 function curl_get_result($url) {
@@ -1018,38 +727,7 @@ function getRealIp() {
 	return $ip;
 }
 
-// The edit page Meta box
-function do_by_the_numbers($post_id) {
-	global $post;
 
-	$btns_good = get_post_meta($post_id, 'btn_good', false);
-	$btns_good = $btns_good[0];
-	$btns_bad = get_post_meta($post_id, 'btn_bad', false);
-	$btns_bad = $btns_bad[0];
-	$btn_meta = '';
-
-	$btn_meta .= '<div class="clear">';
-	$btn_meta .= '<ul id="btn_good" class="btn_ul clear" style="margin-right:12%">';
-	$btn_meta .= '<li class="btn_ul_title"><h2 style="color:#3f9731">' . __('The Good', 'op') . '</h2></li>';
-	if (!empty($btns_good)) {
-		foreach ($btns_good as $btn_good) {
-			$btn_meta .= '<li><div class="btn_nums"><span class="big_num">' . $btn_good[0] . '</span>' . $btn_good[1] . '</div><div class="btn_desc">' . $btn_good[2] . '</div></li>';
-		}
-	}
-	$btn_meta .= '</ul>';
-	$btn_meta .= '<ul id="btn_bad" class="btn_ul clear">';
-	$btn_meta .= '<li class="btn_ul_title"><h2 style="color:#cc3300">' . __('The Bad', 'op') . '</h2></li>';
-	if (!empty($btns_bad)) {
-		foreach ($btns_bad as $btn_bad) {
-			$btn_meta .= '<li><div class="btn_nums"><span class="big_num">' . $btn_bad[0] . '</span>' . $btn_bad[1] . '</div><div class="btn_desc">' . $btn_bad[2] . '</div></li>';
-		}
-	}
-	$btn_meta .= '</ul>';
-	$btn_meta .= '</div>';
-
-	echo $btn_meta;
-
-}
 
 function kt_child_links() {
 
@@ -1121,7 +799,7 @@ function kt_child_links() {
 
 if (!function_exists('get_kt_posted_on')):
   function get_kt_posted_on($post_id) {
-    $posted_on = sprintf(__('<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a>', 'op'),
+    $posted_on = sprintf(__('<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a>', 'kwik'),
       esc_url(get_permalink($post_id)),
       esc_attr(get_the_time()),
       esc_attr(get_the_date('c')),

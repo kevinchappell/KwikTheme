@@ -38,7 +38,7 @@ get_header(); ?>
 
 								$metadata = wp_get_attachment_metadata();
 
-								printf( __( '<span class="meta-prep meta-prep-entry-date">Published </span> <span class="entry-date"><time class="entry-date" datetime="%1$s">%2$s</time></span> at <a href="%3$s" title="Link to full-size image">%4$s &times; %5$s</a> in <a href="%6$s" title="Return to %7$s" rel="gallery">%8$s</a>.', 'op' ),
+								printf( __( '<span class="meta-prep meta-prep-entry-date">Published </span> <span class="entry-date"><time class="entry-date" datetime="%1$s">%2$s</time></span> at <a href="%3$s" title="Link to full-size image">%4$s &times; %5$s</a> in <a href="%6$s" title="Return to %7$s" rel="gallery">%8$s</a>.', 'kwik' ),
 
 									esc_attr( get_the_date( 'c' ) ),
 
@@ -60,15 +60,15 @@ get_header(); ?>
 
 							?>
 
-							<?php edit_post_link( __( 'Edit', 'op' ), '<span class="edit-link">', '</span>' ); ?>
+							<?php edit_post_link( __( 'Edit', 'kwik' ), '<span class="edit-link">', '</span>' ); ?>
 
 						</footer><!-- .entry-meta -->
 
 						<nav id="image-navigation" class="navigation" role="navigation">
 
-							<span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous', 'op' ) ); ?></span>
+							<span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous', 'kwik' ) ); ?></span>
 
-							<span class="next-image"><?php next_image_link( false, __( 'Next &rarr;', 'op' ) ); ?></span>
+							<span class="next-image"><?php next_image_link( false, __( 'Next &rarr;', 'kwik' ) ); ?></span>
 
 						</nav><!-- #image-navigation -->
 
@@ -156,7 +156,7 @@ endif;
 
 							<?php the_content(); ?>
 
-							<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'op' ), 'after' => '</div>' ) ); ?>
+							<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'kwik' ), 'after' => '</div>' ) ); ?>
 
 						</div><!-- .entry-description -->
 

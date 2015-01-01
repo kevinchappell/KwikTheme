@@ -1,0 +1,16 @@
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kwik Theme 1.0\n"
+"Report-Msgid-Bugs-To: http://kevin-chappell.com/kwik-theme\n"
+"POT-Creation-Date: 2014-12-18 16:59:51+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kevin Chappell <kevin@liquidproduction.net>\n"
+
+#: 404.php
+msgid "Not Found"
+msgstr ""
+

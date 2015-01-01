@@ -45,7 +45,7 @@ class page_content extends WP_Widget {
         <a href="<?php echo $file_url[0][0]; ?>" style="float:left;" title="<?php echo $widget_content->post_title; ?>"><?php resource_feature_image($post_id, array(256,256), true); ?></a>
         <div class="text_wrap">
 		<header class="entry-header">
-        <h3 class="entry-title"><a href="<?php echo $file_url[0][0]; ?>" class="download" data-file_id="<?php echo $attachment_ids[0][0]; ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'op' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php echo get_the_title($post_id); ?></a><?php edit_post_link( __( 'Edit', 'op' ), '<span class="edit-link">', '</span>' ); ?></h3>
+        <h3 class="entry-title"><a href="<?php echo $file_url[0][0]; ?>" class="download" data-file_id="<?php echo $attachment_ids[0][0]; ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'kwik' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php echo get_the_title($post_id); ?></a><?php edit_post_link( __( 'Edit', 'kwik' ), '<span class="edit-link">', '</span>' ); ?></h3>
 		</header><!-- .entry-header -->
 		<footer class="entry-meta">
         <?php //echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago<br/>'; ?>

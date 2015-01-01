@@ -78,6 +78,6 @@ footer#footer .menu li li a:hover {
 }
 
 .template-front-page .front-widgets h3 {
-    font: normal 18px "Helvetica Neue", Arial, Helvetica, sans-serif;
-    color: #000;
+  font: normal 18px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: #000;
 }

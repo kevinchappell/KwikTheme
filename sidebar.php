@@ -18,14 +18,14 @@ $options = KwikThemeOptions::kt_get_options();
 			<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
 
 				<aside id="archives" class="widget">
-					<h3 class="widget-title"><?php _e( 'Archives', 'op' ); ?></h3>
+					<h3 class="widget-title"><?php _e( 'Archives', 'kwik' ); ?></h3>
 					<ul>
 						<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
 					</ul>
 				</aside>
 
 				<aside id="meta" class="widget">
-					<h3 class="widget-title"><?php _e( 'Meta', 'op' ); ?></h3>
+					<h3 class="widget-title"><?php _e( 'Meta', 'kwik' ); ?></h3>
 					<ul>
 						<?php wp_register(); ?>
 						<li><?php wp_loginout(); ?></li>

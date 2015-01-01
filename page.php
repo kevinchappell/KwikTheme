@@ -18,9 +18,17 @@ get_header(); ?>
 				<?php get_template_part( 'content', 'page' ); ?>
 				<?php //comments_template( '', true ); ?>
 			<?php endwhile; // end of the loop. ?>
-			<?php if(is_page(124)) memberTable(); ?>
-            <?php if(is_page(158)) include(TEMPLATEPATH.'/forms/contact_form.php'); ?>            
+    <?php
+    if (is_front_page()){
+      get_sidebar( 'horz' );
+    }
+    ?>
+
 		</div><!-- #content -->
 	</div><!-- #primary -->
-<?php get_sidebar(); ?>
+  <?php
+  if (!is_front_page()){
+    get_sidebar();
+  }
+  ?>
 <?php get_footer(); ?>

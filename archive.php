@@ -105,9 +105,9 @@ if($cat == 'technical_resources_category' || $techmain == 'technical_resources')
 
             <ul class="dropdown">
 
-              <li class="category-option" title="title"><label for="grid_orderby_title"><?php _e('Title','op')?></label></li>
+              <li class="category-option" title="title"><label for="grid_orderby_title"><?php _e('Title','kwik')?></label></li>
 
-              <li class="category-option" title="date"><label for="grid_orderby_date"><?php _e('Date','op')?></label></li>
+              <li class="category-option" title="date"><label for="grid_orderby_date"><?php _e('Date','kwik')?></label></li>
 
             </ul>
 
@@ -115,7 +115,7 @@ if($cat == 'technical_resources_category' || $techmain == 'technical_resources')
 
 
 
-      <input type="text" placeholder="<?php _e('Search','op'); ?>" name="s_term" id="s_term" class="input">
+      <input type="text" placeholder="<?php _e('Search','kwik'); ?>" name="s_term" id="s_term" class="input">
 
 
 
@@ -131,7 +131,7 @@ if($cat == 'technical_resources_category' || $techmain == 'technical_resources')
 
 
 
-			  echo '<li class="category-option"><label for="grid_category-all">' . __('All','op') . '<input type="radio" value="all" id="grid_category-all" '.($category == 'all' ? 'checked="checked"': '').' name="grid_category" /></label></li>';
+			  echo '<li class="category-option"><label for="grid_category-all">' . __('All','kwik') . '<input type="radio" value="all" id="grid_category-all" '.($category == 'all' ? 'checked="checked"': '').' name="grid_category" /></label></li>';
 
 
 
@@ -190,7 +190,7 @@ if($cat == 'technical_resources_category' || $techmain == 'technical_resources')
 
               <h1 class="entry-title">
 
-                <?php _e( 'No posts to display', 'op' ); ?>
+                <?php _e( 'No posts to display', 'kwik' ); ?>
 
               </h1>
 
@@ -198,7 +198,7 @@ if($cat == 'technical_resources_category' || $techmain == 'technical_resources')
 
             <div class="entry-content">
 
-              <p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'op' ), admin_url( 'post-new.php' ) ); ?></p>
+              <p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'kwik' ), admin_url( 'post-new.php' ) ); ?></p>
 
             </div>
 
@@ -214,7 +214,7 @@ if($cat == 'technical_resources_category' || $techmain == 'technical_resources')
 
               <h1 class="entry-title">
 
-                <?php _e( 'Nothing Found', 'op' ); ?>
+                <?php _e( 'Nothing Found', 'kwik' ); ?>
 
               </h1>
 
@@ -224,7 +224,7 @@ if($cat == 'technical_resources_category' || $techmain == 'technical_resources')
 
               <p>
 
-                <?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'op' ); ?>
+                <?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'kwik' ); ?>
 
               </p>
 

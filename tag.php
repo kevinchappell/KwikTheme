@@ -24,7 +24,7 @@ get_header(); ?>
 
 			<header class="archive-header">
 
-				<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'op' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
+				<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'kwik' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
 
 			<?php if ( tag_description() ) : // Show an optional tag description ?>
 
