@@ -10,7 +10,7 @@ class KwikThemeOptions {
 
   public function __construct(){
     add_action('admin_menu',  array( $this, 'kt_add_options_page' ));
-    add_action( 'admin_init', array( $this, 'kt_settings_init' ) );
+    add_action('admin_init',  array( $this, 'kt_settings_init' ) );
   }
 
   public function kt_add_options_page() {
@@ -83,8 +83,7 @@ public function kt_settings_init() {
 public function kwik_theme_settings() {
   $settings = $this->kt_get_options();
   echo '<div class="wrap">';
-    echo KwikInputs::markup('h2', __('Slider Settings', 'kwik'));
-    echo KwikInputs::markup('p', __('Set the defaults to be used by the sliders. Here you can define transition effects, pagers and themes.','kwik'));
+    echo KwikInputs::markup('h2', __('Theme Options', 'kwik'));
     echo '<form action="options.php" method="post">';
       settings_fields(KT_SETTINGS);
       echo KwikUtils::settings_sections(KT_SETTINGS, $settings);
@@ -98,50 +97,6 @@ public function kt_get_options() {
 }
 
 public function kt_default_options() {
-  $effects = array(
-    'blindX' => __('Blind X', 'kwik'),
-    'blindY' => __('Blind Y', 'kwik'),
-    'blindZ' => __('Blind Z', 'kwik'),
-    'cover' => __('Cover', 'kwik'),
-    'curtainX' => __('Curtain X', 'kwik'),
-    'curtainY' => __('Curtain Y', 'kwik'),
-    'fade' => __('Fade', 'kwik'),
-    'fadeZoom' => __('Fade Zoom', 'kwik'),
-    'growX' => __('Grow X', 'kwik'),
-    'growY' => __('Grow Y', 'kwik'),
-    'none' => __('None', 'kwik'),
-    'scrollUp' => __('Scroll Up', 'kwik'),
-    'scrollDown' => __('Scroll Down', 'kwik'),
-    'scrollLeft' => __('Scroll Left', 'kwik'),
-    'scrollRight' => __('Scroll Right', 'kwik'),
-    'scrollHorz' => __('Scroll Horizontal', 'kwik'),
-    'scrollVert' => __('Scroll Vertical', 'kwik'),
-    'shuffle' => __('Shuffle', 'kwik'),
-    'slideX' => __('Slide X', 'kwik'),
-    'slideY' => __('Slide Y', 'kwik'),
-    'tiles' => __('Tiles', 'kwik'),
-    'toss' => __('Toss', 'kwik'),
-    'turnUp' => __('Turn Up', 'kwik'),
-    'turnDown' => __('Turn Down', 'kwik'),
-    'turnLeft' => __('Turn Left', 'kwik'),
-    'turnRight' => __('Turn Right', 'kwik'),
-    'uncover' => __('Uncover', 'kwik'),
-    'wipe' => __('Wipe', 'kwik'),
-    'zoom' => __('Zoom', 'kwik')
-  );
-
-  $themes = array(
-    'katrina' => 'Katrina',
-    'kevin' => 'Kevin'
-  );
-
-  $pagers = array(
-    'circle' => 'Circle',
-    'square' => 'Square',
-    'thumbnail' => 'Thumbnail',
-    'number' => 'Number',
-    'text' => 'Text'
-  );
 
   $kt_default_options = array(
     'general' => array(
@@ -164,6 +119,28 @@ public function kt_default_options() {
           'type' => 'img',
           'title' => __('Company/Personal Logo', 'kwik'),
           'value' => ''
+        ),
+        'menu_link' => array(
+          'type' => 'font',
+          'title' => __('Menu Link', 'kwik'),
+          'value' => array(
+            'color' => '#002C90',
+            'weight' => 'normal',
+            'size' => 20,
+            'line-height' => 20,
+            'font-family' => 'Open+Sans'
+          )
+        ),
+        'menu_link_hover' => array(
+          'type' => 'font',
+          'title' => __('Menu Link:hover', 'kwik'),
+          'value' => array(
+            'color' => '#002C90',
+            'weight' => 'normal',
+            'size' => 20,
+            'line-height' => 20,
+            'font-family' => 'Open+Sans'
+          )
         )
       )
     )

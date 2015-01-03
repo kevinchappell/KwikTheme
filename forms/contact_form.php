@@ -67,7 +67,7 @@ $upload_size_msg = get_post_meta(6, 'upload_size_msg', true);
       <div class="input_wrap clear" style="display:none">
         <label for="ask_cap">
           <?php _e( 'Security', 'kwik' ); ?>
-          <span class="required">*</span>:</label>        
+          <span class="required">*</span>:</label>
         <div class="nodisplay error" id="captcha_error_msg"><?php echo $captcha_error_msg; ?></div>
         <span class="text_input"><input name="ask_cap" id="ask_cap" placeholder="<?php _e('Enter security code', 'kwik') ?>" type="text" value="" /></span>   <img id="y_cap_img" alt="enter the captcha code please" src="<?php bloginfo('template_directory'); ?>/forms/captcha.php"/>
       </div>

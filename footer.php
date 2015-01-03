@@ -21,8 +21,8 @@
 <footer id="footer" role="contentinfo">
   <div class="inner">
   <?php if ( is_active_sidebar( 'footer_widgets' ) ) : dynamic_sidebar( 'footer_widgets' ); ?><?php endif; ?>
-    <?php wp_nav_menu( array( 'menu' => 'Footer Menu', 'container' => false, 'menu_class' => 'menu clear')); ?>   
-    <div id="copyright" class="clear">&copy; Copyright by KwikTheme Foundation. All rights reserved.</div> 
+    <?php wp_nav_menu( array( 'theme_location' => 'footer', 'container' => FALSE, 'menu_class' => 'menu clear', 'fallback_cb' => FALSE)); ?>   
+    <div id="copyright" class="clear">&copy; Copyright by KwikTheme Foundation. All rights reserved.</div>
   </div>
 </footer>
 <!-- #footer -->

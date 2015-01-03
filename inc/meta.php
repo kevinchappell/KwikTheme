@@ -242,7 +242,7 @@ function kt_save_page_meta($post_id, $post) {
 		if ($post->post_type == 'revision') {return;
 		}
 
-		__update_post_meta($post->ID, $key, $value);
+		KwikUtils::__update_post_meta($post->ID, $key, $value);
 	}
 
 }
@@ -277,7 +277,7 @@ function kt_save_post_meta($post_id, $post) {
 		if ($post->post_type == 'revision') {return;
 		}
 
-		__update_post_meta($post->ID, $key, $value);
+		KwikUtils::__update_post_meta($post->ID, $key, $value);
 	}
 
 }

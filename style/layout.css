@@ -1,0 +1,64 @@
+
+/* Page structure */
+
+.site {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  min-width: 782px;
+  width: 100%;
+  min-height: 100%;
+}
+.site-content {
+  width: 68.7%;
+  float: left;
+}
+.has_children .site-content {
+  width: 76%;
+  float: right;
+}
+.single.right-sidebar .site-content {} .widget-area {
+  margin: 24px 0 0;
+  margin: 1.714285714rem 0 0;
+}
+
+
+.site-content {
+    margin: 0;
+    width: auto;
+  }
+#secondary {
+  float: right;
+  width: 29.8%;
+  margin: 0;
+  padding-left: 1.47%;
+  padding-top: 20px;
+}
+
+
+/*     Helpers     */
+.inner {
+  max-width: 920px;
+  margin: auto;
+  position: relative;
+  padding: 20px;
+}
+
+.width_10 {
+  width: 10%;
+}
+.width_20 {
+  width: 20%;
+}
+.width_30 {
+  width: 30%;
+}
+.width_40 {
+  width: 40%;
+}
+.width_60 {
+  width: 60%;
+}
+.width_90 {
+  width: 90%;
+}

@@ -1,3 +1,14 @@
+.inner{
+  -webkit-transition: max-width 500ms ease;
+  -moz-transition: max-width 500ms ease;
+  -ms-transition: max-width 500ms ease;
+  -o-transition: max-width 500ms ease;
+  transition: max-width 500ms ease;
+}
+
+
+
+
 /*
    Animation example, for spinners
 */

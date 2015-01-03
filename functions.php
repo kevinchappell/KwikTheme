@@ -28,7 +28,7 @@ if (!isset($content_width)) {
  * @uses add_editor_style() To add a Visual Editor stylesheet.
  * @uses add_theme_support() To add support for post thumbnails, automatic feed links,
  * 	custom background, and post formats.
- * @uses register_nav_menu() To add support for navigation menus.
+ * @uses register_nav_menus() To add support for navigation menus.
  * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
  *
  * @since KwikTheme 1.0
@@ -49,15 +49,17 @@ function kt_setup() {
 	add_theme_support('automatic-feed-links');
 	// This theme supports a variety of post formats.
 	add_theme_support('post-formats', array('aside', 'image', 'link', 'quote', 'status'));
-	register_nav_menu('primary', __('Primary Menu', 'kwik'));
-	register_nav_menu('top', __('Top Menu Menu', 'kwik'));
-	register_nav_menu('secondary', __('Footer Menu', 'kwik'));
+  register_nav_menus(array(
+    'main' => 'Main Menu',
+    'top' => 'Top Menu Menu',
+    'footer' => 'Footer Menu'
+  ));
 	// This theme uses a custom image size for featured images, displayed on "standard" posts.
 	add_theme_support('post-thumbnails');
 
 	add_image_size("header_img", 1190, 220, true);
+	set_post_thumbnail_size(356, 242);
 
-	set_post_thumbnail_size(356, 242);// Unlimited height, soft crop
 }
 add_action('after_setup_theme', 'kt_setup');
 
@@ -86,7 +88,6 @@ function kt_scripts_styles() {
 	/*
 	 * Adds JavaScript for handling the navigation menu hide-and-show behavior.
 	 */
-	wp_enqueue_script('colorbox', get_template_directory_uri() . '/js/jquery.colorbox-min.js', array('jquery'));
 	wp_enqueue_script('site', get_template_directory_uri() . '/js/site.js', array('jquery', 'colorbox'));
 
 	wp_enqueue_script('jquery-cycle', 'http://malsup.github.io/min/jquery.cycle2.min.js', array('jquery'));
@@ -100,11 +101,11 @@ function kt_scripts_styles() {
 	// wp_enqueue_style( 'kt-ie', get_template_directory_uri() . '/css/ie.css', array( 'kt-style' ), '20121010' );
 	// $wp_styles->add_data( 'kt-ie', 'conditional', 'lte IE 9' );
 	/*
-global $is_IE;
-if($is_IE){
-wp_register_script( 'site-ie', get_template_directory_uri().'/js/site-ie.js');
-wp_enqueue_script('site-ie' );
-}
+  global $is_IE;
+  if($is_IE){
+    wp_register_script( 'site-ie', get_template_directory_uri().'/js/site-ie.js');
+    wp_enqueue_script('site-ie' );
+  }
  */
 }
 add_action('wp_enqueue_scripts', 'kt_scripts_styles');
@@ -310,7 +311,7 @@ if (!function_exists('kt_comment')):
 			?>
 		</header><!-- .comment-meta -->
 		<?php if ('0' == $comment->comment_approved):?>
-										<p class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.', 'kwik');?></p>
+			<p class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.', 'kwik');?></p>
 		<?php endif;?>
 	<section class="comment-content comment">
 	<?php comment_text();?>
@@ -329,9 +330,7 @@ if (!function_exists('kt_comment')):
 	if (!function_exists('kt_entry_meta')):
 		/**
 	 * Prints HTML with meta information for current post: categories, tags, permalink, author, and date.
-	 *
 	 * Create your own kt_entry_meta() to override in a child theme.
-	 *
 	 * @since KwikTheme 1.0
 	 */
 		function kt_entry_meta() {
@@ -341,10 +340,12 @@ if (!function_exists('kt_comment')):
 			$tag_list = get_the_tag_list('', __(', ', 'kwik'));
 
 			// Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
-			if ($tag_list) {$utility_text = __('<strong>Tags:</strong> %2$s', 'kwik');
-		}
+			if ($tag_list) {
+        $utility_text = __('<strong>Tags:</strong> %2$s', 'kwik');
+  		}
 
-		if ($categories_list) {$utility_text .= __('<br/><strong>Category(s):</strong> %1$s', 'kwik');
+		if ($categories_list) {
+      $utility_text .= __('<br/><strong>Category(s):</strong> %1$s', 'kwik');
 		}
 
 		if (!is_home()) {
@@ -483,17 +484,16 @@ add_action('future_to_publish', 'kt_autoset_featured');*/
 
 
 
-//Function which returns content in place of shortcode
-function addservicebox($atts, $content = null) {
-	return "\t\n" . '<div class="columnThird">' . do_shortcode($content) . '</div>';
+// Function which returns content for shortcode
+function addServiceBox($atts, $content = null) {
+	return "\t\n" . '<div class="serviceBox">' . do_shortcode($content) . '</div>';
 }
-function addpullquote($atts, $content = null) {
-	return "\t\n" . '<div class="columnThird">pullquote!' . do_shortcode($content) . '</div>';
+function addPullQuote($atts, $content = null) {
+	return "\t\n" . '<div class="pullQuote">' . do_shortcode($content) . '</div>';
 }
 
-//Call above function, which replaces the content.
-add_shortcode("addservicebox", "addservicebox");//First parameter is the name of the shortcode (represents [columnThird] in this case), second is the function to call when this is found.
-add_shortcode("addpullquote", "addpullquote");
+add_shortcode("addServiceBox", "addServiceBox");
+add_shortcode("addPullQuote", "addPullQuote");
 
 //Creating TinyMCE buttons
 //********************************************************************
@@ -511,157 +511,9 @@ function add_editor_button() {
 	}
 }
 
-//add action is a wordpress function, it adds a function to a specific action... in this case the function is added to the 'init' action. Init action runs after wordpress is finished loading!
-// add_action('init', 'add_editor_button');
-
-function hex_to_RGB($hex_color) {
-
-	$rgb = array();
-	$rgb['red'] = hexdec(substr($hex_color, 1, 2));
-	$rgb['green'] = hexdec(substr($hex_color, 3, 2));
-	$rgb['blue'] = hexdec(substr($hex_color, 5, 2));
-
-	return $rgb;
-
-}
-
-function ImageColorAllocateFromHex($img, $hexstr) {
-	$int = hexdec($hexstr);
-
-	return ImageColorAllocate($img,
-		0xFF&($int >> 0x10),
-		0xFF&($int >> 0x8),
-		0xFF&$int);
-}
-
-function invert_color($start_color) {
-
-	$color_red = hexdec(substr($start_color, 1, 2));
-	$color_green = hexdec(substr($start_color, 3, 2));
-	$color_blue = hexdec(substr($start_color, 5, 2));
-
-	$new_red = dechex(255 - $color_red);
-	$new_green = dechex(255 - $color_green);
-	$new_blue = dechex(255 - $color_blue);
-
-	if (strlen($new_red) == 1) {$new_red .= '0';}
-	if (strlen($new_green) == 1) {$new_green .= '0';}
-	if (strlen($new_blue) == 1) {$new_blue .= '0';}
-
-	$new_color = '#' . $new_red . $new_green . $new_blue;
-
-	return $new_color;
-
-}
+add_action('init', 'add_editor_button');
 
 
-
-function get_taxonomy_parents($id, $taxonomy, $link = false, $separator = '/', $nicename = false, $visited = array()) {
-	$chain = '';
-	$parent = &get_term($id, $taxonomy);
-
-	if (is_wp_error($parent)) {
-		return $parent;
-	}
-
-	if ($nicename) {
-		$name = $parent->slug;
-	} else {
-
-		$name = $parent->name;
-	}
-
-	if ($parent->parent && ($parent->parent != $parent->term_id) && !in_array($parent->parent, $visited)) {
-		$visited[] = $parent->parent;
-		$chain .= get_taxonomy_parents($parent->parent, $taxonomy, $link, $separator, $nicename, $visited);
-
-	}
-
-	if ($link) {
-		// nothing, can't get this working :(
-	} else {
-
-		$chain .= $name . $separator;
-	}
-
-	return $chain;
-}
-
-
-/* returns a result form url */
-function curl_get_result($url) {
-	$ch = curl_init();
-	$timeout = 5;
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-	$data = curl_exec($ch);
-	curl_close($ch);
-	return $data;
-}
-
-function currentPageURL() {
-	$pageURL = 'http';
-	if (isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) == "on") {$pageURL .= "s";}
-	$pageURL .= "://";
-	if ($_SERVER["SERVER_PORT"] != "80") {
-		$pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
-	} else {
-		$pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-	}
-	return $pageURL;
-}
-
-function widget_count($sidebar_id, $echo = true) {
-	$the_sidebars = wp_get_sidebars_widgets();
-	if (!isset($the_sidebars[$sidebar_id])) {
-		return __('Invalid sidebar ID');
-	}
-
-	if ($echo) {
-		echo count($the_sidebars[$sidebar_id]);
-	} else {
-
-		return count($the_sidebars[$sidebar_id]);
-	}
-}
-
-
-
-function archive_feature_image($post_id, $echo = true) {
-
-	if (has_post_thumbnail()) {
-		$thumb = get_the_post_thumbnail($post_id, 'thumbnail');
-	} else {
-
-		$attached_image = get_children("post_parent=" . $post_id . "&post_type=attachment&post_mime_type=image&numberposts=1");
-		if ($attached_image) {
-			foreach ($attached_image as $attachment_id => $attachment) {
-				set_post_thumbnail($post_id, $attachment_id);
-				$thumb = wp_get_attachment_image($attachment_id, 'thumbnail');
-			}
-		} else {
-
-			$args = array(
-				'post_type' => 'attachment',
-				'post_mime_type' => 'image',
-				'post_status' => 'inherit',
-				'posts_per_page' => 1,
-				'orderby' => 'rand',
-			);
-
-			$query_images = new WP_Query($args);
-
-			$thumb = wp_get_attachment_image($query_images->posts[0]->ID, 'thumbnail');
-
-		}
-
-	}
-
-	if (!$echo) {return $thumb;} else {echo $thumb;}
-
-}
 
 function kt_paginate($is_child = true) {
 	global $wp_query;
@@ -678,33 +530,6 @@ function kt_paginate($is_child = true) {
 	echo $pagination;
 }
 
-function neat_trim($str, $n, $delim = '&hellip;', $neat = true) {
-
-	$len = strlen($str);
-	if ($len > $n) {
-		if ($neat) {
-			preg_match('/(.{' . $n . '}.*?)\b/', $str, $matches);
-			return rtrim($matches[1]) . $delim;
-		} else {
-			return substr($str, 0, $n) . $delim;
-
-		}
-	} else {
-		return $str;
-	}
-
-}
-
-
-function getDomain($url) {
-	$pieces = parse_url($url);
-	$domain = isset($pieces['host']) ? $pieces['host'] : '';
-	if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
-		return $regs['domain'];
-	}
-	return false;
-}
-
 //Add class to edit button
 function custom_edit_links($output) {
 
@@ -715,17 +540,6 @@ function custom_edit_links($output) {
 	return $output;
 }
 add_filter('edit_post_link', 'custom_edit_links');
-
-function getRealIp() {
-	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {//check ip from share internet
-		$ip = $_SERVER['HTTP_CLIENT_IP'];
-	} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {//to check ip is pass from proxy
-		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	} else {
-		$ip = $_SERVER['REMOTE_ADDR'];
-	}
-	return $ip;
-}
 
 
 
@@ -810,16 +624,16 @@ if (!function_exists('get_kt_posted_on')):
 endif;
 
 if ( ! function_exists( 'kt_posted_on' ) ) :
-function kt_posted_on() {
-  if ( is_sticky() && is_home() && ! is_paged() ) {
-    echo '<span class="featured-post">' . __( 'Sticky', 'twentyfourteen' ) . '</span>';
+  function kt_posted_on() {
+    if ( is_sticky() && is_home() && ! is_paged() ) {
+      echo '<span class="featured-post">' . __( 'Sticky', 'twentyfourteen' ) . '</span>';
+    }
+    echo get_kt_posted_on(the_id());
   }
-  echo get_kt_posted_on(the_id());
-}
 endif;
 
 // page and section headers
-function OPtopHeader($wp_query) {
+function kt_content_header($wp_query) {
 	// $options = KwikThemeOptions::kt_get_options();
   $options = KwikThemeOptions::kt_get_options();
 	if (!is_404()) {

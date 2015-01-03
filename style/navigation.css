@@ -1,6 +1,37 @@
-body{
-  background:#000;
+
+/* Navigation */
+
+.site-content nav {
+  clear: both;
+  line-height: 2;
+  overflow: hidden;
 }
+#nav-above {
+  padding: 24px 0;
+  padding: 1.714285714rem 0;
+}
+#nav-above {
+  display: none;
+}
+.paged #nav-above {
+  display: block;
+}
+.nav-previous, .previous-image {
+  float: left;
+  width: 50%;
+}
+.nav-next, .next-image {
+  float: right;
+  text-align: right;
+  width: 50%;
+}
+.nav-single + .comments-area, #comment-nav-above {
+  margin: 48px 0;
+  margin: 3.428571429rem 0;
+}
+
+
+
 #site-navigation {
   clear: both;
   padding: 15px 15px 0;
@@ -62,4 +93,104 @@ body{
   display: inline-block;
   margin: 0;
   border-right: 1px solid #ddd;
+}
+
+
+
+
+
+
+/*     Social Menu     */
+.social_menu ul {
+  width: auto;
+  margin-top: 20px;
+}
+.social_menu li {
+  float: left;
+  height: 24px;
+  margin: 0 3px;
+  width: 24px;
+  position: relative;
+  display: inline-block;
+  text-indent: -9999px;
+}
+.social_menu li:first-child {
+  margin-left: 0;
+}
+.social_menu li:hover {} .social_menu li a {
+  background-color: #e8e8e8;
+  display: inline-block;
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
+  height: 24px;
+  width: 24px;
+  text-indent: -9999px;
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  -ms-transition: all 250ms;
+  -o-transition: all 250ms;
+  transition: all 250ms;
+}
+footer#footer .social_menu li a {
+  padding: 0;
+}
+.social_menu li span {
+  background-color: #636363;
+  margin: 0 0 1px;
+}
+.social_menu li a:hover {} .social_menu li.google a {
+  background: #D34836 url("images/icons/social_sprite.png") no-repeat scroll 61% 5px;
+  background-size: 75% auto;
+}
+.social_menu li.google a:hover {
+  /*background-color: #242223;*/
+}
+.social_menu li.tumblr a {
+  background: #3c5a76 url("images/icons/social_sprite.png") no-repeat scroll 50% -73px;
+  background-size: 16px auto;
+}
+.social_menu li.tumblr a:hover {
+  background-color: #3c5a76;
+}
+.social_menu li.facebook a {
+  background: #3a5999 url("images/icons/social_sprite.png") no-repeat scroll 50% -21px;
+  background-size: 16px auto;
+}
+.social_menu li.facebook a:hover {
+  background-color: #3a5999;
+}
+.social_menu li.twitter a {
+  background: #01bbf6 url("images/icons/social_sprite.png") no-repeat scroll 50% -32px;
+  background-size: 12px auto;
+}
+.social_menu li.twitter a:hover {
+  background-color: #01bbf6;
+}
+.social_menu li.linkedin a {
+  background: #1385c4 url("images/icons/social_sprite.png") no-repeat scroll 50% -99px;
+  background-size: 16px auto;
+}
+.social_menu li.linkedin a:hover {
+  background-color: #1385c4;
+}
+.social_menu li.youtube a {
+  background: #f23434 url("images/icons/social_sprite.png") no-repeat scroll 50% -191px;
+  background-size: 24px auto;
+}
+.social_menu li.youtube a:hover {
+  background-color: #f23434;
+}
+.social_menu li.email a {
+  background: #959595 url("images/icons/social_sprite.png") no-repeat scroll 50% -297px;
+  background-size: 24px auto;
+}
+.social_menu li.email a:hover {
+  background-color: #9ca3ab;
+}
+.social_menu li.rss a {
+  background: #959595 url("images/icons/social_sprite.png") no-repeat scroll 50% -214px;
+  background-size: 20px auto;
+}
+.social_menu li.rss a:hover {
+  background-color: #f7a42c;
 }

@@ -80,7 +80,7 @@ $options = KwikThemeOptions::kt_get_options();
     <a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'kwik' ); ?>">
     <?php _e( 'Skip to content', 'kwik' ); ?>
     </a>
-    <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
+    <?php wp_nav_menu( array( 'theme_location' => 'main', 'menu_class' => 'nav-menu' ) ); ?>
   </nav>
   <!-- #site-navigation -->
   </div>
@@ -90,7 +90,7 @@ $options = KwikThemeOptions::kt_get_options();
 <div id="main" class="wrapper">
   <div class="inner">
 
-<?php echo OPtopHeader($wp_query);?>
+<?php echo kt_content_header($wp_query);?>
 
 <?php
 

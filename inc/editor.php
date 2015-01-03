@@ -18,17 +18,17 @@ add_action('after_setup_theme', 'kt_editor_style');
 
 //Add button to the button array.
 function register_button($buttons) {
-  //Use PHP 'array_push' function to add the columnThird button to the $buttons array
-  array_push($buttons, "addservicebox");
-  array_push($buttons, "addpullquote");
+  // push new buttons to the $buttons array.
+  array_push($buttons, "addServiceBox");
+  array_push($buttons, "addPullQuote");
   //Return buttons array to TinyMCE
   return $buttons;
 }
 
 //Add custom plugin to TinyMCE - returns associative array which contains link to JS file. The JS file will contain your plugin when created in the following step.
 function add_custom($plugin_array) {
-  $plugin_array['addservicebox'] = get_bloginfo('template_url') . '/js/editor_plugin.js';
-  $plugin_array['addpullquote'] = get_bloginfo('template_url') . '/js/editor_plugin_pullquote.js';
+  $plugin_array['addServiceBox'] = get_bloginfo('template_url') . '/js/editor_plugin.js';
+  $plugin_array['addPullQuote'] = get_bloginfo('template_url') . '/js/editor_plugin_pullquote.js';
   return $plugin_array;
 }
 
