@@ -452,16 +452,6 @@ function kt_content_width() {
 }
 add_action('template_redirect', 'kt_content_width');
 
-function __update_post_meta($post_id, $field_name, $value = '') {
-	if (empty($value) OR !$value) {
-		delete_post_meta($post_id, $field_name);
-	} elseif (!get_post_meta($post_id, $field_name)) {
-		add_post_meta($post_id, $field_name, $value);
-	} else {
-		update_post_meta($post_id, $field_name, $value);
-	}
-}
-
 // Auto-set the featured image
 function kt_autoset_featured() {
 	global $post;
