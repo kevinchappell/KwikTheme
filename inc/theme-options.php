@@ -132,14 +132,24 @@ public function kt_default_options() {
           )
         ),
         'menu_link_hover' => array(
-          'type' => 'font',
-          'title' => __('Menu Link:hover', 'kwik'),
-          'value' => array(
-            'color' => '#002C90',
-            'weight' => 'normal',
-            'size' => 20,
-            'line-height' => 20,
-            'font-family' => 'Open+Sans'
+          'title' => 'Menu Link:hover',
+          'type' => 'multi',
+          'fields' => array(
+            'hover_color' => array(
+              'type' => 'color',
+              'title' => __('Color', 'kwik'),
+              'value' => '#002C90'
+            ),
+            'hover_style' => array(
+              'type' => 'cbGroup',
+              'title' => __('Style', 'kwik'),
+              'value' => array('Underlined' => 'underlined'),
+              'options' => array(
+                'Underlined' => 'underlined',
+                'Bold' => 'bold',
+                'Italic' => 'italic'
+              )
+            )
           )
         )
       )

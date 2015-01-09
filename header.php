@@ -66,7 +66,7 @@ $options = KwikThemeOptions::kt_get_options();
   </div>
 </div>
 <header id="masthead" role="banner">
-  <div class="inner site-header">
+  <div class="inner site-header clear">
     <h1 class="site-title logo_wrap">
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
         <?php bloginfo( 'name' ); ?>

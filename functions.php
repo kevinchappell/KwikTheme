@@ -93,7 +93,7 @@ function kt_scripts_styles() {
 	wp_enqueue_script('jquery-cycle', 'http://malsup.github.io/min/jquery.cycle2.min.js', array('jquery'));
   wp_enqueue_style('kt-style', get_stylesheet_uri());
   wp_enqueue_style('kt-icons', get_template_directory_uri() . '/style/icons.css');
-	wp_enqueue_style('kf-custom', get_template_directory_uri() . '/css/kf_custom.php', array('op-style'), '11032014');
+	wp_enqueue_style('kt-custom', get_template_directory_uri() . '/style/kt-custom.php', array('kt-style'), '11032014');
 
 	/*
 	 * Loads the Internet Explorer specific stylesheet.

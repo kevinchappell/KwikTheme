@@ -6,6 +6,7 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
 
 $options = KwikThemeOptions::kt_get_options();
 
+var_dump($options);
 /*	$link_color = $options['link_color'];
 $site_bg = $options['site_bg'];
 
@@ -22,11 +23,11 @@ if ($options['body_font']['value']['font-family']) {
 ?>
 
 body {
-    font-family: "<?php echo str_replace('+', ' ', $options['body_font']['value']['font-family']);?>" Arial, Helvetica, sans-serif;
-    font-size:<?php echo $options['body_font']['value']['size'];?>px;
-    line-height:<?php echo $options['body_font']['value']['line-height'];?>px;
-    font-weight:<?php echo $options['body_font']['value']['weight'];?>;
-    color: <?php echo $options['body_font']['value']['color'];?>;
+  font-family: "<?php echo str_replace('+', ' ', $options['body_font']['value']['font-family']);?>" Arial, Helvetica, sans-serif;
+  font-size:<?php echo $options['body_font']['value']['size'];?>px;
+  line-height:<?php echo $options['body_font']['value']['line-height'];?>px;
+  font-weight:<?php echo $options['body_font']['value']['weight'];?>;
+  color: <?php echo $options['body_font']['value']['color'];?>;
 }
 
 /* Link color */
