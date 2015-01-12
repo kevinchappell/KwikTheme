@@ -10,7 +10,7 @@
 
 get_header(); ?>
 
-	<div id="primary" class="site-content">
+	<div id="primary" class="content-area">
 		<div id="content" role="main">
 			<article id="post-0" class="post error404 no-results not-found">
 				<header class="entry-header">
@@ -20,6 +20,6 @@ get_header(); ?>
 					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'kwik' ); ?></p>
 				</div><!-- .entry-content -->
 			</article><!-- #post-0 -->
-		</div><!-- #content -->
+		</div><!-- #main -->
 	</div><!-- #primary -->
 <?php get_footer(); ?>

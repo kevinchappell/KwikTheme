@@ -1,0 +1,6 @@
+.link.type-multi .kf_field, .link_hover.type-multi .kf_field, .menu_link_hover.type-multi .kf_field{
+  float:left;
+}
+.type-multi .kf_checkbox-group-wrap > label{
+  float:left;
+}

@@ -14,65 +14,40 @@
  * @subpackage KwikTheme
  * @since KwikTheme 1.0
  */
-
 get_header(); ?>
 
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
 
+    <?php if ( have_posts() ) : ?>
 
-<div id="primary" class="site-content">
-  <div id="content" role="main">
+      <?php if ( is_home() && ! is_front_page() ) : ?>
+        <header>
+          <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+        </header>
+      <?php endif; ?>
 
-  <header class="entry-header"><h1 class="entry-title"><?php echo (get_option( 'show_on_front' ) == 'page') ? get_the_title(get_option('page_for_posts' )) : "News" ; ?></h1></header>
-    <div id="articles_wrap">
-          <?php if ( have_posts() ) : ?>
-          <?php /* Start the Loop */ ?>
+      <?php
+      // Start the loop.
+      while ( have_posts() ) : the_post();
+        get_template_part( 'content', get_post_format() );
+      endwhile;
 
-          <?php while ( have_posts() ) : the_post(); 
-            get_template_part( 'content', 'archive' ); 
-          endwhile; 
-          else : ?>
-          <article id="post-0" class="post no-results not-found">
+      // Previous/next page navigation.
+      the_posts_pagination( array(
+        'prev_text'          => __( 'Previous page', 'kwik' ),
+        'next_text'          => __( 'Next page', 'kwik' ),
+        'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'kwik' ) . ' </span>',
+      ) );
 
-            <?php if ( current_user_can( 'edit_posts' ) ) :
-				// Show a different message to a logged-in user who can add posts.
+    // If no content, include the "No posts found" template.
+    else :
+      get_template_part( 'content', 'none' );
 
-			?>
-            <header class="entry-header">
-              <h1 class="entry-title">
-                <?php _e( 'No posts to display', 'kwik' ); ?>
-              </h1>
-            </header>
+    endif;
+    ?>
 
-            <div class="entry-content">
-              <p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'kwik' ), admin_url( 'post-new.php' ) ); ?></p>
-            </div>
-            <!-- .entry-content -->
-            <?php else :
-				// Show the default message to everyone else.
-			?>
-            <header class="entry-header">
-              <h1 class="entry-title">
-                <?php _e( 'Nothing Found', 'kwik' ); ?>
-              </h1>
-            </header>
-            <div class="entry-content">
-              <p>
-                <?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'kwik' ); ?>
-              </p>
-              <?php get_search_form(); ?>
-            </div>
-            <!-- .entry-content -->
-            <?php endif; // end current_user_can() check ?>
-          </article>
-          <!-- #post-0 -->
-          <?php endif; // end have_posts() check ?>
-    </div><!-- #articles_wrap --> 
-    <?php kt_paginate(); ?>
-  </div>
-  <!-- #content --> 
-</div>
-<!-- #primary -->
-
+    </main><!-- .site-main -->
+  </div><!-- .content-area -->
 
 <?php get_footer(); ?>
-

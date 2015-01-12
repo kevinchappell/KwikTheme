@@ -12,15 +12,15 @@
  * @since KwikTheme 1.0
  */
 get_header(); ?>
-	<div id="primary" class="site-content">
+	<div id="primary" class="content-area">
 		<div id="content" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part( 'content', 'page' ); ?>
-				<?php 
+				<?php
 
 	$bod = get_post_meta($post->ID, '_board_members', false);
-	$no_avatar = get_bloginfo('template_url').'/inc/images/no_avatar.jpg';	
+	$no_avatar = get_bloginfo('template_url').'/inc/images/no_avatar.jpg';
 
 	if(!empty($bod)){
 		$bod = $bod[0];
@@ -39,19 +39,19 @@ get_header(); ?>
 				// if($b['company'] != '') $bod_meta .= '<h4><a href="'.get_permalink($b['company']).'" title="View the '.get_the_title($b['company']).' page">'.get_the_title($b['company']).'</a></h4>';
 				$bod_meta .= '<p>'.$b['bio'].'</p>';
 				$bod_meta .= '</div>';
-			$bod_meta .= '</li>';	
+			$bod_meta .= '</li>';
 			$i++;
 		}
 		$bod_meta .= '</ul>';
 		echo $bod_meta;
 	}
-	
+
 
 
 				?>
 			<?php endwhile; // end of the loop. ?>
 
-		</div><!-- #content -->
+		</div><!-- #main -->
 	</div><!-- #primary -->
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

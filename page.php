@@ -12,7 +12,7 @@
  * @since KwikTheme 1.0
  */
 get_header(); ?>
-	<div id="primary" class="site-content">
+	<div id="primary" class="content-area">
 		<div id="content" role="main">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part( 'content', 'page' ); ?>
@@ -24,10 +24,10 @@ get_header(); ?>
     }
     ?>
 
-		</div><!-- #content -->
+		</div><!-- #main -->
 	</div><!-- #primary -->
   <?php
-  if (!is_front_page()){
+  if (!is_front_page()) {
     get_sidebar();
   }
   ?>

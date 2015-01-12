@@ -55,9 +55,7 @@ Styles for older IE versions (previous to IE9).
 .front-widgets #text-2, .front-widgets #text-3{margin-right:0;}
 
 
-.site-header .logo_wrap {
-	margin-left: 0;
-}
+
 .author-avatar {
 	float: left;
 	margin-top: 8px;
@@ -68,15 +66,15 @@ Styles for older IE versions (previous to IE9).
 	width: 80%;
 }
 /* Left Content */
-.site-content {
+.content-area {
 	float: left;
 	width: 70.9583%;
 }
-.page-template-page-templatessidebar-php.right-sidebar.has_children .site-content {
+.page-template-page-templatessidebar-php.right-sidebar.has_children .content-area {
 	float: left;
 	width: 49.47%;
 }
-.right-sidebar.has_children .site-content {
+.right-sidebar.has_children .content-area {
 	float: left;
 	width: 77.657%;
 }
@@ -102,16 +100,16 @@ Styles for older IE versions (previous to IE9).
 /* Right Content */
 
 
-.right-sidebar .site-content {
+.right-sidebar .content-area {
 	float: left;
 	margin: 0;
 	width: 739px;
 }
-.blog .site-content, .tag .site-content, .post-type-archive-work .site-content {
+.blog .content-area, .tag .content-area, .post-type-archive-work .content-area {
 	float: left;
 	width: 739px;
 }
-body.front-page .site-content, body.single-attachment .site-content, body.full-width .site-content {
+body.front-page .content-area, body.single-attachment .content-area, body.full-width .content-area {
 	width: 100%;
 }
 #secondary {

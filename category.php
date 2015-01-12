@@ -14,7 +14,7 @@
 
 get_header(); ?>
 
-	<section id="primary" class="site-content">
+	<section id="primary" class="content-area">
 
 		<div id="content" role="main">
 
@@ -56,7 +56,7 @@ get_header(); ?>
 
 		<?php endif; ?>
 
-		</div><!-- #content -->
+		</div><!-- #main -->
 
 	</section><!-- #primary -->
 

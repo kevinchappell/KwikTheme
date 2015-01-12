@@ -40,8 +40,8 @@ class KF_Contact_Widget extends WP_Widget {
 		$form .= '<input type="text" class="text_field" name="user_phone" placeholder="'.__('Phone','kwik').'" id="user_phone" />';
 		$form .= '<input type="text" class="text_field" name="user_email" placeholder="'.__('Email','kwik').'" id="user_email" />';
 		$form .= '<textarea placeholder="'.__('Message','kwik').'" name="user_message"></textarea>';
-		$form .= '<input type="hidden" name="url_main" value="'. currentPageURL() .'" />';
-        $form .= '<input type="hidden" name="user_ip" value="'. getRealIp() .'" />';
+		$form .= '<input type="hidden" name="url_main" value="'. current_page_url() .'" />';
+        $form .= '<input type="hidden" name="user_ip" value="'. get_real_ip() .'" />';
 		$form .= '<div class="inner"><span class="arrow"></span><input type="submit" name="user_submit" id="user_submit" value="'.__('Submit','kwik').'"></div>';
 		$form .= '</form>';
 		$form .= '<div id="kt_contact_error" class="form_message error_message">'.__($error,'kwik').'</div>';

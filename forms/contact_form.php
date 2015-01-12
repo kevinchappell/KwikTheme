@@ -17,8 +17,8 @@ $upload_size_msg = get_post_meta(6, 'upload_size_msg', true);
 ?>
   <form id="contactform" name="contactform" method="post" class="clear" enctype="multipart/form-data" action="<?php bloginfo('template_directory') ?>/forms/contact_form_processor.php" >
     <div class="form_content_wrap">
-      <input type="hidden" name="url_main" value="<?php echo KwikUtils::currentPageURL(); ?>" />
-      <input type="hidden" name="user_ip" value="<?php echo KwikUtils::getRealIp(); ?>" />
+      <input type="hidden" name="url_main" value="<?php echo KwikUtils::current_page_url(); ?>" />
+      <input type="hidden" name="user_ip" value="<?php echo KwikUtils::get_real_ip(); ?>" />
       <div class="nodisplay error" id="upload_format_msg"><?php echo $upload_format_msg; ?></div>
       <div class="nodisplay error" id="upload_size_msg"><?php echo $upload_size_msg; ?></div>
       <div class="clear">
