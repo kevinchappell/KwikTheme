@@ -27,8 +27,7 @@ function add_editor_button() {
     }
   }
 }
-
-add_action('init', 'add_editor_button');
+// add_action('init', 'add_editor_button');
 
 
 function remove_existing_editor_style() {
@@ -63,7 +62,6 @@ function add_custom($plugin_array) {
   return $plugin_array;
 }
 
-add_action('wp_ajax_add_service_box_function_callback', 'add_service_box_function_callback');
 function add_service_box_function_callback() {?>
 <!DOCTYPE html>
 <head>
@@ -96,8 +94,8 @@ function add_service_box_function_callback() {?>
 <?php
 die;
 };
+add_action('wp_ajax_add_service_box_function_callback', 'add_service_box_function_callback');
 
-add_action('wp_ajax_add_pull_quote_function_callback', 'add_pull_quote_function_callback');
 function add_pull_quote_function_callback() {?>
 <!DOCTYPE html>
 <head>
@@ -155,3 +153,4 @@ function add_pull_quote_function_callback() {?>
 <?php
 die;
 };
+add_action('wp_ajax_add_pull_quote_function_callback', 'add_pull_quote_function_callback');

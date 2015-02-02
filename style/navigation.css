@@ -100,12 +100,14 @@ Navigation
   display: block;
   float: none;
   margin: 0;
+  font-size:0.9em;
 }
 .main-navigation li ul li a {
   border-radius: 0;
   display: block;
   white-space: normal;
   padding: 10px 12px;
+  font-size: 1em;
 }
 .main-navigation li ul li:first-child {
   padding-top: 10px;
@@ -231,15 +233,37 @@ Navigation
 
 
 
+/*///// Pagination /////*/
 
 
+.nav-links{
+  text-align:right;
+  padding-right: .75em;
+}
 
+.nav-links .page-numbers{
+  background:#ccc;
+  padding:5px;
+}
 
+.nav-links .page-numbers:hover{
+  background-color:#dfdfdf;
+}
 
-
-
-
-
+.nav-links .next.page-numbers{
+  position:relative;
+}
+.nav-links .next.page-numbers:after{
+  position: absolute;
+  content: ' ';
+  right: -.75em;
+  border-top: 1em solid transparent;
+  border-left: .75em solid #ccc;
+  border-bottom: 1em solid transparent;
+}
+.nav-links .next.page-numbers:hover:after{
+  border-left: .75em solid #dfdfdf;
+}
 
 
 /*///// Social Menu /////*/

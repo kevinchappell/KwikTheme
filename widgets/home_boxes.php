@@ -160,7 +160,7 @@ jQuery.loadScript = function (url, arg1, arg2) {
     pixel_total = pixel_width + pixel_margin;
     var totalContent = $('#news_scroll .overview').width();
     jQuery.ajax({
-        url: $('h1.site-title a').attr('href') + 'wp-admin/admin-ajax.php',
+        url: ajaxurl,
         data: {
             'action': 'do_ajax',
             'fn': 'more_news_scroll',

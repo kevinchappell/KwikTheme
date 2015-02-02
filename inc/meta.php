@@ -38,9 +38,10 @@ function kt_add_post_metabox()
 }
 add_action('add_meta_boxes', 'kt_add_post_metabox');
 
-function kt_add_bod_metabox()
+function kt_add_bod_metabox($post_type, $post )
 {
-    $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
+
+    $post_id = isset($post_type, $post) ? $_GET['post'] : $_POST['post_ID'];
     $template_file = get_post_meta($post_id, '_wp_page_template', true);
 
     // check for a template type
@@ -48,7 +49,7 @@ function kt_add_bod_metabox()
         add_meta_box('kt_bod_meta', 'Board Members', 'kt_bod_meta', 'page', 'normal', 'default');
     }
 }
-add_action('add_meta_boxes', 'kt_add_bod_metabox');
+// add_action('add_meta_boxes', 'kt_add_bod_metabox', 10, 2);
 
 // The edit page Meta box
 function by_the_numbers()
@@ -255,7 +256,7 @@ function kt_save_page_meta($post_id, $post)
             return;
         }
 
-        KwikUtils::update_meta($post->ID, $key, $value);
+        KwikMeta::update_meta($post->ID, $key, $value);
     }
 
 }
@@ -294,7 +295,7 @@ function kt_save_post_meta($post_id, $post)
             return;
         }
 
-        KwikUtils::update_meta($post->ID, $key, $value);
+        KwikMeta::update_meta($post->ID, $key, $value);
     }
 
 }

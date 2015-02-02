@@ -54,12 +54,13 @@ a:focus {
   color: <?php echo $options['body_font']['color'];?>;
 }
 
-<?php if (!$options['show_site_desc']) {?>
+<?php
+if (!isset($options['show_site_desc'])) {?>
 .site-header h2 {
   display: none;
 }
 <?php }?>
-<?php if (!$options['show_site_name']) {?>
+<?php if (!isset($options['show_site_name'])) {?>
 .site-header h1 {
   display: none;
 }

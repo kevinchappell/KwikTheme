@@ -55,7 +55,7 @@
 </head>
 
 <body <?php body_class();?>>
-<?php include_once "analyticstracking.php"?>
+<?php include_once "analyticstracking.php"; ?>
 <div id="page" class="hfeed site">
 <div id="tkt_bar">
   <div class="inner clear">
@@ -65,7 +65,7 @@
 <header id="masthead" role="banner">
   <div class="inner site-header clear">
     <div class="logo_wrap">
-<?php echo site_logo();?>
+      <?php echo site_logo();?>
       <h1 class="site-title"><a href="<?php echo esc_url(home_url('/'));?>" rel="home"><?php bloginfo('name');?></a></h1>
       <h2 class="site-description"><?php echo str_replace(".", "<span>.</span>", get_bloginfo('description'));?></h2>
     </div>

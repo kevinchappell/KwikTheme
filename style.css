@@ -11,7 +11,7 @@ Theme Name: KwikTheme
 Theme URI: http://kevin-chappell.com/themes/KwikTheme
 Author: Kevin Chappell and Katrina Tempero
 Author URI: http://kevin-chappell.com
-Version: 2.0
+Version: 2.1
 Description: A fully responsive theme for associations and non-profit groups
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -479,7 +479,8 @@ a:focus {
 }
 .logo_wrap{
   float: left;
-  width: 40%;
+  /*width: 40%;*/
+  width:450px;
 }
 .logo_wrap img {
   float: left;
@@ -1109,20 +1110,7 @@ footer.entry-meta {
   font: normal 17px/24px "Karla", Arial, Helvetica, sans-serif;
   margin: 0;
 }
-/* = Pagination
--------------------------------------------------------------- */
 
-.pagination {
-  clear: both;
-  text-align: right;
-}
-.pagination a {
-  color: #fff;
-  text-decoration: none;
-}
-.pagination .page-numbers {
-  padding: 5px;
-}
 /* =Archives
 -------------------------------------------------------------- */
 
