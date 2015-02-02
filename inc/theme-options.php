@@ -136,12 +136,12 @@ class KwikThemeOptions
                     'show_site_name' => array(
                         'type' => 'cb',
                         'title' => __('Show Site Name', 'kwik'),
-                        'value' => true,
+                        'value' => true
                     ),
                     'show_site_desc' => array(
                         'type' => 'cb',
                         'title' => __('Show Site Description', 'kwik'),
-                        'value' => true,
+                        'value' => true
                     ),
                     'menu_link' => array(
                         'type' => 'font',

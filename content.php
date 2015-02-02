@@ -12,7 +12,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <?php
     // Post thumbnail.
-    KwikUtils::featured_image(false);
+    the_post_thumbnail('medium');
   ?>
 
   <header class="entry-header">

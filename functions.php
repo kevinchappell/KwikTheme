@@ -121,8 +121,7 @@ add_action('wp_enqueue_scripts', 'kt_scripts_styles');
 
 function kt_admin_script($hook_suffix)
 {
-    wp_enqueue_style('kt-admin', get_template_directory_uri() . '/style/admin.css');
-
+    wp_enqueue_style('kwik-theme-admin', get_template_directory_uri() . '/style/admin.css');
 }
 add_action('admin_enqueue_scripts', 'kt_admin_script', 10, 1);
 
@@ -305,16 +304,17 @@ if (!function_exists('kt_comment')):
      * Create your own kt_entry_meta() to override in a child theme.
      * @since KwikTheme 1.0
      */
-        function kt_entry_meta()
-{
-            // Translators: used between list items, there is a space after the comma.
-            $categories_list = get_the_category_list(__(', ', 'kwik'));
-            // Translators: used between list items, there is a space after the comma.
-            $tag_list = get_the_tag_list('', __(', ', 'kwik'));
+    function kt_entry_meta()
+    {
+        $utility_text = '';
+        // Translators: used between list items, there is a space after the comma.
+        $categories_list = get_the_category_list(__(', ', 'kwik'));
+        // Translators: used between list items, there is a space after the comma.
+        $tag_list = get_the_tag_list('', __(', ', 'kwik'));
 
-            // Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
-            if ($tag_list) {
-                $utility_text = __('<strong>Tags:</strong> %2$s', 'kwik');
+        // Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
+        if ($tag_list) {
+            $utility_text = __('<strong>Tags:</strong> %2$s', 'kwik');
         }
 
         if ($categories_list) {
@@ -539,7 +539,7 @@ endif;
 // page and section headers
 function kt_content_header($wp_query)
 {
-    // $options = KwikThemeOptions::kt_get_options();
+
     $options = KwikThemeOptions::kt_get_options();
     if (!is_404()) {
         if (is_page() && !is_front_page()) {
@@ -548,19 +548,14 @@ function kt_content_header($wp_query)
             $header_img_id = get_post_meta($page_id, "header_img", true);
             $header_img_text = get_post_meta($page_id, "header_text", true);
 
-        }// if(is_page())
+        } // if(is_page())
         elseif (is_home()) {
-// if blog page
-
             $header_img_id = $options['headers']['value']['post']['img'];
             $header_img_text = $options['headers']['value']['post']['text'];
-
         }
     } else {
-
         $header_img_id = $options['headers']['value']['404']['img'];
         $header_img_text = $options['headers']['value']['404']['text'];
-
     }
 
     if (isset($header_img_id) && $header_img_id != '') {
