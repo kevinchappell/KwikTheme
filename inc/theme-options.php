@@ -79,9 +79,9 @@ class KwikThemeOptions
 
     public function kt_settings_init()
     {
-        $utils = new KwikUtils();
+        $kwik_settings = new KwikSettings();
         $defaultSettings = $this->ktDefaultOptions();
-        $utils->settings_init(KT_BASENAME, KT_SETTINGS, $defaultSettings);
+        $kwik_settings->settings_init(KT_BASENAME, KT_SETTINGS, $defaultSettings);
     }
 
     public function kwik_theme_settings()
@@ -91,10 +91,9 @@ class KwikThemeOptions
         echo KwikInputs::markup('h2', __('Theme Options', 'kwik'));
         echo '<form action="options.php" method="post">';
         settings_fields(KT_SETTINGS);
-        echo KwikUtils::settings_sections(KT_SETTINGS, $settings);
+        echo KwikSettings::settings_sections(KT_SETTINGS, $settings);
         echo '</form>';
         echo '</div>';
-        echo KwikInputs::markup('div', $output, array('class' => 'wrap'));
     }
 
     public static function kt_get_options()
