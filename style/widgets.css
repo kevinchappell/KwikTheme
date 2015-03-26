@@ -137,7 +137,7 @@ div#news_scroll header.entry-header h3.entry-title {
   top: 5px;
   text-shadow: 0px 0px 5px #000000;
   filter: dropshadow(color=#000000, offx=0, offy=0);
-  color: #fff;
+  color: #ffffff;
 }
 #news_scroll .entry_thumb .category:after {
   position: absolute;

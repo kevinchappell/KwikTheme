@@ -15,6 +15,7 @@ Navigation
   color: #6ca2c6;
   font-size: 13px;
   padding: 0 10px;
+  text-decoration: none;
 }
 #menu-top-menu a:hover {
   color: #11b2d6;
@@ -41,10 +42,10 @@ Navigation
   margin-top: 20px;
 }
 .main-navigation a {
-  color: #00f;
+  color: #002de3;
 }
 .main-navigation a:hover {
-  color: #21759b;
+  color: #0d77db;
 }
 .main-navigation div.nav-menu>ul, .main-navigation ul.nav-menu {
   display: inline-block!important;
@@ -70,14 +71,11 @@ Navigation
   padding: 5px 12px;
 }
 .main-navigation li a:hover {
-  color: #003cbf;
+  color: #002de3;
 }
 .main-navigation li, .main-navigation li a {
   display: inline-block;
   text-decoration: none;
-}
-.main-navigation li:hover {
-  background-color: #efefef;
 }
 .main-navigation li:last-child {
   margin-right: 0;
@@ -92,9 +90,12 @@ Navigation
   left: 0;
   width: 185px;
   text-align: left;
-  background-color: #efefef;
+  background-color: #ffffff;
   margin: 0;
   padding: 0;
+  -moz-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.9);
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.9);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.9);
 }
 .main-navigation li ul li {
   display: block;

@@ -70,7 +70,7 @@ Styles for older IE versions (previous to IE9).
 	float: left;
 	width: 70.9583%;
 }
-.page-template-page-templatessidebar-php.right-sidebar.has_children .content-area {
+.page-template-templatessidebar-php.right-sidebar.has_children .content-area {
 	float: left;
 	width: 49.47%;
 }
@@ -86,7 +86,7 @@ Styles for older IE versions (previous to IE9).
 	display: block;
 	background: #CB0002 url('../images/donatenow.png') no-repeat 50% 50%;
 	font: 2.5em/1.1em "Oswald", Arial, Helvetica, sans-serif;
-	color:#fff;
+	color:#ffffff;
 	text-align:center;
 	padding: 50px 0;
 	letter-spacing:-2px;
@@ -167,11 +167,11 @@ display:inline-block;width:5px; height:5px;-webkit-border-radius: 3px; backgroun
 	text-transform: uppercase;
 	white-space: nowrap;
 	padding: 0 21px;
-	border-bottom: 1px solid #fff;
+	border-bottom: 1px solid #ffffff;
 	font: normal 18px/44px "Karla", Arial, Helvetica, sans-serif;
 }
 .main-navigation li a:hover {
-	color: #fff;
+	color: #ffffff;
 	background: #ca0018;
 	-webkit-border-radius: 10px 10px 0px 0px;
 	border-radius: 10px 10px 0px 0px;
@@ -198,7 +198,7 @@ display:inline-block;width:5px; height:5px;-webkit-border-radius: 3px; backgroun
 	display: none;
 }
 .main-navigation li ul li:first-child {
-	border-top: 1px solid #fff;
+	border-top: 1px solid #ffffff;
 }
 .main-navigation li ul li:last-child a {
 	border-bottom: 0 none;
@@ -237,11 +237,11 @@ display:inline-block;width:5px; height:5px;-webkit-border-radius: 3px; backgroun
 	padding: 10px 5px 10px 8px;
 }
 .main-navigation li ul li a:hover {
-	color: #fff;
+	color: #ffffff;
 	border-radius: 0;
 }
 .main-navigation .current-menu-item > a, .main-navigation .current-menu-ancestor > a, .main-navigation .current_page_item > a, .main-navigation .current_page_ancestor > a {
-	color: #fff;
+	color: #ffffff;
 	background: #ca0018;
 
 	font-weight: bold;

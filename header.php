@@ -55,7 +55,6 @@
 </head>
 
 <body <?php body_class();?>>
-<?php include_once "analyticstracking.php"; ?>
 <div id="page" class="hfeed site">
 <div id="tkt_bar">
   <div class="inner clear">
@@ -71,7 +70,7 @@
     </div>
     <nav id="site-navigation" class="main-navigation" role="navigation">
       <h3 class="menu-toggle">
-<?php _e('Menu', 'kwik');?>
+      <?php _e('Menu', 'kwik');?>
       </h3>
       <a class="assistive-text" href="#main" title="<?php esc_attr_e('Skip to content', 'kwik');?>">
 <?php _e('Skip to content', 'kwik');?>
@@ -84,9 +83,9 @@
 <!-- #masthead -->
 
 <div id="main" class="wrapper">
+<?php echo kt_content_header($wp_query);?>
   <div class="inner">
 
-<?php echo kt_content_header($wp_query);?>
 
 <?php
 

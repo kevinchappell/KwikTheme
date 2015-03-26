@@ -21,17 +21,19 @@ if ($options['body_font']['font-family']) {
     echo '@import url(http://fonts.googleapis.com/css?family=' . $options['body_font']['font-family'] . ');';
 }
 ?>
+
+
 body {
 <?php echo KwikUtils::font_css($options['body_font']);?>
 }
 
 /* Link color */
 a {
-<?php echo KwikUtils::text_style($options['link']);?>
+    <?php echo KwikUtils::text_style($options['link']);?>
 }
 
 a:hover, a:hover strong {
-<?php echo KwikUtils::text_style($options['link_hover']);?>
+    <?php echo KwikUtils::text_style($options['link_hover']);?>
 }
 a:active {
   outline: 1px solid <?php echo $options['link']['color'];?>;
@@ -46,12 +48,17 @@ a:focus {
 <?php echo KwikUtils::font_css($options['menu_link']);?>
 }
 .main-navigation li a:hover{
-<?php echo KwikUtils::text_style($options['menu_link_hover']);?>
+    <?php echo KwikUtils::text_style($options['menu_link_hover']);?>
+}
+.main-navigation li ul{
+    <?php echo KwikUtils::text_style($options['menu_link_hover']);?>
 }
 
-
-.site-header h1 a, .site-header h2 {
-  color: <?php echo $options['body_font']['color'];?>;
+.site-header h1 a{
+  color: <?php echo $options['name_style']['color'] ?>;
+}
+.site-header h2 {
+  color: <?php echo $options['desc_style']['color'] ?>;
 }
 
 <?php

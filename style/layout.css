@@ -18,19 +18,19 @@
 }
 .content-area,
 .no-sidebar.has_children .content-area,
+.page-template-no-sidebar.has_children .content-area,
 .full-width.has_children .content-area,
 .blog .content-area{
   width: 75%;
   float: left;
 }
-.front-page .content-area{
+.front-page .content-area, .full-width .content-area{
   width: 100%;
   float: none;
 }
 .single.right-sidebar .content-area {
 
 }
-
 
 .widget-area {
   margin: 24px 0 0;
@@ -41,14 +41,14 @@
   float: right;
   width: 22%;
   margin-left: 3%;
-  margin-top: 3%;
+  margin-top: 20px;
 }
 
 #child_links {
   float: left;
   width: 22%;
   margin-right: 3%;
-  margin-top: 3%;
+  margin-top: 20px;
 }
 
 

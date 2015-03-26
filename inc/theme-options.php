@@ -1,7 +1,10 @@
 <?php
 /**
  * KwikTheme Theme Options
+ *
+ *
  * @subpackage KwikTheme
+ *
  * @since KwikTheme 1.0
  */
 
@@ -135,12 +138,34 @@ class KwikThemeOptions
                     'show_site_name' => array(
                         'type' => 'cb',
                         'title' => __('Show Site Name', 'kwik'),
-                        'value' => true
+                        'value' => true,
                     ),
                     'show_site_desc' => array(
                         'type' => 'cb',
                         'title' => __('Show Site Description', 'kwik'),
-                        'value' => true
+                        'value' => true,
+                    ),
+                    'name_style' => array(
+                        'type' => 'font',
+                        'title' => __('Site Name Style', 'kwik'),
+                        'value' => array(
+                            'color' => '#222222',
+                            'font-weight' => 'normal',
+                            'font-size' => 26,
+                            'line-height' => 44,
+                            'font-family' => 'Open+Sans',
+                        ),
+                    ),
+                    'desc_style' => array(
+                        'type' => 'font',
+                        'title' => __('Site Description Style', 'kwik'),
+                        'value' => array(
+                            'color' => '#222222',
+                            'font-weight' => 'normal',
+                            'font-size' => 14,
+                            'line-height' => 20,
+                            'font-family' => 'Open+Sans',
+                        ),
                     ),
                     'menu_link' => array(
                         'type' => 'font',
@@ -161,6 +186,11 @@ class KwikThemeOptions
                                 'type' => 'color',
                                 'title' => __('Color', 'kwik'),
                                 'value' => '#002C90',
+                            ),
+                            'background-color' => array(
+                                'type' => 'color',
+                                'title' => __('Background Color: ', 'kwik'),
+                                'value' => null,
                             ),
                             'style' => array(
                                 'type' => 'cb_group',

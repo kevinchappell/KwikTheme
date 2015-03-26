@@ -21,7 +21,7 @@ function kt_add_TR_metabox()
     $template_file = get_post_meta($post_id, '_wp_page_template', true);
 
     // check for a template type
-    if ($template_file == 'page-templates/technical_resources.php') {
+    if ($template_file == 'templates/technical_resources.php') {
         // add_meta_box('kt_bod_meta', 'Board Members', 'kt_bod_meta', 'page', 'normal', 'default');
     }
 
@@ -45,7 +45,7 @@ function kt_add_bod_metabox($post_type, $post )
     $template_file = get_post_meta($post_id, '_wp_page_template', true);
 
     // check for a template type
-    if ($template_file == 'page-templates/board-of-directors.php') {
+    if ($template_file == 'templates/board-of-directors.php') {
         add_meta_box('kt_bod_meta', 'Board Members', 'kt_bod_meta', 'page', 'normal', 'default');
     }
 }
@@ -124,32 +124,40 @@ function by_the_numbers()
 }
 
 // The edit page Meta box
-function kt_page_meta()
+function kt_page_meta($post)
 {
-    global $post;
 
-    $show_background = get_post_meta($post->ID, 'show_background', true);
-    $header_img = get_post_meta($post->ID, 'header_img', true);
-    $header_text = get_post_meta($post->ID, 'header_text', true);
+    $page_meta_fields = array(
+        'banner_img' => array(
+            'type' => 'img',
+            'title' => __('Banner Image: ', 'kwik'),
+            'value' => null,
+            'attrs' => array(
+                'button-text'=> __("Set Banner Image", 'kwik'),
+                'img_size' => 'header_img'
+                )
+        ),
+        'banner_text' => array(
+            'type' => 'text',
+            'title' => __('Banner Text: ', 'kwik'),
+            'value' => '',
+            'desc' => __('The title is shown by default but entering text here will override that', 'kwik')
+        ),
+        'scroll_effect' => array(
+            'type' => 'cb',
+            'title' => __('Scroll Effect', 'kwik'),
+            'value' => true,
+            'desc' => __('Parallax scrolls the image', 'kwik'),
+            'attrs' => array('checked' => null, 'id' => 'scroll_effect')
+        )
+    );
 
-    $header_img_prev = wp_get_attachment_image_src($header_img, 'header_img');
-    $header_img_prev = $header_img_prev['0'];
+    $meta = new KwikMeta();
+    echo $meta->get_fields($post, 'page_meta_fields', $page_meta_fields);
 
-    $page_meta = '';
-    // Noncename for security check on data origin
-    $page_meta .= '<input type="hidden" name="kt_meta_noncename" id="kt_meta_noncename" value="' . wp_create_nonce(plugin_basename(__FILE__)) . '" />';
-    $page_meta .= '<div class="page_meta meta_wrap">';
-    $page_meta .= '<ul>';
-    $page_meta .= '<li><strong>' . __('Page Header', 'kwik') . ':</strong></li>';
-    $page_meta .= '<li><img src="' . $header_img_prev . '" class="img_prev transparent" width="60" height="24" title="' . get_the_title($header_img) . '"><label>' . __('Image', 'kwik') . '</label><input type="hidden" name="header_img" class="img_id" value="' . $header_img . '" /><span id="site_bg_img_ttl" class="img_title">' . get_the_title($header_img) . (!empty($header_img) ? '<span title="' . __('Remove Image', 'kwik') . '" class="clear_img tooltip"></span>' : '') . '</span><input type="button" class="upload_img" value="Upload" /></li>';
-    $page_meta .= '<li><label>' . __('Text', 'kwik') . '</label><input type="text" name="header_text" value="' . $header_text . '" /></li>';
-    $page_meta .= '</ul>';
-    $page_meta .= '</div>';
-
-    echo $page_meta;
 }
 
-//
+
 function kt_post_meta()
 {
     global $post;
@@ -223,44 +231,15 @@ function kt_bod_meta()
 function kt_save_page_meta($post_id, $post)
 {
 
-    if ($post->post_status == 'auto-draft') {
-        return;
-    }
+    if($post->post_status =='auto-draft' || $post->post_type !== 'page') return;
 
-    if ($post->post_type != 'page') {
-        return $post->ID;
-    }
-
-    // make sure there is no conflict with other post save function and verify the noncename
-    if (!wp_verify_nonce($_POST['kt_meta_noncename'], plugin_basename(__FILE__))) {
-        return $post->ID;
-    }
-
-    // Is the user allowed to edit the post or page?
-    if (!current_user_can('edit_post', $post->ID)) {
-        return $post->ID;
-    }
-
-    $page_meta = array(
-        '_board_members' => $_POST['bod'],
-        'btn_good' => $_POST['btn_good'],
-        'btn_bad' => $_POST['btn_bad'],
-        'show_background' => strip_tags($_POST['show_background']),
-        'header_img' => strip_tags($_POST['header_img']),
-        'header_text' => strip_tags($_POST['header_text']),
-    );
-
-    // Add values of $belt_meta as custom fields
-    foreach ($page_meta as $key => $value) {
-        if ($post->post_type == 'revision') {
-            return;
-        }
-
-        KwikMeta::update_meta($post->ID, $key, $value);
-    }
+    $meta = new KwikMeta();
+    $meta->save_meta($post, 'page_meta_fields');
 
 }
 add_action('save_post', 'kt_save_page_meta', 1, 2);
+
+
 
 // Save the Metabox Data
 function kt_save_post_meta($post_id, $post)
