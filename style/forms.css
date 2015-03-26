@@ -1,6 +1,6 @@
 input[type="submit"] {
   background-color: #00b5d3;
-  color: #fff;
+  color: #ffffff;
 }
 input[type="submit"]:hover {
   background-color: #21759b
@@ -22,7 +22,6 @@ input[type="submit"]:hover {
 }
 #contact_wrap .name_wrap input {
   width: 200px;
-  border: 1px solid #666;
 }
 #contact_wrap textarea {
   width: 80%;
@@ -87,11 +86,13 @@ button, input, textarea {
   padding: 5px;
   background: #ffffff;
 }
-input[type="text"], input[type="email"] {
+input[type="text"], input[type="email"], textarea {
   margin-bottom: 0;
+  border: 1px solid #434343;
 }
 #searchform {
   position: relative;
+  width: 199px;
 }
 button, input {
   line-height: normal;
@@ -107,4 +108,10 @@ input[type="checkbox"], input[type="radio"], input[type="file"], input[type="hid
   border: 0;
   border-radius: 0;
   padding: 0;
+}
+
+
+
+.ninja-forms-field-error{
+  color:#C50016;
 }
