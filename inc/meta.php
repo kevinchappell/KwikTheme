@@ -1,14 +1,8 @@
 <?php
 
 // Add the Page meta box
-function kt_add_page_metabox()
-{
-
-    $screens = array('page');
-    foreach ($screens as $screen) {
-        add_meta_box('kt_page_meta', 'Page Meta Data', 'kt_page_meta', 'page', 'normal', 'default');
-    }
-
+function kt_add_page_metabox() {
+    add_meta_box('kt_page_meta', 'Page Meta Data', 'kt_page_meta', 'page', 'normal', 'default');
 }
 add_action('add_meta_boxes', 'kt_add_page_metabox');
 
@@ -279,3 +273,42 @@ function kt_save_post_meta($post_id, $post)
 
 }
 add_action('save_post', 'kt_save_post_meta', 1, 2);
+
+
+// Add the meta box
+function add_kt_left_menu() {
+	$menus = get_terms('nav_menu');
+	$available_menus = array( '' => '-- Select' );
+	foreach ($menus as $menu) {
+		$available_menus[$menu->slug] = $menu->name;
+	}
+    add_meta_box('kt_left_menu', 'Left Menu', 'get_kt_left_menu', 'page', 'side', 'default');
+	$page_left_menu = array(
+		'left_menu_links' => array(
+			'type' => 'select',
+			'value' => null,
+			'title' => __('Custom Menu: ', 'kwik'),
+			'options' => $available_menus
+		),
+	);
+
+	set_transient('page_left_menu', $page_left_menu, WEEK_IN_SECONDS );
+}
+add_action('add_meta_boxes', 'add_kt_left_menu');
+
+
+function get_kt_left_menu($post) {
+	$meta = new KwikMeta();
+	echo $meta->get_fields($post, 'page_left_menu');
+}
+
+// Save the Metabox Data
+function save_kt_left_menu($post_id, $post)
+{
+	if( $post->post_status == 'auto-draft' || $post->post_type !== 'page' ) return;
+
+	$meta = new KwikMeta();
+	$meta->save_meta($post, 'page_left_menu');
+}
+add_action('save_post', 'save_kt_left_menu', 1, 2);
+

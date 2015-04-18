@@ -484,7 +484,6 @@ function kt_child_links() {
 	if ( is_page() || is_home() || is_single() ) {
 		global $post;
 		if ( is_home() ) {
-
 			if (  'page' === get_option( 'show_on_front' ) ) {
 				$blog_link = get_permalink( get_option( 'page_for_posts' ) );
 			} else {
@@ -497,15 +496,15 @@ function kt_child_links() {
 			foreach ( $cats as $cat ) {
 				$child_links .= '<li><a href="' . get_category_link( $cat->cat_ID ) . '" id="category-' . $cat->category_nicename . '-filter" title="Show only ' . $cat->name . ' posts" rel="category-' . $cat->category_nicename . '">' . $cat->name . '</a></li>';
 			}
-		} elseif ( $post->post_parent ) {
+		} else if ( $post->post_parent ) {
 			$ancestors = get_post_ancestors( $post->ID );
 			$root = count( $ancestors ) - 1;
 			$parent = $ancestors[$root];
 			if ( 0 == $root ) {
-				$child_links = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0&depth=1' );
+				$child_links = kt_menu_or_pages($post->ID, $post->post_parent);
 			}
 		} else {
-			$child_links = wp_list_pages( 'sort_column=menu_order&&exclude=532&title_li=&child_of=' . $post->ID . '&echo=0&depth=1' );
+			$child_links = kt_menu_or_pages($post->ID, $post->ID);
 		}
 
 		if ( isset( $child_links ) && ! empty( $child_links ) ) {
@@ -517,6 +516,19 @@ function kt_child_links() {
 			return false;
 		}
 	}
+}
+
+function kt_menu_or_pages($post_id, $child_of){
+	$page_left_menu = KwikMeta::get_meta_array( $post_id, 'page_left_menu' );
+	$child_links = '';
+	if(isset($page_left_menu['left_menu_links']) && $page_left_menu['left_menu_links'] !== '') {
+		foreach ( wp_get_nav_menu_items( $page_left_menu['left_menu_links'] ) as $key => $menu_item ) {
+		    $child_links .= '<li class="'.implode(" ", $menu_item->classes).'"><a href="' . $menu_item->url . '" target="'.$menu_item->target.'">' . $menu_item->title . '</a></li>';
+		}
+	} else {
+		$child_links = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $child_of . '&echo=0&depth=1' );
+	}
+	return $child_links;
 }
 
 if ( ! function_exists( 'get_kt_posted_on' )):

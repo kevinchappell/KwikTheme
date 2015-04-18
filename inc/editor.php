@@ -42,7 +42,7 @@ function remove_existing_editor_style() {
 add_action('init', 'remove_existing_editor_style');
 
 function kt_editor_style() {
-  add_editor_style('css/editor-style.css');
+  add_editor_style('style/editor-style.css');
 }
 add_action('after_setup_theme', 'kt_editor_style');
 
