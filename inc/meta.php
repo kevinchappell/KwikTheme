@@ -118,8 +118,7 @@ function by_the_numbers()
 }
 
 // The edit page Meta box
-function kt_page_meta($post)
-{
+function kt_page_meta($post) {
 
     $page_meta_fields = array(
         'banner_img' => array(
@@ -131,6 +130,13 @@ function kt_page_meta($post)
                 'img_size' => 'header_img'
                 )
         ),
+        'banner_img_height' => array(
+            'type' => 'spinner',
+            'title' => __('Banner Height: ', 'kwik'),
+            'value' => '200',
+            'desc' => __('How tall should this banner be? defaults to 200px', 'kwik'),
+            'attrs' => array('min'=>10, 'max' => 1000)
+        ),
         'banner_text' => array(
             'type' => 'text',
             'title' => __('Banner Text: ', 'kwik'),
@@ -138,11 +144,16 @@ function kt_page_meta($post)
             'desc' => __('The title is shown by default but entering text here will override that', 'kwik')
         ),
         'scroll_effect' => array(
-            'type' => 'cb',
+            'type' => 'select',
             'title' => __('Scroll Effect', 'kwik'),
-            'value' => true,
-            'desc' => __('Parallax scrolls the image', 'kwik'),
-            'attrs' => array('checked' => null, 'id' => 'scroll_effect')
+            'value' => 'blur',
+            'options' => array(
+            	'blur' => 'Blur',
+            	'darken' => 'Darken',
+            	'none' => 'None'
+            	),
+            'desc' => __('Set the type of effect the image will have', 'kwik'),
+            // 'attrs' => array('checked' => null, 'id' => 'scroll_effect')
         )
     );
 
@@ -248,7 +259,7 @@ function kt_save_post_meta($post_id, $post)
     }
 
     // make sure there is no conflict with other post save function and verify the noncename
-    if (!wp_verify_nonce($_POST['kt_post_meta_noncename'], plugin_basename(__FILE__))) {
+    if ( ! isset($_POST['kt_post_meta_noncename']) || ! wp_verify_nonce($_POST['kt_post_meta_noncename'], plugin_basename(__FILE__))) {
         return $post->ID;
     }
 

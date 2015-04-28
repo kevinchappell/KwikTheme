@@ -1,4 +1,3 @@
-<?php $inputs = new KwikInputs(); ?>
 <form id="grid_filter" action="javascript:void(0)" class="clear">
   <?php
   $order = (isset($_GET['order']) ? $_GET['order'] : 'ASC');

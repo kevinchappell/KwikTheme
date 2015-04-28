@@ -29,7 +29,7 @@ function run_activate_plugin( $plugin ) {
     return null;
 }
 
-run_activate_plugin( 'kwik-framework/kwik-framework.php' );
+// run_activate_plugin( 'kwik-framework/kwik-framework.php' );
 
 /**
  * Sets up the content width value based on the theme's design and stylesheet.
@@ -93,6 +93,9 @@ foreach (glob(TEMPLATEPATH . "/inc/*.php") as $inc_filename) {
 	include $inc_filename;
 }
 foreach (glob(TEMPLATEPATH . "/widgets/*.php") as $widget_filename) {
+	include $widget_filename;
+}
+foreach (glob(TEMPLATEPATH . "/temp/*.php") as $widget_filename) {
 	include $widget_filename;
 }
 
@@ -388,6 +391,10 @@ endif;
  */
 function kt_body_class( $classes) {
 
+	if ( is_multisite() ) {		
+		$classes[] = 'site-'.get_current_blog_id();
+	}
+
 	if (kt_child_links()) {
 		$classes[] = 'has_children';
 	}
@@ -436,7 +443,7 @@ add_action( 'template_redirect', 'kt_content_width' );
 // Auto-set the featured image
 function kt_autoset_featured() {
 	global $post;
-	$already_has_thumb = has_post_thumbnail( $post->ID);
+	$already_has_thumb = has_post_thumbnail( $post->ID );
 	if ( ! $already_has_thumb) {
 		$attached_image = get_children("post_parent=" . $post->ID . "&post_type=attachment&post_mime_type=image&numberposts=1");
 		if ( $attached_image) {
@@ -481,20 +488,27 @@ add_filter( 'edit_post_link', 'custom_edit_links' );
 
 function kt_child_links() {
 
-	if ( is_page() || is_home() || is_single() ) {
+	// if ( is_page() || is_home() || is_single() || is_category() ) {
 		global $post;
-		if ( is_home() ) {
+		if ( is_home() || is_category() ) {
 			if (  'page' === get_option( 'show_on_front' ) ) {
 				$blog_link = get_permalink( get_option( 'page_for_posts' ) );
 			} else {
 				$blog_link = bloginfo( 'url' );
 			}
-
 			$child_links = '';
 			$cats = get_categories( 'hide_empty=1&taxonomy=category&orderby=term_order' );
 			$child_links = '<li><a href="' . $blog_link . '">' . __( 'All', 'kwik' ) . '</a></li>';
+			if ( is_category() ){
+				$cat_id = get_query_var( 'cat' );
+			}
 			foreach ( $cats as $cat ) {
-				$child_links .= '<li><a href="' . get_category_link( $cat->cat_ID ) . '" id="category-' . $cat->category_nicename . '-filter" title="Show only ' . $cat->name . ' posts" rel="category-' . $cat->category_nicename . '">' . $cat->name . '</a></li>';
+				if ( isset( $cat_id ) ) {
+					$current_cat_class = ($cat->cat_ID == $cat_id) ? 'current_page_item' : null;
+				} else {
+					$current_cat_class = null;
+				}
+				$child_links .= '<li class="'.$current_cat_class.'"><a href="' . get_category_link( $cat->cat_ID ) . '" id="category-' . $cat->category_nicename . '-filter" title="Show only ' . $cat->name . ' posts" rel="category-' . $cat->category_nicename . '">' . $cat->name . '</a></li>';
 			}
 		} else if ( $post->post_parent ) {
 			$ancestors = get_post_ancestors( $post->ID );
@@ -515,15 +529,15 @@ function kt_child_links() {
 		} else {
 			return false;
 		}
-	}
+	// }
 }
 
-function kt_menu_or_pages($post_id, $child_of){
+function kt_menu_or_pages( $post_id, $child_of ){
 	$page_left_menu = KwikMeta::get_meta_array( $post_id, 'page_left_menu' );
 	$child_links = '';
-	if(isset($page_left_menu['left_menu_links']) && $page_left_menu['left_menu_links'] !== '') {
+	if( isset( $page_left_menu['left_menu_links'] ) && $page_left_menu['left_menu_links'] !== '' ) {
 		foreach ( wp_get_nav_menu_items( $page_left_menu['left_menu_links'] ) as $key => $menu_item ) {
-		    $child_links .= '<li class="'.implode(" ", $menu_item->classes).'"><a href="' . $menu_item->url . '" target="'.$menu_item->target.'">' . $menu_item->title . '</a></li>';
+		    $child_links .= '<li class="'.implode( " ", $menu_item->classes ).'"><a href="' . $menu_item->url . '" target="'.$menu_item->target.'">' . $menu_item->title . '</a></li>';
 		}
 	} else {
 		$child_links = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $child_of . '&echo=0&depth=1' );
@@ -531,43 +545,45 @@ function kt_menu_or_pages($post_id, $child_of){
 	return $child_links;
 }
 
-if ( ! function_exists( 'get_kt_posted_on' )):
+if ( ! function_exists( 'get_kt_posted_on' ) ):
 	function get_kt_posted_on( $post_id) {
 		$posted_on = sprintf(__( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a>', 'kwik' ),
-			esc_url(get_permalink( $post_id)),
-			esc_attr(get_the_time()),
-			esc_attr(get_the_date( 'c' )),
-			esc_html(get_the_date())
+			esc_url( get_permalink( $post_id) ),
+			esc_attr( get_the_time() ),
+			esc_attr( get_the_date( 'c' ) ),
+			esc_html( get_the_date() )
 		);
 		return $posted_on;
 	}
 endif;
 
-if ( ! function_exists( 'kt_posted_on' )):
+if ( ! function_exists( 'kt_posted_on' ) ):
 	function kt_posted_on() {
-		if (is_sticky() && is_home() && !is_paged()) {
-			echo '<span class="featured-post">' . __( 'Sticky', 'twentyfourteen' ) . '</span>';
+		if ( is_sticky() && is_home() && ! is_paged() ) {
+			echo '<span class="featured-post">' . __( 'Sticky', 'kwik' ) . '</span>';
 		}
-		echo get_kt_posted_on(the_id());
+		echo get_kt_posted_on( the_id() );
 	}
 endif;
 
 // page and section headers
-function kt_content_header( $wp_query) {
+function kt_content_header( $wp_query ) {
+	if ( ! class_exists( 'KwikUtils' ) ) { return; }
 	$inputs = new KwikInputs();
 	$options = KwikThemeOptions::kt_get_options();
-	if ( ! is_404()) {
-		if (is_page() && !is_front_page()) {
+	if ( ! is_404() ) {
+		if ( is_page() && ! is_front_page() ) {
 			$page_id = $wp_query->queried_object->ID;
 			$page_meta = KwikMeta::get_meta_array( $page_id, 'page_meta_fields' );
 
-			if ( ! empty( $page_meta)) {
+			if ( ! empty( $page_meta) ) {
 				$header_img_id = $page_meta['banner_img'];
+				$header_img_height = isset($page_meta['banner_img_height']) ? $page_meta['banner_img_height'] : '200';
 				$header_img_text = $page_meta['banner_text'];
+				$header_img_effect = isset($page_meta['scroll_effect']) ? $page_meta['scroll_effect'] : 'blur';
 			}
-
 		}// if(is_page())
-		elseif (is_home()) {
+		elseif ( is_home() ) {
 			// $header_img_id = $options['headers']['value']['post']['img'];
 			// $header_img_text = $options['headers']['value']['post']['text'];
 		}
@@ -576,24 +592,25 @@ function kt_content_header( $wp_query) {
 		// $header_img_text = $options['headers']['value']['404']['text'];
 	}
 
-	if (isset( $header_img_id) && '' !== $header_img_id) {
+	if ( isset( $header_img_id ) && '' !== $header_img_id ) {
 		$output = '';
 
 		$header_img = wp_get_attachment_image_src( $header_img_id, 'header_img' );
 		$header_img_src = $header_img['0'];
 
 		$output .= '<style type="text/css">';
-		$output .= '#page_header{
-		                  background-image:url("' . $header_img_src . '");
-		                }';
-		$output .= "#page_header .banner_blur{background-image:url({$header_img_src})}";
+		$output .= "#page_header {
+		                  background-image:url('{$header_img_src}');
+		                  height: {$header_img_height}px;
+		                }";
+		$output .= "#page_header .banner_{$header_img_effect}{background-image:url({$header_img_src})}";
 		$output .= '</style>';
 
-		$header_img_text = $header_img_text ? $inputs->markup( 'h2', $header_img_text) : '';
-		$inner = $inputs->markup( 'div', $header_img_text, array( 'class' => 'inner' ));
-		$header_inner = $inputs->markup( 'div', $inner, array( 'class' => 'banner_inner' ));
-		$header_blur = $inputs->markup( 'div', null, array( 'class' => 'banner_blur' ));
-		$output .= $inputs->markup( 'div', $header_inner . $header_blur, array( 'id' => 'page_header' ));
+		$header_img_text = $header_img_text ? $inputs->markup( 'h2', $header_img_text ) : '';
+		$inner = $inputs->markup( 'div', $header_img_text, array( 'class' => 'inner' ) );
+		$header_inner = $inputs->markup( 'div', $inner, array( 'class' => 'banner_inner' ) );
+		$header_blur = $inputs->markup( 'div', null, array( 'class' => 'banner_effect banner_'.$header_img_effect ) );
+		$output .= $inputs->markup( 'div', $header_inner . $header_blur, array( 'id' => 'page_header' ) );
 
 		return $output;
 
@@ -601,52 +618,50 @@ function kt_content_header( $wp_query) {
 }
 
 function site_logo() {
+	if ( ! class_exists( 'KwikUtils' ) ) { return; }
 	$options = KwikThemeOptions::kt_get_options();
 	$inputs = new KwikInputs();
-	if ( $options['logo']) {
+	if ( $options['logo'] ) {
 		$logo_src = wp_get_attachment_image_src( $options['logo'], 'full' );
 		$logo = $inputs->markup( 'img', null, array( 'class' => 'site_logo', 'src' => $logo_src[0]) );
-		return $inputs->markup( 'a', $logo, array( 'href' => esc_url(home_url( '/' )), 'rel' => 'home' ));
+		return $inputs->markup( 'a', $logo, array( 'href' => esc_url(home_url( '/' ) ), 'rel' => 'home' ) );
 	}
 }
 
 function site_favicon() {
+	if ( ! class_exists( 'KwikUtils' ) ) { return; }
 	$options = KwikThemeOptions::kt_get_options();
 	$inputs = new KwikInputs();
-	if ( $options['favicon']) {
+	if ( $options['favicon'] ) {
 		$favicon_src = wp_get_attachment_image_src( $options['favicon'], 'full' );
 		$favicon_src = $favicon_src[0];
 	} else {
 		$favicon_src = bloginfo( 'template_directory' ) . '/images/favicon.ico';
 	}
-	return $inputs->markup( 'link', null, array( 'href' => $favicon_src, 'rel' => 'shortcut icon', 'type' => 'image/x-icon' ));
+	return $inputs->markup( 'link', null, array( 'href' => $favicon_src, 'rel' => 'shortcut icon', 'type' => 'image/x-icon' ) );
 }
 
 
-add_action('wp_head','google_analytics_tracking_code');
-
+add_action( 'wp_head','google_analytics_tracking_code' );
 function google_analytics_tracking_code() {
 	if ( false === ( $analytics_tracking = get_transient( 'analytics_tracking' ) ) ) {
-	ob_start();
-	$options = KwikThemeOptions::kt_get_options();
-	if ( $options['analytics'] === '' ) {
-		return;
-	}
-	?>
-	<script type="text/javascript">
-
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', '<?php echo esc_attr( $options['analytics'] ); ?>']);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-
-	</script>
-	<?php
+		ob_start();
+		$options = KwikThemeOptions::kt_get_options();
+		if ( ! isset( $options['analytics'] ) || $options['analytics'] === '' ) {
+			return;
+		}
+		?>
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', '<?php echo esc_attr( $options['analytics'] ); ?>']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+		<?php
 		$analytics_tracking = ob_get_clean();
 		set_transient( 'analytics_tracking', $analytics_tracking, HOUR_IN_SECONDS );
 	}
@@ -660,8 +675,15 @@ function kwik_title(){
 		$the_id = get_the_id();
 		$page_meta = KwikMeta::get_meta_array( $the_id, 'page_meta_fields' );
 		if ( isset($page_meta['banner_text']) && $page_meta['banner_text'] === $the_title ) {
-			$the_title = '';
+			$the_title = null;
 		}
 	}
-	echo $the_title;
+	return $the_title;
 }
+
+
+function kwik_mime_types($mime_types){
+    $mime_types['ico'] = 'image/x-icon'; //Adding ico extension
+    return $mime_types;
+}
+add_filter('upload_mimes', 'kwik_mime_types', 1, 1);

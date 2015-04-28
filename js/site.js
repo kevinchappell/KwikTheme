@@ -76,7 +76,7 @@
     return $(this).each(function() {
 
       var content = $('.banner_inner', $(this)),
-        blur = $('.banner_blur', $(this)),
+        blur = $('.banner_effect', $(this)),
         wHeight = $(window).height();
 
       $(window).on('resize', function() {
@@ -283,6 +283,10 @@ jQuery(document).ready(function($) {
   $('#kt_newsletter_widget #email').focus(function() {
     $('#kt_newsletter_widget #first_name, #kt_newsletter_widget #last_name, #kt_newsletter_widget .submit_wrap').slideDown(500);
   });
+
+
+
+  $(document.getElementById('main')).css('padding-bottom', $(document.getElementById('footer')).outerHeight());
 
 
 }); //jQuery document ready
