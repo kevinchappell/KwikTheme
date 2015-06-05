@@ -42,7 +42,7 @@ function remove_existing_editor_style() {
 add_action('init', 'remove_existing_editor_style');
 
 function kt_editor_style() {
-  add_editor_style('style/editor-style.css');
+  add_editor_style('style/admin/editor-style.css');
 }
 add_action('after_setup_theme', 'kt_editor_style');
 
@@ -57,8 +57,8 @@ function register_button($buttons) {
 
 //Add custom plugin to TinyMCE - returns associative array which contains link to JS file. The JS file will contain your plugin when created in the following step.
 function add_custom($plugin_array) {
-  $plugin_array['addServiceBox'] = get_bloginfo('template_url') . '/js/editor_plugin.js';
-  $plugin_array['addPullQuote'] = get_bloginfo('template_url') . '/js/editor_plugin_pullquote.js';
+  $plugin_array['addServiceBox'] = get_bloginfo('template_url') . '/js/admin/editor_plugin.js';
+  $plugin_array['addPullQuote'] = get_bloginfo('template_url') . '/js/admin/editor_plugin_pullquote.js';
   return $plugin_array;
 }
 
@@ -67,7 +67,7 @@ function add_service_box_function_callback() {?>
 <head>
     <title>Create a Service Box</title>
 <script type="text/javascript" src="<?php bloginfo('url')?>/wp-includes/js/tinymce/tiny_mce_popup.js?ver=358-20121205"></script>
-<script type="text/javascript" src="<?php bloginfo('template_directory')?>/js/service_box_dialog.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_directory')?>/js/admin/service_box_dialog.js"></script>
 </head>
 <body>
 <form onsubmit="ServiceBox.update();return false;" action="#">
@@ -101,7 +101,7 @@ function add_pull_quote_function_callback() {?>
 <head>
     <title>Create a Pull-Quote</title>
 <script type="text/javascript" src="<?php bloginfo('url')?>/wp-includes/js/tinymce/tiny_mce_popup.js?ver=358-20121205"></script>
-<script type="text/javascript" src="<?php bloginfo('template_directory')?>/js/pull_quote_dialog.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_directory')?>/js/admin/pull_quote_dialog.js"></script>
 </head>
 <body>
 <form onsubmit="PullQuote.update();return false;" action="#">

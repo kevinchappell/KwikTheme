@@ -12,7 +12,9 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <?php
     // Post thumbnail.
-    the_post_thumbnail('medium');
+	if ( has_post_thumbnail() && ! is_archive() ) {
+	    the_post_thumbnail('medium');
+	}
   ?>
 
   <header class="entry-header">

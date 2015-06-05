@@ -1,41 +1,39 @@
-.link.type-multi .kf_field, .link_hover.type-multi .kf_field, .menu_link_hover.type-multi .kf_field{
-  float:left;
-}
-.type-multi .kf_checkbox-group-wrap > label{
-  float:left;
-}
-.page-meta-fields-banner-img .img_prev{
-  float:none;
-  background:#ffffff;
-  min-height:118px;
-  cursor:pointer;
-  position:relative;
+.link.type-multi .kf_field, .link_hover.type-multi .kf_field, .menu_link_hover.type-multi .kf_field {
+  float: left; }
+
+.type-multi .kf_checkbox-group-wrap > label {
+  float: left; }
+
+.page-meta-fields-banner-img .img_prev {
+  float: none;
+  background: #ffffff;
+  min-height: 118px;
+  cursor: pointer;
+  position: relative;
   background-size: cover;
-  background-position:50% 50%;
-}
+  background-position: 50% 50%; }
+
 /*.page-meta-fields-banner-img .no-image:before, .page-meta-fields-banner-img .no-image:after{
 
 }*/
-.page-meta-fields-banner-img .no-image:before{
-  position:absolute;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  background:#fff url(../images/admin/background-placeholder.jpg) no-repeat 50% 50%;
+.page-meta-fields-banner-img .no-image:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff url(../images/admin/background-placeholder.jpg) no-repeat 50% 50%;
   background-size: 100%;
-  opacity:0.5;
-  content:'Set a Banner Image';
+  opacity: 0.5;
+  content: 'Set a Banner Image';
   font-size: 3em;
-  line-height: 3em;
-}
-.page-meta-fields-banner-img .upload_img{
-  float:right;
-  -webkit-border-radius: 0 0 5px 5px;
+  line-height: 3em; }
+
+.page-meta-fields-banner-img .upload_img {
+  float: right;
   border-radius: 0 0 5px 5px;
   border-style: solid solid solid solid;
   border-width: 0 0 1px 1px;
   border-color: #CCCCCC #CCCCCC #999999 #CCCCCC;
-  margin:0;
-  padding:5px
-}
+  margin: 0;
+  padding: 5px; }

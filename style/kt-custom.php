@@ -50,25 +50,52 @@ a:focus {
 .main-navigation li a:hover{
     <?php echo KwikUtils::text_style($options['menu_link_hover']);?>
 }
+
+.menu-toggle:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+article.post-password-required input[type=submit]:hover{
+	color: #ffffff;
+	background-color: <?php echo $options['menu_link_hover']['color'] ?>;
+}
+
+
 .main-navigation li ul{
     <?php echo KwikUtils::text_style($options['menu_link_hover']);?>
 }
 
-.site-header h1 a{
-  color: <?php echo $options['name_style']['color'] ?>;
-}
-.site-header h2 {
-  color: <?php echo $options['desc_style']['color'] ?>;
-}
+<?php if ( isset( $options['h1'] ) ) { ?>
+	.entry-header h1.entry-title, h1.entry-title, h1 {
+		<?php echo KwikUtils::font_css( $options['h1'] );?>
+	}
+<?php } ?>
+<?php if ( isset( $options['h2'] ) ) { ?>
+	h2 {
+		<?php echo KwikUtils::font_css( $options['h2'] );?>
+	}
+<?php } ?>
 
-<?php
-if (!isset($options['show_site_desc'])) {?>
-.site-header h2 {
-  display: none;
-}
+<?php if ( isset( $options['h3'] ) ) { ?>
+	h3, .widget-area .widget h3, h3.widget-title {
+		<?php echo KwikUtils::font_css( $options['h3'] );?>
+	}
+<?php } ?>
+
+<?php if ( isset( $options['show_site_desc'] ) ) {?>
+	.site-header h2 {
+		display:block;
+		<?php echo KwikUtils::font_css( $options['desc_style'] );?>
+	}
+<?php } ?>
+<?php if ( isset($options['show_site_name'] ) ) {?>
+	.site-header h1 {
+		display:block;
+	}
+	.site-header h1 a{
+		<?php echo KwikUtils::font_css( $options['name_style'] );?>
+	}
 <?php }?>
-<?php if (!isset($options['show_site_name'])) {?>
-.site-header h1 {
-  display: none;
-}
-<?php }?>
+
+
+

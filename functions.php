@@ -14,19 +14,19 @@ define( 'THEME_PREFIX', 'kt_' );
 
 
 function run_activate_plugin( $plugin ) {
-    $current = get_option( 'active_plugins' );
-    $plugin = plugin_basename( trim( $plugin ) );
+	$current = get_option( 'active_plugins' );
+	$plugin = plugin_basename( trim( $plugin ) );
 
-    if ( !in_array( $plugin, $current ) ) {
-        $current[] = $plugin;
-        sort( $current );
-        do_action( 'activate_plugin', trim( $plugin ) );
-        update_option( 'active_plugins', $current );
-        do_action( 'activate_' . trim( $plugin ) );
-        do_action( 'activated_plugin', trim( $plugin) );
-    }
+	if ( !in_array( $plugin, $current ) ) {
+		$current[] = $plugin;
+		sort( $current );
+		do_action( 'activate_plugin', trim( $plugin ) );
+		update_option( 'active_plugins', $current );
+		do_action( 'activate_' . trim( $plugin ) );
+		do_action( 'activated_plugin', trim( $plugin ) );
+	}
 
-    return null;
+	return null;
 }
 
 // run_activate_plugin( 'kwik-framework/kwik-framework.php' );
@@ -35,7 +35,7 @@ function run_activate_plugin( $plugin ) {
  * Sets up the content width value based on the theme's design and stylesheet.
  */
 
-if ( ! isset( $content_width) ) {
+if ( ! isset( $content_width ) ) {
 	$content_width = 625;
 }
 
@@ -68,7 +68,7 @@ function kt_setup() {
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'title-tag' );
 	// This theme supports a variety of post formats.
-	add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ));
+	add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
 	register_nav_menus(array(
 		'main' => 'Main Menu',
 		'top' => 'Top Menu Menu',
@@ -110,39 +110,37 @@ function kt_scripts_styles() {
 	 * Adds JavaScript to pages with the comment form to support
 	 * sites with threaded comments (when in use).
 	 */
-	if (is_singular() && comments_open() && get_option( 'thread_comments' )) {
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	/*
-	 * Adds JavaScript for handling the navigation menu hide-and-show behavior.
-	 */
-	wp_enqueue_script( 'site', get_template_directory_uri() . '/js/site.js', array( 'jquery' ));
+	// JS
+	wp_enqueue_script( 'site', get_template_directory_uri() . '/js/site.js' );
 
-	wp_enqueue_script( 'jquery-cycle', 'http://malsup.github.io/min/jquery.cycle2.min.js', array( 'jquery' ));
-	wp_enqueue_style( 'kt-style', get_stylesheet_uri());
-	wp_enqueue_style( 'kt-icons', get_template_directory_uri() . '/style/icons.css' );
-	wp_enqueue_style( 'kt-custom', get_template_directory_uri() . '/style/kt-custom.php', array( 'kt-style' ), '11032014' );
+	// CSS
+	wp_enqueue_style( 'kt-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'kt-custom', get_template_directory_uri() . '/style/kt-custom.php', array( 'kt-style' ), '27052015' );
 
 	/*
-	 * Loads the Internet Explorer specific stylesheet.
+	 * Loads the Internet Explorer 8 stylesheet.
 	 */
-	// wp_enqueue_style( 'kt-ie', get_template_directory_uri() . '/css/ie.css', array( 'kt-style' ), '20121010' );
-	// $wp_styles->add_data( 'kt-ie', 'conditional', 'lte IE 9' );
-	/*
-global $is_IE;
-if( $is_IE){
-wp_register_script( 'site-ie', get_template_directory_uri().'/js/site-ie.js' );
-wp_enqueue_script( 'site-ie' );
-}
- */
+	wp_enqueue_style( 'kt-ie', get_template_directory_uri() . '/style/ie8.css', array( 'kt-custom' ), '27052015' );
+	$wp_styles->add_data( 'kt-ie', 'conditional', 'lte IE 9' );
+
+
+	// global $is_IE;
+	// if($is_IE){
+	//     wp_register_script( 'site-ie', get_template_directory_uri().'/js/site-ie.js');
+	//     wp_enqueue_script('site-ie' );
+	// }
+
 }
 add_action( 'wp_enqueue_scripts', 'kt_scripts_styles' );
 
 function kt_admin_script( $hook_suffix) {
 	wp_enqueue_style( 'kwik-theme-admin', get_template_directory_uri() . '/style/admin.css' );
 }
-add_action( 'admin_enqueue_scripts', 'kt_admin_script', 10, 1);
+add_action( 'admin_enqueue_scripts', 'kt_admin_script', 10, 1 );
 
 /**
  * queries all tags of the site and current post, makes the top 9 the meta keywords
@@ -169,6 +167,10 @@ function get_SEO_tags() {
 	return rtrim( $tags, " "); // remove last space
 }
 
+/**
+ * auto generate the description meta tag based on excerpt
+ * @return string markup for description meta tag
+ */
 function get_meta_description() {
 
 	$description = '';
@@ -198,6 +200,11 @@ function get_meta_description() {
 
 }
 
+/**
+ * trim excerpt lengths
+ * @param  [type] $length [description]
+ * @return [type]         [description]
+ */
 function kt_excerpt_length( $length) {
 
 	if (is_tag() || is_archive() || is_home()) {
@@ -267,7 +274,7 @@ if ( ! function_exists( 'kt_comment' ) ):
 		case 'trackback':
 			// Display trackbacks differently than normal comments. ?>
 			<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-    		<p><?php _e( 'Pingback:', 'kwik' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link(__( '(Edit)', 'kwik' ), '<span class="edit-link">', '</span>' ); ?></p>
+				<p><?php _e( 'Pingback:', 'kwik' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link(__( '(Edit)', 'kwik' ), '<span class="edit-link">', '</span>' ); ?></p>
 				<?php
 		break;
 		default:
@@ -278,7 +285,7 @@ if ( ! function_exists( 'kt_comment' ) ):
 			<article id="comment-<?php comment_ID(); ?>" class="comment">
 			<header class="comment-meta comment-author vcard">
 			<?php
-    		echo get_avatar( $comment, 44 );
+				echo get_avatar( $comment, 44 );
 			printf( '<cite class="fn">%1$s %2$s</cite>',
 				get_comment_author_link(),
 				// If current post author is also comment author, make it known visually.
@@ -391,7 +398,7 @@ endif;
  */
 function kt_body_class( $classes) {
 
-	if ( is_multisite() ) {		
+	if ( is_multisite() ) {
 		$classes[] = 'site-'.get_current_blog_id();
 	}
 
@@ -481,13 +488,13 @@ function custom_edit_links( $output) {
 	$obj = get_post_type_object(get_post_type());
 	$type = $obj->labels->singular_name;
 
-	$output = str_replace( 'title="Edit Post"', 'title="Edit ' . $type . '"', $output);
+	$output = str_replace( 'title="Edit Post"', 'title="Edit ' . $type . '"', $output );
 	return $output;
 }
 add_filter( 'edit_post_link', 'custom_edit_links' );
 
 function kt_child_links() {
-
+	$child_links = '';
 	// if ( is_page() || is_home() || is_single() || is_category() ) {
 		global $post;
 		if ( is_home() || is_category() ) {
@@ -510,16 +517,15 @@ function kt_child_links() {
 				}
 				$child_links .= '<li class="'.$current_cat_class.'"><a href="' . get_category_link( $cat->cat_ID ) . '" id="category-' . $cat->category_nicename . '-filter" title="Show only ' . $cat->name . ' posts" rel="category-' . $cat->category_nicename . '">' . $cat->name . '</a></li>';
 			}
-		} else if ( $post->post_parent ) {
-			$ancestors = get_post_ancestors( $post->ID );
-			$root = count( $ancestors ) - 1;
-			$parent = $ancestors[$root];
-			if ( 0 == $root ) {
-				$child_links = kt_menu_or_pages($post->ID, $post->post_parent);
-			}
-		} else {
-			$child_links = kt_menu_or_pages($post->ID, $post->ID);
+		} else if ( isset( $post ) && $post->post_parent ) {
+			$ancestors = get_post_ancestors( $post );
+			$id = ($ancestors) ? $ancestors[count($ancestors)-1]: $post->ID;
+			$child_links = kt_menu_or_pages( $post->ID, $id );
+		} else if ( ! is_404() ) {
+			$child_links = kt_menu_or_pages( $post->ID, $post->ID );
 		}
+
+		$child_links = apply_filters( 'kwik_left_menu', $child_links );
 
 		if ( isset( $child_links ) && ! empty( $child_links ) ) {
 			$children = '<ul id="child_links" class="' . (is_home() ? 'article_filter' : '' ) . '">';
@@ -536,11 +542,29 @@ function kt_menu_or_pages( $post_id, $child_of ){
 	$page_left_menu = KwikMeta::get_meta_array( $post_id, 'page_left_menu' );
 	$child_links = '';
 	if( isset( $page_left_menu['left_menu_links'] ) && $page_left_menu['left_menu_links'] !== '' ) {
-		foreach ( wp_get_nav_menu_items( $page_left_menu['left_menu_links'] ) as $key => $menu_item ) {
-		    $child_links .= '<li class="'.implode( " ", $menu_item->classes ).'"><a href="' . $menu_item->url . '" target="'.$menu_item->target.'">' . $menu_item->title . '</a></li>';
-		}
-	} else {
-		$child_links = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $child_of . '&echo=0&depth=1' );
+		$menu_args = array(
+			'theme_location'  => '',
+			'menu'            => $page_left_menu['left_menu_links'],
+			'container'       => '',
+			'container_class' => '',
+			'container_id'    => '',
+			'menu_class'      => 'menu',
+			'menu_id'         => '',
+			'echo'            => false,
+			'fallback_cb'     => 'wp_page_menu',
+			'before'          => '',
+			'after'           => '',
+			'link_before'     => '',
+			'link_after'      => '',
+			'items_wrap'      => '%3$s',
+			);
+		$child_links .= wp_nav_menu( $menu_args );
+		// foreach ( wp_get_nav_menu_items( $page_left_menu['left_menu_links'] ) as $key => $menu_item ) {
+			// $child_links .= '<li class="'.implode( " ", $menu_item->classes ).'"><a href="' . $menu_item->url . '" target="'.$menu_item->target.'">' . $menu_item->title . '</a></li>';
+		// }
+	}
+	else {
+		$child_links .= wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $child_of . '&echo=0' );
 	}
 	return $child_links;
 }
@@ -600,9 +624,9 @@ function kt_content_header( $wp_query ) {
 
 		$output .= '<style type="text/css">';
 		$output .= "#page_header {
-		                  background-image:url('{$header_img_src}');
-		                  height: {$header_img_height}px;
-		                }";
+											background-image:url('{$header_img_src}');
+											height: {$header_img_height}px;
+										}";
 		$output .= "#page_header .banner_{$header_img_effect}{background-image:url({$header_img_src})}";
 		$output .= '</style>';
 
@@ -622,8 +646,9 @@ function site_logo() {
 	$options = KwikThemeOptions::kt_get_options();
 	$inputs = new KwikInputs();
 	if ( $options['logo'] ) {
+		$blog_title = get_bloginfo('name');
 		$logo_src = wp_get_attachment_image_src( $options['logo'], 'full' );
-		$logo = $inputs->markup( 'img', null, array( 'class' => 'site_logo', 'src' => $logo_src[0]) );
+		$logo = $inputs->markup( 'img', null, array( 'class' => 'site_logo', 'src' => $logo_src[0], 'alt' => $blog_title) );
 		return $inputs->markup( 'a', $logo, array( 'href' => esc_url(home_url( '/' ) ), 'rel' => 'home' ) );
 	}
 }
@@ -652,14 +677,14 @@ function google_analytics_tracking_code() {
 		}
 		?>
 		<script type="text/javascript">
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', '<?php echo esc_attr( $options['analytics'] ); ?>']);
-		  _gaq.push(['_trackPageview']);
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', '<?php echo esc_attr( $options['analytics'] ); ?>']);
+			_gaq.push(['_trackPageview']);
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
 		</script>
 		<?php
 		$analytics_tracking = ob_get_clean();
@@ -682,8 +707,149 @@ function kwik_title(){
 }
 
 
-function kwik_mime_types($mime_types){
-    $mime_types['ico'] = 'image/x-icon'; //Adding ico extension
-    return $mime_types;
+function kwik_mime_types($mime_types ){
+	$mime_types['ico'] = 'image/x-icon'; //Adding ico extension
+	return $mime_types;
 }
 add_filter('upload_mimes', 'kwik_mime_types', 1, 1);
+
+
+
+
+
+
+/**
+ * Parse the first image found in the post_content
+ * @param   [WP_Object] $post post we are currently saving
+ * @return  [function]  sideload_image( $img, $post->ID )
+ */
+function get_first_img( $post ) {
+	$found_img = first_img_details( $post->post_content );
+	$attachment_id = false;
+	if ( ! $found_img ) {
+		$attachment_id = false;
+	} else if ( isset( $found_img['id'] ) ) {
+		$attachment_id = $found_img['id'];
+	} else {
+		$img = array(
+			'src' => $found_img['src'],
+			'desc' => $found_img['alt'],
+			'name' => $found_img['name'],
+			);
+
+		$attachment_id = sideload_image( $img, $post->ID );
+	}
+
+	return $attachment_id;
+}
+
+/**
+ * Check if the first image of a post is the same as the featured image
+ * @param  [int]  $thumb_src
+ * @param  [string]  $post_content
+ * @return boolean
+ */
+function is_first_thumbnail( $thumb_src, $post_content ) {
+	$thumb_src = parse_url( $thumb_src );
+	$first_img_match = false;
+	$found_img = first_img_details( $post_content );
+	if ( $found_img && isset( $found_img['src'] ) ) {
+		$found_thumb_src = parse_url( $found_img['src'] );
+		$thumb_src['path'] = preg_replace( '/\\.[^.\\s]{3,4}$/', '', $thumb_src['path'] );
+		if ( 0 === strpos( $found_thumb_src['path'], $thumb_src['path'] )  ) {
+			$first_img_match = true;
+		}
+	}
+	return $first_img_match;
+}
+
+function get_attachment_id_from_url( $attachment_url ) {
+	global $wpdb;
+	$attachment_id = false;
+	$upload_dir_paths = wp_upload_dir();
+	if ( false !== strpos( $attachment_url, $upload_dir_paths['baseurl'] ) ) {
+		$attachment_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $attachment_url );
+		$attachment_url = str_replace( $upload_dir_paths['baseurl'] . '/', '', $attachment_url );
+		$attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT wposts.ID FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta WHERE wposts.ID = wpostmeta.post_id AND wpostmeta.meta_key = '_wp_attached_file' AND wpostmeta.meta_value = '%s' AND wposts.post_type = 'attachment'", $attachment_url ) );
+	}
+
+	return $attachment_id;
+}
+
+/**
+ * get the details of the first found image
+ * @param  [string] $post_content
+ * @return [array]  $found_img    array of image attrs
+ */
+function first_img_details( $post_content ) {
+	$found_img = false;
+	$dom = new \DOMDocument;
+	$dom->loadHTML( $post_content );
+	$imgs = $dom->getElementsByTagName( 'img' );
+
+	if ( 0 === $imgs->length ) {
+		$found_img = false;
+	} else {
+		$src = $imgs->item( 0 )->getAttribute( 'src' );
+		preg_match( '/[^\?]+\.(jpg|jpe|jpeg|gif|png)/i', $src, $matches );
+		$class = $imgs->item( 0 )->getAttribute( 'class' );
+		$alt = $imgs->item( 0 )->getAttribute( 'alt' ) ?: __( 'Featured Image', 'bestof' );
+		$name = basename( $matches[0] );
+
+		$found_img = array(
+			'src' => $src,
+			'class' => $class,
+			'alt' => $alt,
+			'name' => basename( $matches[0] ),
+			);
+
+		if ( $id = get_attachment_id_from_url( $src ) ) {
+			$found_img['id'] = $id;
+		}
+
+		return $found_img;
+	}
+}
+
+/**
+ * Sideload image we found in the post
+ * @param   [array] $img            array of attributes for media_handle_sideload()
+ * @param   [int]   $post_id        $post->ID
+ * @return  [int]   $attachment_id  id of attachment
+ */
+function sideload_image( $img, $post_id ){
+
+	if ( ! isset( $img['src'] ) ) {return;}
+	$tmp = download_url( $img['src'] );
+	$file_array = array(
+		'name' => $img['name'],
+		'tmp_name' => $tmp,
+		);
+
+	if ( is_wp_error( $tmp ) ) {
+		unset( $file_array['tmp_name'] );
+	}
+
+	$attachment_id = media_handle_sideload( $file_array, $post_id, $img['desc'] );
+	if ( is_wp_error( $attachment_id ) ) {
+		$attachment_id = null;
+	}
+	return $attachment_id;
+}
+
+
+
+
+define('BCN_SETTINGS_USE_LOCAL', true );
+
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+
+add_filter( 'upload_mimes', 'custom_upload_mimes' );
+function custom_upload_mimes ( $existing_mimes=array() ) {
+		// add your extension to the mimes array as below
+		$existing_mimes['zip'] = 'application/zip';
+		$existing_mimes['gz'] = 'application/x-gzip';
+		return $existing_mimes;
+}

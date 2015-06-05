@@ -67,3 +67,45 @@ function kt_widgets_init() {
 
 }
 add_action('widgets_init', 'kt_widgets_init');
+
+/* Additional css classes for widgets */
+add_filter( 'dynamic_sidebar_params', 'kwik_widget_classes' );
+
+/**
+ * add widget classes to deal with styling issues in older (IE) browsers
+ * @param  array $params widget params
+ * @return array        modified widget params
+ */
+function kwik_widget_classes( $params ) {
+
+    global $genbu_widget_num; // Global a counter array
+    $this_id = $params[0]['id']; // Get the id for the current sidebar we're processing
+    $arr_registered_widgets = wp_get_sidebars_widgets(); // Get an array of ALL registered widgets
+
+    if ( !$genbu_widget_num ) {// If the counter array doesn't exist, create it
+        $genbu_widget_num = array();
+    }
+
+    if ( !isset( $arr_registered_widgets[$this_id] ) || !is_array( $arr_registered_widgets[$this_id] ) ) { // Check if the current sidebar has no widgets
+        return $params; // No widgets in this sidebar... bail early.
+    }
+
+    if ( isset($genbu_widget_num[$this_id] ) ) { // See if the counter array has an entry for this sidebar
+        $genbu_widget_num[$this_id] ++;
+    } else { // If not, create it starting with 1
+        $genbu_widget_num[$this_id] = 1;
+    }
+
+    $class = 'class="widget widget-' . $genbu_widget_num[$this_id] . ' '; // Add a widget number class for additional styling options
+
+    if ( $genbu_widget_num[$this_id] == 1 ) { // If this is the first widget
+        $class .= 'widget widget-first ';
+    } elseif( $genbu_widget_num[$this_id] == count( $arr_registered_widgets[$this_id] ) ) { // If this is the last widget
+        $class .= 'widget widget-last ';
+    }
+
+    $params[0]['before_widget'] = str_replace( 'class="widget ', $class, $params[0]['before_widget'] ); // Insert our new classes into "before widget"
+
+    return $params;
+
+}

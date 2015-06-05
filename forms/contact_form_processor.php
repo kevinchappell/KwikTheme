@@ -10,8 +10,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php';
  * @param mixed $from, $to, $msg, $subject
  * @return boolean
  */
-function send_email($post, $files)
-{
+function send_email($post, $files) {
 
     $options = KwikThemeOptions::kt_get_options();
 
