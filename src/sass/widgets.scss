@@ -1,0 +1,258 @@
+#nav_menu-2 {
+	width: 56%;
+}
+
+#search-2 {
+	width: 44%;
+}
+
+#tkt_bar .widget_search {
+	float: right;
+}
+
+#tkt_bar .widget {
+	border-left: 1px solid #ddd;
+	float: right;
+	line-height: 30px;
+}
+
+#tkt_bar .icon-search {
+	font-size: 16px;
+	text-align: center;
+	width: 36px;
+	position: absolute;
+	right: 0;
+	color: #6ca2c6;
+	pointer-events: none;
+}
+
+.front-widgets .widget .latest_posts {
+	max-height: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 100%;
+}
+
+.front-widgets .widget .latest_posts li {
+	margin-bottom: 10px;
+}
+
+.widget-area .widget h3 strong {
+	font-weight: normal;
+}
+
+.widget-area .widget h3 span {
+	color: #C50016;
+	font-weight: normal;
+}
+
+#kt_contact_widget .text_field,
+#kt_contact_widget textarea,
+#kt_newsletter_widget .text_field,
+#kt_newsletter_widget textarea {
+	display: block;
+	margin-bottom: 10px;
+	width: 95%;
+}
+
+#kt_contact_widget #user_submit,
+#kt_newsletter_widget #user_submit {
+	font: normal 18px "Karla", Arial, Helvetica, sans-serif;
+	display: block;
+	width: 100%;
+	text-transform: none;
+	margin-top: 15px;
+}
+
+#kt_contact_widget .arrow,
+#kt_newsletter_widget .arrow {
+	border-bottom: 10px solid #CB0018;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	height: 0;
+	margin-right: -10px;
+	position: absolute;
+	right: 50%;
+	top: -9px;
+	width: 0;
+}
+
+#kt_newsletter_widget #last_name,
+#kt_newsletter_widget #first_name,
+#kt_newsletter_widget .submit_wrap {
+	display: none;
+}
+
+#news_scroll_wrap {
+	position: relative;
+}
+
+#news_scroll_left,
+#news_scroll_right {
+	position: absolute;
+	margin-top: -29px;
+	top: 50%;
+	content: "";
+	width: 30px;
+	height: 57px;
+	content: "";
+	background: url('images/icons/ui_sprite.png') no-repeat 50% -237px;
+	cursor: pointer;
+}
+
+#news_scroll_left {
+	left: -50px;
+	background-position: 50% -237px;
+}
+
+#news_scroll_right {
+	right: -50px;
+	background-position: 50% -314px;
+}
+
+#news_scroll {}
+
+#news_scroll article.hentry {
+	width: 100%;
+	float: left;
+	display: inline-block;
+	background: #e5e5e5;
+	border-top: 3px solid #C50016;
+	color: #323232
+}
+
+#news_scroll.thirds article.hentry {
+	width: 31.1%;
+	margin-right: 2.2%;
+	float: left;
+	display: inline-block;
+	padding-bottom: 13px;
+	min-height: 380px;
+}
+
+#news_scroll.fourths article.hentry {
+	width: 23.5%;
+	margin-right: 2%;
+	float: left;
+	display: inline-block;
+	padding-bottom: 13px;
+	min-height: 380px;
+}
+
+#news_scroll article.hentry:last-child {
+	margin-right: 0;
+}
+
+#news_scroll .entry-header {
+	margin-bottom: 0;
+}
+
+.front-page .second.front-widgets #news_scroll .entry-header .entry-title h3 {}
+
+#news_scroll .entry-summary,
+#news_scroll .entry-header {
+	padding: 0 13px;
+}
+
+#news_scroll .entry-meta,
+#news_scroll .entry-meta a {
+	color: #636363;
+	font-style: italic;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+#news_scroll .entry-summary a.learn_more_btn {
+	text-indent: -9999px;
+}
+
+div#news_scroll header.entry-header h3.entry-title {
+	margin: 0;
+	text-align: left;
+	padding: 0;
+	font: 18px "Oswald", Arial, Helvetica, sans-serif;
+	color: #bcbcbc;
+}
+
+#news_scroll .entry_thumb {
+	position: relative;
+	text-transform: uppercase;
+	font: 18px "Oswald", Arial, Helvetica, sans-serif;
+	color: #bcbcbc;
+	max-height: 163px;
+	overflow: hidden;
+}
+
+#news_scroll .entry-summary {
+	font-size: 12px;
+}
+
+.front-widgets #news_scroll .entry-summary a.learn_more_btn {
+	float: none;
+	margin-top: 10px;
+}
+
+#news_scroll .entry_thumb .category {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	text-shadow: 0px 0px 5px #000000;
+	filter: dropshadow(color=#000000, offx=0, offy=0);
+	color: #ffffff;
+}
+
+#news_scroll .entry_thumb .category:after {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	text-shadow: 0px 0px 5px #000000;
+	filter: dropshadow(color=#000000, offx=0, offy=0);
+}
+
+.widget-area .widget p,
+.widget-area .widget li,
+.widget-area .widget .textwidget {
+	font-size: 14px;
+	font-size: 1rem;
+	line-height: 1.84615;
+}
+
+.widget-area .widget p {
+	margin-bottom: 24px;
+	margin-bottom: 1.714285714rem;
+}
+
+.widget-area .textwidget ul {
+	list-style: disc outside;
+	margin: 0 0 24px;
+	margin: 0 0 1.714285714rem;
+}
+
+.widget-area .textwidget li {
+	margin-left: 36px;
+	margin-left: 2.571428571rem;
+}
+
+.widget-area .widget a {}
+
+.widget-area #s {
+	width: 53.66666666666%;
+	/* define a width to avoid dropping a wider submit button */
+}
+
+@media screen and (min-width: 740px) {
+	#nav_menu-2,
+	#search-2 {
+		width: auto;
+	}
+	#search-2 {
+		width: 200px;
+	}
+	footer#footer .widget_ninja_forms_widget {
+		width: 16.66%;
+		float: right;
+	}
+	footer#footer .widget_ninja_forms_widget .submit-wrap {
+		text-align: right;
+	}
+}

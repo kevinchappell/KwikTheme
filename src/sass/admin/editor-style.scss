@@ -1,0 +1,43 @@
+/*
+
+Theme Name: KwikTheme
+
+Description: Used to style the TinyMCE editor.
+
+*/
+
+.service_box {
+	border-top: 8px solid #000033;
+	display: inline-block;
+	width: 47.5%;
+	margin-right: 5%;
+	float: left;
+}
+.service_box:nth-of-type(even) {
+	margin-right: 0;
+}
+.service_box h3 {
+	font: normal 17px/24px "Sanchez", Georgia, "Times New Roman", Times, serif;
+	margin: 0;
+}
+
+
+.kt_table td .icon-check{
+  display:inline-block;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+}
+.kt_table td .icon-check:before {
+  font-size:1.5em;
+  content:'✅';
+}
+.kt_table td:nth-child(2n) .icon-check {
+  color: red;
+}
+.kt_table td:nth-child(3n) .icon-check {
+  color: green;
+}
+.kt_table td:nth-child(4n) .icon-check {
+  color: blue;
+}

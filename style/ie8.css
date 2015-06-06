@@ -1,0 +1,19 @@
+body.front-page .thirds.front-widgets {
+	min-height: 275px;
+}
+
+.cpt_clients_widget .client {
+	width: 15%;
+	height:190px;
+}
+.member_table li a, .cpt_clients_widget .client a{
+	height: 100%;
+	width:100%;
+}
+.cpt_clients_widget .client-192 a {
+  width: 100px;
+}
+
+.cpt_clients_widget .client-476 {
+  margin-right:0;
+}
